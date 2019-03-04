@@ -11,10 +11,14 @@ const activateDirectlyOn = ['stackoverflow.com', 'google.com', 'github.com'];
 
 ## Example: Google search results
 
+[Google "react github"](https://www.google.com/search?q=react+github)
+
 ![When googling "react github"](github-stars-google.png 'When googling "react github"')
 
 
 ## Example: Github Awesome list
+
+[sindresorhus/awesome-awesome list](https://github.com/sindresorhus/awesome)
 
 ![sindresorhus/awesome](github-stars-awesome.png 'sindresorhus/awesome')
 
