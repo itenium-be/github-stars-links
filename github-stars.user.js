@@ -10,7 +10,18 @@ const blackList = ['', 'site', 'about', 'pricing', 'contact', 'topics']; // Gith
 const badgeUrl = 'https://img.shields.io/github/stars/{userName}/{repoName}.svg?style=social&label=Star';
 
 
+const badgesAdded = [];
+
+
 function convertLink(el, userName, repoName) {
+  // Only add each badge once
+  const userAndRepo = userName + '/' + repoName;
+  if (badgesAdded.includes(userAndRepo)) {
+    return;
+  }
+  badgesAdded.push(userAndRepo);
+
+
   // Shorten link text
   const linkText = (el.innerText || '').trim();
   if (linkText.startsWith('https://github.com/')) {
