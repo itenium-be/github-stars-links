@@ -55,6 +55,14 @@ function findAndConvertAllLinks() {
       if (match) {
         const userName = match[1];
         const repoName = match[2];
+
+        // Do not replace badges on the repo page itself
+        const url = `https://github.com/${userName.toLowerCase()}/${repoName.toLowerCase()}`;
+        const currentUrl = document.location.href.toLowerCase();
+        if (currentUrl.startsWith(url)) {
+          return;
+        }
+
         if (!blackList.includes(userName)) {
           //console.log('hah', userName, repoName);
           convertLink(a.el, userName, repoName, url);
