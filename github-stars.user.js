@@ -6,20 +6,21 @@
 // @grant        none
 // ==/UserScript==
 
-const blackList = ['', 'site', 'about', 'pricing', 'contact', 'topics']; // Github's own urls
-const badgeUrl = 'https://img.shields.io/github/stars/{userName}/{repoName}.svg?style=social&label=Star';
+// Github's own urls
+const blackList = ['', 'site', 'about', 'pricing', 'contact', 'topics', 'marketplace'];
 
+// ATTN: Whitelisted in manifest.json
+// Example: https://img.shields.io/github/stars/laoujin/dotfiles.svg?style=social&label=Star
+const badgeUrl = 'https://img.shields.io/github/stars/{userName}/{repoName}.svg?style=social&label=Star';
 
 const badgesAdded = [];
 
-
-function convertLink(el, userName, repoName) {
+function convertLink(el, userName, repoName, url) {
   // Only add each badge once
-  const userAndRepo = userName + '/' + repoName;
-  if (badgesAdded.includes(userAndRepo)) {
+  if (badgesAdded.includes(url)) {
     return;
   }
-  badgesAdded.push(userAndRepo);
+  badgesAdded.push(url);
 
 
   // Shorten link text
@@ -40,7 +41,9 @@ function convertLink(el, userName, repoName) {
   el.prepend(badge);
 }
 
-(function() {
+
+
+function findAndConvertAllLinks() {
   const collection = document.getElementsByTagName('a');
   const links = Array.prototype.slice.call(collection, 0);
   const githubLinks = links
@@ -54,8 +57,13 @@ function convertLink(el, userName, repoName) {
         const repoName = match[2];
         if (!blackList.includes(userName)) {
           //console.log('hah', userName, repoName);
-          convertLink(a.el, userName, repoName);
+          convertLink(a.el, userName, repoName, url);
         }
       }
     });
+}
+
+
+(function() {
+  findAndConvertAllLinks();
 })();
