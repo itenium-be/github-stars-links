@@ -1,21 +1,26 @@
 Github Stars
 ============
 
+Add Github Stars shields to Github links.
+
+![alt](github-stars-google.png "title")
+
+
+Activates directly on `activateDirectlyOn` array. For other websites, press `Control + Alt + G`
+
+```javascript
+const activateDirectlyOn = ['https://stackoverflow.com', 'https://google.com'];
+```
+
+
+CSP Fun
+-------
+
 will need to either include resources locally or work around Github's CSP
 ```
 fetch('https://img.shields.io/github/stars/laoujin/dotfiles.svg?style=social&label=Star')
 	.then(x => console.log(x));
 ```
-
-Add Github Stars shields to Github links.
-
-Pay attention to:  
-- xxx.github.io link back to github.com?
-- Check if there already is a badge?
-- Check if path is at raw.githubcontent? or at /tree/master/filename?
-- also work with gists?
-
-
 
 Just great... Github itself blocks it with CSP.
 Would need to include the svg + call the Github API to get the info?
@@ -39,3 +44,12 @@ Would need to include the svg + call the Github API to get the info?
   </g><a target="_blank" xlink:href="https://github.com/laoujin/dotfiles">
   <rect id="llink" stroke="#d5d5d5" fill="url(#a)" x=".5" y=".5" width="50" height="19" rx="2"/></a></svg>
 ```
+
+TODO
+----
+
+Pay attention to:  
+- xxx.github.io link back to github.com?
+- Check if there already is a badge?
+- Check if path is at raw.githubcontent? or at /tree/master/filename?
+- also work with gists?
