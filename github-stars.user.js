@@ -6,6 +6,16 @@
 // @grant        none
 // ==/UserScript==
 
+
+// Activate with "Control + Alt + G" but execute script right away one these sites:
+const activateDirectlyOn = [
+  'https://stackoverflow.com', 'https://superuser.com', 'https://askubuntu.com',
+  'https://serverfault.com', /^https:\/\/.*\.stackexchange\.com/,
+  /^https:\/\/(www.)?google\.(com|be)\/search/, 'https://www.bing.com',
+];
+
+
+
 // Github's own urls
 const blackList = ['', 'site', 'about', 'pricing', 'contact', 'topics', 'marketplace'];
 
@@ -58,20 +68,43 @@ function findAndConvertAllLinks() {
 
         // Do not replace badges on the repo page itself
         const url = `https://github.com/${userName.toLowerCase()}/${repoName.toLowerCase()}`;
-        const currentUrl = document.location.href.toLowerCase();
         if (currentUrl.startsWith(url)) {
           return;
         }
 
         if (!blackList.includes(userName)) {
-          //console.log('hah', userName, repoName);
           convertLink(a.el, userName, repoName, url);
         }
       }
     });
 }
 
+const currentUrl = document.location.href.toLowerCase();
 
-(function() {
+
+if (activateDirectlyOn.some(isWhitelisted)) {
   findAndConvertAllLinks();
-})();
+
+  // duckduckgo loads results later apparently
+  // Exercise for at home: wait for the div to appear?
+  // Or a quick hackish workaround?
+  // setTimeout(() => findAndConvertAllLinks(), 1000);
+} else {
+
+  let activated = false;
+  document.addEventListener('keydown', function(zEvent) {
+    if (!activated && zEvent.ctrlKey && zEvent.altKey && zEvent.code === 'KeyG') {
+      activated = true;
+      findAndConvertAllLinks();
+    }
+  });
+}
+
+
+function isWhitelisted(url) {
+  if (typeof url === 'string') {
+    return currentUrl.startsWith(url);
+  }
+  // regex
+  return currentUrl.match(url);
+}
