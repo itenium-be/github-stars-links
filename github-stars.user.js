@@ -6,7 +6,7 @@
 // @grant        none
 // ==/UserScript==
 
-const blackList = ['', 'site', 'about', 'pricing', 'contact']; // Github's own urls
+const blackList = ['', 'site', 'about', 'pricing', 'contact', 'topics']; // Github's own urls
 const badgeUrl = 'https://img.shields.io/github/stars/{userName}/{repoName}.svg?style=social&label=Star';
 
 
