@@ -11,7 +11,8 @@
 const activateDirectlyOn = [
   'https://stackoverflow.com', 'https://superuser.com', 'https://askubuntu.com',
   'https://serverfault.com', /^https:\/\/.*\.stackexchange\.com/,
-  /^https:\/\/(www.)?google\.(com|be)\/search/, 'https://www.bing.com',
+  /^https:\/\/(www.)?google\..*\/search/, 'https://www.bing.com',
+  'https://github.com'
 ];
 
 
