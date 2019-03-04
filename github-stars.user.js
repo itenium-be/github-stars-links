@@ -15,6 +15,10 @@ const activateDirectlyOn = [
   'https://github.com', 'https://www.npmjs.com/package', 'https://www.nuget.org/packages',
 ];
 
+// If not on one of these pages, activate with this shortcut
+// e: KeyboardEvent: https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent
+const isTheHotkey = e => e.ctrlKey && e.altKey && e.code === 'KeyG';
+
 // Adding on these pages would require some extra work
 // https://yarnpkg.com/en/packages?q=react
 
@@ -143,7 +147,7 @@ if (activateDirectlyOn.some(isWhitelisted)) {
 
   let activated = false;
   document.addEventListener('keydown', function(zEvent) {
-    if (!activated && zEvent.ctrlKey && zEvent.altKey && zEvent.code === 'KeyG') {
+    if (!activated && isTheHotkey(zEvent)) {
       activated = true;
       findAndConvertAllLinks();
     }
