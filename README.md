@@ -1,16 +1,18 @@
 Github Stars
 ============
 
-Add Github Stars shields to Github links.
-
-![When searching "react github" in google](github-stars-google.png 'When searching "react github" in google')
-
-
+Add Github Stars shields to Github links.  
 Activates directly on `activateDirectlyOn` array. For other websites, press `Control + Alt + G`
 
 ```javascript
+// Defaults +/- to
 const activateDirectlyOn = ['https://stackoverflow.com', 'https://google.com'];
 ```
+
+## Example: Google search results
+
+![When googling "react github"](github-stars-google.png 'When googling "react github"')
+
 
 
 CSP Fun
