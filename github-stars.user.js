@@ -15,25 +15,37 @@ const activateDirectlyOn = [
   'https://github.com'
 ];
 
+// Some pages that should show badges immediately:
+// https://www.google.com/search?q=react+github
+// https://github.com/sindresorhus/awesome
+// https://stackoverflow.com/questions/50605219/difference-between-npx-and-npm
 
 
-// Github's own urls
+
+// Ignore Github's own urls
 const blackList = ['', 'site', 'about', 'pricing', 'contact', 'topics', 'marketplace'];
+
+
 
 // ATTN: Whitelisted in manifest.json
 // Example: https://img.shields.io/github/stars/laoujin/dotfiles.svg?style=social&label=Star
 const badgeUrl = 'https://img.shields.io/github/stars/{userName}/{repoName}.svg?style=social&label=Star';
 
+// Workaround for "429 Too Many Requests" from shields.io
+const shieldsConfig = {
+  groupPer: 100,  // Do this many requests
+  waitMs: 3000,   // Then, wait this long.
+
+  retryMs: 30000, // Still got 429? Retry in this many ms.
+  attempt: 1,     // Wait time multiplier increases for each iteration.
+}
+
+// Add a specific badge only once for a given page
 const badgesAdded = [];
 
-function convertLink(el, userName, repoName, url) {
-  // Only add each badge once
-  if (badgesAdded.includes(url)) {
-    return;
-  }
-  badgesAdded.push(url);
 
 
+function convertLink(el, userName, repoName) {
   // Shorten link text
   const linkText = (el.innerText || '').trim();
   if (linkText.startsWith('https://github.com/')) {
@@ -41,15 +53,21 @@ function convertLink(el, userName, repoName, url) {
   }
 
 
-
   // Add badge
   const badge = document.createElement('img');
   badge.src = badgeUrl.replace('{userName}', userName).replace('{repoName}', repoName);
-  badge.style.cssText = 'margin-right: 8px';
+  badge.onload = () => el.prepend(badge);
+  badge.onerror = () => setTimeout(() => {
+    convertLink(el, userName, repoName);
+    shieldsConfig.attempt++;
+
+  }, shieldsConfig.retryMs * shieldsConfig.attempt);
+
+
+  badge.style.cssText = 'margin-right: 8px; margin-bottom: -5px;';
   if (el.firstChild && el.firstChild.style) {
     el.firstChild.style.display = 'inline';
   }
-  el.prepend(badge);
 }
 
 
@@ -73,12 +91,39 @@ function findAndConvertAllLinks() {
           return;
         }
 
-        if (!blackList.includes(userName)) {
-          convertLink(a.el, userName, repoName, url);
+        // Exclude Github's own pages
+        if (blackList.includes(userName)) {
+          return;
         }
+
+        // Only add each badge once
+        if (badgesAdded.some(badge => badge.url === url)) {
+          return;
+        }
+
+        badgesAdded.push({url, userName, repoName, el: a.el});
       }
     });
+
+  let promises = Promise.resolve();
+  badgesAdded.forEach((badge, index) => {
+    promises = promises.then(() => convertLink(badge.el, badge.userName, badge.repoName));
+    if (index && index % shieldsConfig.groupPer === 0) {
+      // Workaround for the "429 Too Many Requests" from shields.io
+      promises = promises.then(sleeper(shieldsConfig.waitMs));
+    }
+  });
+
+  console.info('github-stars-link: Added ' + badgesAdded.length + ' badges.');
 }
+
+
+function sleeper(ms) {
+  return function(x) {
+    return new Promise(resolve => setTimeout(() => resolve(x), ms));
+  };
+}
+
 
 const currentUrl = document.location.href.toLowerCase();
 

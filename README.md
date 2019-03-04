@@ -21,10 +21,3 @@ Turn [google results for "react github"](https://www.google.com/search?q=react+g
 Turn sindresorhus [awesome-awesome list](https://github.com/sindresorhus/awesome) into:
 
 ![sindresorhus/awesome](github-stars-awesome.png 'sindresorhus/awesome')
-
-TODO
-----
-
-Could also implement:  
-- Work when current url is at raw.githubcontent
-- Work for gists
