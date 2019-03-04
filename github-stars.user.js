@@ -48,7 +48,7 @@ function convertLink(el, userName, repoName) {
     .filter(a => a.href.startsWith('https://github.com/'));
 
   githubLinks.forEach(a => {
-      const match = a.href.match(/^\s*https:\/\/github.com\/([^/]+)\/([^/]+)(?:\/.*)?$/i);
+      const match = a.href.match(/^\s*https:\/\/github.com\/([^/#]+)\/([^/#]+)(?:[\/#].*)?$/i);
       if (match) {
         const userName = match[1];
         const repoName = match[2];
