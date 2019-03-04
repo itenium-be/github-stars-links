@@ -3,7 +3,7 @@ Github Stars
 
 Add Github Stars shields to Github links.
 
-![alt](github-stars-google.png "title")
+![When searching "react github" in google](github-stars-google.png)
 
 
 Activates directly on `activateDirectlyOn` array. For other websites, press `Control + Alt + G`
