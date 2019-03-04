@@ -12,8 +12,12 @@ const activateDirectlyOn = [
   'https://stackoverflow.com', 'https://superuser.com', 'https://askubuntu.com',
   'https://serverfault.com', /^https:\/\/.*\.stackexchange\.com/,
   /^https:\/\/(www.)?google\..*\/search/, 'https://www.bing.com',
-  'https://github.com'
+  'https://github.com', 'https://www.npmjs.com/package', 'https://www.nuget.org/packages',
 ];
+
+// Adding on these pages would require some extra work
+// https://yarnpkg.com/en/packages?q=react
+
 
 // Some pages that should show badges immediately:
 // https://www.google.com/search?q=react+github

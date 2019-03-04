@@ -1,0 +1,26 @@
+{
+  "name": "github-stars-links",
+  "version": "0",
+  "description": "Add Github Stars badges to Github project links",
+  "main": "github-stars.user.js",
+  "dependencies": {},
+  "devDependencies": {
+    "del": "^4.0.0",
+    "gulp": "^4.0.0",
+    "gulp-copy": "^4.0.1",
+    "gulp-zip": "^4.2.0"
+  },
+  "scripts": {
+    "build": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itenium-be/github-stars-links.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/itenium-be/github-stars-links/issues"
+  },
+  "homepage": "https://github.com/itenium-be/github-stars-links#readme"
+}
