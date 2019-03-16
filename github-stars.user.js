@@ -46,7 +46,7 @@ const shieldsConfig = {
 
   retryMs: 30000, // Still got 429? Retry in this many ms.
   attempt: 1,     // Wait time multiplier increases for each iteration.
-}
+};
 
 // Add a specific badge only once for a given page
 const badgesAdded = [];
@@ -88,30 +88,30 @@ function findAndConvertAllLinks() {
     .filter(a => a.href.startsWith('https://github.com/'));
 
   githubLinks.forEach(a => {
-      const match = a.href.match(/^\s*https:\/\/github.com\/([^/#]+)\/([^/#]+)(?:[\/#].*)?$/i);
-      if (match) {
-        const userName = match[1];
-        const repoName = match[2];
+    const match = a.href.match(/^\s*https:\/\/github.com\/([^/#]+)\/([^/#]+)(?:[\/#].*)?$/i);
+    if (match) {
+      const userName = match[1];
+      const repoName = match[2];
 
-        // Do not replace badges on the repo page itself
-        const url = `https://github.com/${userName.toLowerCase()}/${repoName.toLowerCase()}`;
-        if (currentUrl.startsWith(url)) {
-          return;
-        }
-
-        // Exclude Github's own pages
-        if (blackList.includes(userName)) {
-          return;
-        }
-
-        // Only add each badge once
-        if (badgesAdded.some(badge => badge.url === url)) {
-          return;
-        }
-
-        badgesAdded.push({url, userName, repoName, el: a.el});
+      // Do not replace badges on the repo page itself
+      const url = `https://github.com/${userName.toLowerCase()}/${repoName.toLowerCase()}`;
+      if (currentUrl.startsWith(url)) {
+        return;
       }
-    });
+
+      // Exclude Github's own pages
+      if (blackList.includes(userName)) {
+        return;
+      }
+
+      // Only add each badge once
+      if (badgesAdded.some(badge => badge.url === url)) {
+        return;
+      }
+
+      badgesAdded.push({url, userName, repoName, el: a.el});
+    }
+  });
 
   let promises = Promise.resolve();
   badgesAdded.forEach((badge, index) => {
