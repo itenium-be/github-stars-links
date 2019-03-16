@@ -9,7 +9,7 @@ gulp.task('clean', function() {
 
 
 gulp.task('copy', function() {
-	return gulp.src(['./media/favicon.png', './manifest.json', 'github-stars.user.js'])
+	return gulp.src(['./favicon.png', './manifest.json', 'github-stars.user.js'])
 		.pipe(gulp.dest('./dist'));
 });
 
