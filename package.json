@@ -1,6 +1,6 @@
 {
   "name": "github-stars-links",
-  "version": "0",
+  "version": "0.0.1",
   "description": "Add Github Stars badges to Github project links",
   "main": "github-stars.user.js",
   "dependencies": {},
