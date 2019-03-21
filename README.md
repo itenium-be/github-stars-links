@@ -1,6 +1,9 @@
 Github Stars
 ============
 
+- [Blog post](https://itenium.be/blog/javascript/starify-github-links/)
+- [Chrome extension](https://chrome.google.com/webstore/detail/starify-github-repo-links/kpficnopciffopkhjpckhkgmnlakcmig/related)
+
 Add Github Stars badges to Github project links.  
 Activates directly on `activateDirectlyOn` array. For other websites, press `Control + Alt + G`
 
