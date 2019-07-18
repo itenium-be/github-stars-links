@@ -26,6 +26,12 @@ Turn sindresorhus [awesome-awesome list](https://github.com/sindresorhus/awesome
 ![sindresorhus/awesome](media/github-stars-awesome.png 'sindresorhus/awesome')
 
 
+# Testing
+
+```bash
+chrome://extensions/
+```
+
 # Publish
 
 Publishing to the [Chrome Web Store](https://chrome.google.com/webstore/detail/kpficnopciffopkhjpckhkgmnlakcmig)
@@ -36,7 +42,7 @@ Publishing to the [Chrome Web Store](https://chrome.google.com/webstore/detail/k
 Upload it the store.
 
 
-```
+```bash
 npm install
 npm run build
 
