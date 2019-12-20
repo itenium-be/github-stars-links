@@ -78,15 +78,35 @@ function convertLink(el, userName, repoName) {
   }
 }
 
+function getAbsoluteLink(a) {
+  var url = a.getAttribute('href');
+  console.log(url);
+
+  if (!currentUrl.toLocaleLowerCase().startsWith("https://github.com"))
+    return (a.getAttribute('href') || '').toLowerCase().trim();
+  else {
+    if (url.indexOf('http://') === -1 && url.indexOf('https://') === -1) {
+      url = "https://github.com" + url;
+    }
+    console.log(url);
+    const match = a.href.match(/^\s*https:\/\/github.com\/([^/#]+)\/([^/#]+)(?:[\/#].*)?$/i);
+    if (match)
+      return url;
+    else return '';
+    // url.replace('http://', '').replace('https://', '').replace('www.', '').split(/[/?#]/)[0];
+  }
+}
+
 
 
 function findAndConvertAllLinks() {
   const collection = document.getElementsByTagName('a');
   const links = Array.prototype.slice.call(collection, 0);
   const githubLinks = links
-    .map(a => ({href: (a.getAttribute('href') || '').toLowerCase().trim(), el: a}))
+    .map(a => ({ href: getAbsoluteLink(a), el: a }))
     .filter(a => a.href.startsWith('https://github.com/'));
-
+  console.log("All Github Link");
+  console.log(githubLinks);
   githubLinks.forEach(a => {
     const match = a.href.match(/^\s*https:\/\/github.com\/([^/#]+)\/([^/#]+)(?:[\/#].*)?$/i);
     if (match) {
@@ -96,20 +116,23 @@ function findAndConvertAllLinks() {
       // Do not replace badges on the repo page itself
       const url = `https://github.com/${userName.toLowerCase()}/${repoName.toLowerCase()}`;
       if (currentUrl.startsWith(url)) {
+        console.log("Do not replace badges on the repo page itself");
         return;
       }
 
       // Exclude Github's own pages
       if (blackList.includes(userName)) {
+        console.log("Exclude Github's own pages");
         return;
       }
 
       // Only add each badge once
       if (badgesAdded.some(badge => badge.url === url)) {
+        console.log("Only add each badge once");
         return;
       }
 
-      badgesAdded.push({url, userName, repoName, el: a.el});
+      badgesAdded.push({ url, userName, repoName, el: a.el });
     }
   });
 
@@ -127,7 +150,7 @@ function findAndConvertAllLinks() {
 
 
 function sleeper(ms) {
-  return function(x) {
+  return function (x) {
     return new Promise(resolve => setTimeout(() => resolve(x), ms));
   };
 }
@@ -146,7 +169,7 @@ if (activateDirectlyOn.some(isWhitelisted)) {
 } else {
 
   let activated = false;
-  document.addEventListener('keydown', function(zEvent) {
+  document.addEventListener('keydown', function (zEvent) {
     if (!activated && isTheHotkey(zEvent)) {
       activated = true;
       findAndConvertAllLinks();
