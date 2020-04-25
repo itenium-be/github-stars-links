@@ -8,10 +8,11 @@
 
 
 // Activate with "Control + Alt + G" but execute script right away one these sites:
+const googleUrl = /^https:\/\/(www.)?google\..*\/search/;
 const activateDirectlyOn = [
   'https://stackoverflow.com', 'https://superuser.com', 'https://askubuntu.com',
   'https://serverfault.com', /^https:\/\/.*\.stackexchange\.com/,
-  /^https:\/\/(www.)?google\..*\/search/, 'https://www.bing.com',
+  googleUrl, 'https://www.bing.com',
   /https:\/\/github.com(?!\/notifications)/, 'https://www.npmjs.com/package', 'https://www.nuget.org/packages',
 ];
 
@@ -75,6 +76,17 @@ function convertLink(el, userName, repoName) {
   badge.style.cssText = 'margin-right: 8px; margin-bottom: -5px;';
   if (el.firstChild && el.firstChild.style) {
     el.firstChild.style.display = 'inline';
+  }
+
+  if (currentUrl.match(googleUrl)) {
+    const cite = el.getElementsByTagName('cite');
+    if (!cite || !cite.length) {
+      console.error('Google changed its layout? Could not find "cite" tag.');
+      return;
+    }
+
+    // Fix for text covering the badge with absolute positioning
+    cite[0].style.marginLeft = '100px';
   }
 }
 
