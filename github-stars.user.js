@@ -12,7 +12,7 @@ const activateDirectlyOn = [
   'https://stackoverflow.com', 'https://superuser.com', 'https://askubuntu.com',
   'https://serverfault.com', /^https:\/\/.*\.stackexchange\.com/,
   /^https:\/\/(www.)?google\..*\/search/, 'https://www.bing.com',
-  'https://github.com', 'https://www.npmjs.com/package', 'https://www.nuget.org/packages',
+  /https:\/\/github.com(?!\/notifications)/, 'https://www.npmjs.com/package', 'https://www.nuget.org/packages',
 ];
 
 // If not on one of these pages, activate with this shortcut
