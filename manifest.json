@@ -16,7 +16,7 @@
     "description":  "Add Github Stars badges to Github project links",
     "name":         "Starify Github repo links",
     "short_name":   "GithubStarifyLinks",
-    "version":      "1.8",
+    "version":      "1.9",
     "content_security_policy": "script-src 'self'; object-src 'self'; img-src 'self' 'sha256-WOdSzz11/3cpqOdrm89LBL2UPwEU9EhbDtMy2OciEhs='",
     "icons": {
         "128": "favicon.png"

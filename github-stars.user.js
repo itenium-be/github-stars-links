@@ -55,6 +55,8 @@ const badgesAdded = [];
 
 
 function convertLink(el, userName, repoName) {
+  // el == the <a> element
+
   // Shorten link text
   const linkText = (el.innerText || '').trim();
   if (linkText.startsWith('https://github.com/')) {
@@ -65,7 +67,34 @@ function convertLink(el, userName, repoName) {
   // Add badge
   const badge = document.createElement('img');
   badge.src = badgeUrl.replace('{userName}', userName).replace('{repoName}', repoName);
-  badge.onload = () => el.prepend(badge);
+  badge.onload = () => {
+    if (currentUrl.match(googleUrl)) {
+      const img = el.getElementsByTagName('img');
+      if (!img || !img.length) {
+        // Could also be a "sublink" -- which do not have images!
+        if (el.childNodes.length === 1) {
+          // el would be: <a>single node</a>
+          el.prepend(badge);
+        } else {
+          console.log('Google changed its layout? Could not find Github logo "img" tag.', el.firstChild)
+          console.log('el', el)
+        }
+        
+      } else {
+        // Google now displays a Github logo
+        // --> We replace the logo with the Github badge
+        img[0].parentNode.parentNode.replaceWith(badge);
+        img[0].style.cssText = 'margin-right: 8px;';
+
+        // Sometimes Google adds some additional stuff
+        // Make sure it does not overlap
+        const extraStuff = el.parentNode.parentNode.childNodes[1].childNodes[1];
+        extraStuff.style.marginLeft = '80px';
+      }
+    } else {
+      el.prepend(badge);
+    }
+  };
   badge.onerror = () => setTimeout(() => {
     convertLink(el, userName, repoName);
     shieldsConfig.attempt++;
@@ -74,20 +103,20 @@ function convertLink(el, userName, repoName) {
 
 
   badge.style.cssText = 'margin-right: 8px; margin-bottom: -5px;';
-  if (el.firstChild && el.firstChild.style) {
-    el.firstChild.style.display = 'inline';
-  }
+  // if (el.firstChild && el.firstChild.style) {
+  //   el.firstChild.style.display = 'inline';
+  // }
 
-  if (currentUrl.match(googleUrl)) {
-    const cite = el.getElementsByTagName('cite');
-    if (!cite || !cite.length) {
-      console.error('Google changed its layout? Could not find "cite" tag.');
-      return;
-    }
+  // if (currentUrl.match(googleUrl)) {
+  //   const img = el.getElementsByTagName('img');
+  //   if (!img || !img.length) {
+  //     console.error('Google changed its layout? Could not find Github logo "img" tag.');
+  //     return;
+  //   }
 
-    // Fix for text covering the badge with absolute positioning
-    cite[0].style.marginLeft = '100px';
-  }
+  //   // Fix for text covering the badge with absolute positioning
+  //   // img[0].style.marginLeft = '100px';
+  // }
 }
 
 
