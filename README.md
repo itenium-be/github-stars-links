@@ -32,6 +32,11 @@ Turn sindresorhus [awesome-awesome list](https://github.com/sindresorhus/awesome
 chrome://extensions/
 ```
 
+- Turn on "Developer mode"
+- Load unpacked
+- Select this folder
+
+
 # Publish
 
 Publishing to the [Chrome Web Store](https://chrome.google.com/webstore/detail/kpficnopciffopkhjpckhkgmnlakcmig)
