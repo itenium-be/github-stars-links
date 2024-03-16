@@ -24,13 +24,6 @@ const isTheHotkey = e => e.ctrlKey && e.altKey && e.code === 'KeyG';
 // https://yarnpkg.com/en/packages?q=react
 
 
-// Some pages that should show badges immediately:
-// https://www.google.com/search?q=react+github
-// https://github.com/sindresorhus/awesome
-// https://stackoverflow.com/questions/50605219/difference-between-npx-and-npm
-
-
-
 // Ignore Github's own urls
 const blackList = [
   '', 'site', 'about', 'pricing', 'contact', 'topics',
