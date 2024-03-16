@@ -32,7 +32,9 @@ const isTheHotkey = e => e.ctrlKey && e.altKey && e.code === 'KeyG';
 
 
 // Ignore Github's own urls
-const blackList = ['', 'site', 'about', 'pricing', 'contact', 'topics', 'marketplace', 'blog', 'apps', 'features'];
+const blackList = [
+  '', 'site', 'about', 'pricing', 'contact', 'topics',
+  'marketplace', 'blog', 'apps', 'features', 'trending'];
 
 
 
