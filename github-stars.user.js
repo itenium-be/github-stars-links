@@ -81,7 +81,7 @@ function convertLink(el, userName, repoName) {
           console.log('Google changed its layout? Could not find Github logo "img" tag.', el.firstChild)
           console.log('el', el)
         }
-        
+
       } else {
         // Google now displays a Github logo
         // --> We replace the logo with the Github badge
@@ -105,20 +105,6 @@ function convertLink(el, userName, repoName) {
 
 
   badge.style.cssText = 'margin-right: 8px; margin-bottom: -5px;';
-  // if (el.firstChild && el.firstChild.style) {
-  //   el.firstChild.style.display = 'inline';
-  // }
-
-  // if (currentUrl.match(googleUrl)) {
-  //   const img = el.getElementsByTagName('img');
-  //   if (!img || !img.length) {
-  //     console.error('Google changed its layout? Could not find Github logo "img" tag.');
-  //     return;
-  //   }
-
-  //   // Fix for text covering the badge with absolute positioning
-  //   // img[0].style.marginLeft = '100px';
-  // }
 }
 
 
