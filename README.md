@@ -73,7 +73,7 @@ Publishing to the [Chrome Web Store](https://chrome.google.com/webstore/detail/k
 - Increase version in `manifest.json`
 - `gulp` will create `./dist/github-stars.zip`
 
-Upload it to the store.
+Upload it to [the store](https://chromewebstore.google.com/) and pick 3 dots > "Developer Dashboard".
 
 
 ```bash
