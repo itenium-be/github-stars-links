@@ -58,11 +58,25 @@ function convertLink(el, userName, repoName) {
     el.innerText = linkText.substr(19);
   }
 
+  // var xhr = new XMLHttpRequest();
+  // xhr.open('GET', shieldUrl, true);
+  // xhr.responseType = 'blob';
+  // xhr.onload = function(e) {
+  //   var badge = document.createElement('img');
+  //   badge.src = window.URL.createObjectURL(this.response);
+  //   el.prepend(badge);
+  // };
+  // xhr.send();
 
   // Add badge
-  const badge = document.createElement('img');
-  badge.src = badgeUrl.replace('{userName}', userName).replace('{repoName}', repoName);
-  badge.onload = () => {
+  const xhr = new XMLHttpRequest();
+  const shieldUrl = badgeUrl.replace('{userName}', userName).replace('{repoName}', repoName);
+  xhr.open('GET', shieldUrl, true);
+  xhr.responseType = 'blob';
+  xhr.onload = function(e) {
+    const badge = document.createElement('img');
+    badge.src = window.URL.createObjectURL(this.response);
+
     if (currentUrl.match(googleUrl)) {
       const img = el.getElementsByTagName('img');
       if (!img || !img.length) {
@@ -89,15 +103,16 @@ function convertLink(el, userName, repoName) {
     } else {
       el.prepend(badge);
     }
+
+    badge.style.cssText = 'margin-right: 8px; margin-bottom: -5px;';
   };
-  badge.onerror = () => setTimeout(() => {
+  xhr.onerror = () => setTimeout(() => {
+    console.log(`onError ${userName}/${repoName}`, shieldsConfig.attempt);
     convertLink(el, userName, repoName);
     shieldsConfig.attempt++;
-
   }, shieldsConfig.retryMs * shieldsConfig.attempt);
 
-
-  badge.style.cssText = 'margin-right: 8px; margin-bottom: -5px;';
+  xhr.send();
 }
 
 
