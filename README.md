@@ -47,6 +47,25 @@ chrome://extensions/
 - [nuget](https://www.nuget.org/packages/Newtonsoft.Json): Bug: It replaces the link at the bottom with "Release notes" instead of the one at the top...
 
 
+## CSP Directives
+
+[Developer docs](https://developer.chrome.com/docs/apps/app_external#external)
+
+```js
+// Suggestion from docs did not help for github.com
+const xhr = new XMLHttpRequest();
+xhr.open('GET', shieldUrl, true);
+xhr.responseType = 'blob';
+xhr.onload = function(e) {
+  const badge = document.createElement('img');
+  badge.src = window.URL.createObjectURL(this.response);
+  el.prepend(badge);
+};
+xhr.send();
+```
+
+
+
 # Publish
 
 Publishing to the [Chrome Web Store](https://chrome.google.com/webstore/detail/kpficnopciffopkhjpckhkgmnlakcmig)
