@@ -1,8 +1,4 @@
 {
-    "permissions": [
-        "activeTab",
-        "webRequest"
-    ],
     "host_permissions": [
         "https://img.shields.io/"
     ],
