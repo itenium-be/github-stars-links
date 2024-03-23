@@ -24,7 +24,7 @@ gulp.task('zip', function() {
 gulp.task('watch', function(done) {
 	nodemon({
 		script: 'github-stars.user.js',
-		ext: 'js',
+		ext: 'js json',
 		env: { NODE_ENV: 'development' },
 		tasks: ['default'],
 		done
