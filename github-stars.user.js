@@ -100,6 +100,7 @@ function convertLink(el, userName, repoName) {
 
 
   badge.style.cssText = 'margin-right: 8px; margin-bottom: -5px;';
+  badge.style.height = '20px';
 }
 
 
