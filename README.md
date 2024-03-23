@@ -87,3 +87,5 @@ gulp
 # Rebuild on changes
 npm run watch
 ```
+
+Do need to click reload in `chrome://extensions` after each change to the code.
