@@ -1,7 +1,7 @@
 const gulp = require('gulp');
 const zip = require('gulp-zip');
 const del = require('del');
-
+const nodemon = require('gulp-nodemon');
 
 gulp.task('clean', function() {
 	return del(['./dist/**']);
@@ -14,11 +14,22 @@ gulp.task('copy', function() {
 });
 
 
-gulp.task('zip', function () {
+gulp.task('zip', function() {
 	return gulp.src('./dist/**')
 		.pipe(zip('github-stars.zip'))
 		.pipe(gulp.dest('./dist'));
 });
+
+
+gulp.task('watch', function(done) {
+	nodemon({
+		script: 'github-stars.user.js',
+		ext: 'js',
+		env: { NODE_ENV: 'development' },
+		tasks: ['default'],
+		done
+	})
+  })
 
 
 gulp.task('default', gulp.series('clean', 'copy', 'zip'));

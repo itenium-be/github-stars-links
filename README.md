@@ -82,4 +82,7 @@ npm run build
 
 # Or with global Gulp
 gulp
+
+# Rebuild on changes
+npm run watch
 ```

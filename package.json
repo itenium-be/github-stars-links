@@ -3,15 +3,16 @@
   "version": "1.9.0",
   "description": "Add Github Stars badges to Github project links",
   "main": "github-stars.user.js",
-  "dependencies": {},
   "devDependencies": {
     "del": "^4.0.0",
     "gulp": "^4.0.0",
     "gulp-copy": "^4.0.1",
+    "gulp-nodemon": "^2.5.0",
     "gulp-zip": "^4.2.0"
   },
   "scripts": {
-    "build": "gulp"
+    "build": "gulp",
+    "watch": "gulp watch"
   },
   "repository": {
     "type": "git",

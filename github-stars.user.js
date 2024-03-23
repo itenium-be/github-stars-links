@@ -156,7 +156,7 @@ function sleeper(ms) {
 }
 
 
-const currentUrl = document.location.href.toLowerCase();
+const currentUrl = globalThis.window?.document.location.href.toLowerCase() || '';
 
 
 if (activateDirectlyOn.some(isWhitelisted)) {
@@ -169,7 +169,7 @@ if (activateDirectlyOn.some(isWhitelisted)) {
 } else {
 
   let activated = false;
-  document.addEventListener('keydown', function(zEvent) {
+  globalThis.window?.document.addEventListener('keydown', function(zEvent) {
     if (!activated && isTheHotkey(zEvent)) {
       activated = true;
       findAndConvertAllLinks();
