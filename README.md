@@ -41,7 +41,7 @@ chrome://extensions/
 
 - [Google](https://www.google.com/search?q=react+github)
 - [Github](https://github.com/itenium-be/Mi-Ke)
-  - [Unexisting Repo](https://github.com/itenium-be/RepoNotFound)
+  - [Unexisting Repo](https://github.com/itenium-be/RepoNotFound): Would need to do a XMLHttpRequest so the returned content svg content can be examined for "Repo not found"
 - [StackOverflow](https://stackoverflow.com/questions/50605219/difference-between-npx-and-npm)
 - [Bing](https://www.bing.com/search?q=github+react)
 - [npmjs](https://www.npmjs.com/package/react): Bug: when selecting another package, the shield.io does not refresh
