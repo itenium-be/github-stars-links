@@ -130,7 +130,14 @@ function findAndConvertAllLinks() {
 
       // Only add each badge once
       if (badgesAdded.some(badge => badge.url === url)) {
-        return;
+        // With a few exceptions
+        const isNpm = currentUrl.startsWith('https://www.npmjs.com/package/');
+        if (!isNpm)
+          return;
+
+        const npmLabel = a.el.getAttribute('aria-labelledby');
+        if (!npmLabel || (!npmLabel.includes('repository-link') && !npmLabel.includes('homePage-link')))
+          return;
       }
 
       badgesAdded.push({url, userName, repoName, el: a.el});
