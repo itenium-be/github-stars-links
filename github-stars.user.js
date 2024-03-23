@@ -57,8 +57,9 @@ function convertLink(el, userName, repoName) {
   const linkText = (el.innerText || '').trim();
   if (linkText.startsWith('https://github.com/')) {
     el.innerText = linkText.substr(19);
+  } else if (linkText.startsWith('github.com/')) {
+    el.innerText = linkText.substr(11);
   }
-
 
   // Add badge
   const badge = document.createElement('img');
