@@ -103,6 +103,29 @@ function convertLink(el, userName, repoName) {
 }
 
 
+/**
+ * Each badge is only displayed once,
+ * but there are a few overrides possible
+ * where the first url encountered is typically not the most visible one
+ */
+function shouldForceBadge(a) {
+  const isNpm = currentUrl.startsWith('https://www.npmjs.com/package/');
+  if (isNpm) {
+    const npmLabel = a.el.getAttribute('aria-labelledby');
+    if (npmLabel && (npmLabel.includes('repository-link') || npmLabel.includes('homePage-link')))
+      return true;
+  }
+
+  const isNuget = currentUrl.startsWith('https://www.nuget.org/packages/');
+  if (isNuget) {
+    const nugetDataTrack = a.el.getAttribute('data-track')
+    if (nugetDataTrack === 'outbound-repository-url')
+      return true;
+  }
+
+  return false;
+}
+
 
 function findAndConvertAllLinks() {
   const collection = document.getElementsByTagName('a');
@@ -131,12 +154,8 @@ function findAndConvertAllLinks() {
       // Only add each badge once
       if (badgesAdded.some(badge => badge.url === url)) {
         // With a few exceptions
-        const isNpm = currentUrl.startsWith('https://www.npmjs.com/package/');
-        if (!isNpm)
-          return;
-
-        const npmLabel = a.el.getAttribute('aria-labelledby');
-        if (!npmLabel || (!npmLabel.includes('repository-link') && !npmLabel.includes('homePage-link')))
+        const forceBadge = shouldForceBadge(a);
+        if (!forceBadge)
           return;
       }
 

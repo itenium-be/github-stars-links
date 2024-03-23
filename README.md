@@ -44,7 +44,7 @@ chrome://extensions/
 - [StackOverflow](https://stackoverflow.com/questions/50605219/difference-between-npx-and-npm)
 - [Bing](https://www.bing.com/search?q=github+react): Bug: shield is distorted
 - [npmjs](https://www.npmjs.com/package/react): Bug: when selecting another package, the shield.io does not refresh
-- [nuget](https://www.nuget.org/packages/Newtonsoft.Json): Bug: It replaces the link at the bottom with "Release notes" instead of the one at the top...
+- [nuget](https://www.nuget.org/packages/Newtonsoft.Json)
 
 
 ## CSP Directives
