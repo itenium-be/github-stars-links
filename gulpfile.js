@@ -29,7 +29,7 @@ gulp.task('watch', function(done) {
 		tasks: ['default'],
 		done
 	})
-  })
+})
 
 
 gulp.task('default', gulp.series('clean', 'copy', 'zip'));

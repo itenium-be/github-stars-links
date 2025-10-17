@@ -28,7 +28,9 @@ const isTheHotkey = e => e.ctrlKey && e.altKey && e.code === 'KeyG';
 const blackList = [
   '', 'site', 'about', 'pricing', 'contact', 'topics',
   'marketplace', 'blog', 'apps', 'features', 'trending',
-  'collections', 'orgs', 'users', 'sponsors', 'settings'];
+  'collections', 'orgs', 'users', 'sponsors', 'settings',
+  'user-attachments'
+];
 
 
 
