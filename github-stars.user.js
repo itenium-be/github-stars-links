@@ -66,6 +66,7 @@ function convertLink(el, userName, repoName) {
 
   // Add badge
   const badge = document.createElement('img');
+  repoName = repoName.replace(/\.git$/i, '');
   badge.src = badgeUrl.replace('{userName}', userName).replace('{repoName}', repoName);
   badge.onload = () => {
     if (currentUrl.match(googleUrl)) {
