@@ -14,6 +14,7 @@ const activateDirectlyOn = [
   'https://serverfault.com', /^https:\/\/.*\.stackexchange\.com/,
   googleUrl, 'https://www.bing.com',
   /https:\/\/github.com(?!\/notifications)/, 'https://www.npmjs.com/package', 'https://www.nuget.org/packages',
+  {url: 'https://marketplace.visualstudio.com', observe: '#repo-link-container'}
 ];
 
 // If not on one of these pages, activate with this shortcut
@@ -48,8 +49,8 @@ const shieldsConfig = {
 };
 
 // Add a specific badge only once for a given page
-const badgesAdded = [];
-
+let badgesAdded = [];
+let badgesRendered = [];
 
 
 function convertLink(el, userName, repoName) {
@@ -130,9 +131,11 @@ function shouldForceBadge(a) {
 }
 
 
-function findAndConvertAllLinks() {
-  const collection = document.getElementsByTagName('a');
-  const links = Array.prototype.slice.call(collection, 0);
+function findAndConvertAllLinks(linkContainers) {
+  const links = linkContainers
+    ? Array.from(linkContainers).flatMap(c => Array.from(c.querySelectorAll('a')))
+    : Array.from(document.getElementsByTagName('a'));
+
   const githubLinks = links
     .map(a => ({href: (a.getAttribute('href') || '').toLowerCase().trim(), el: a}))
     .filter(a => a.href.startsWith('https://github.com/'));
@@ -155,7 +158,9 @@ function findAndConvertAllLinks() {
       }
 
       // Only add each badge once
-      if (badgesAdded.some(badge => badge.url === url)) {
+      const alreadyAdded = badgesAdded.some(badge => badge.url === url);
+      const alreadyRendered = badgesRendered.some(badge => badge.url === url);
+      if (alreadyAdded || alreadyRendered) {
         // With a few exceptions
         const forceBadge = shouldForceBadge(a);
         if (!forceBadge)
@@ -176,6 +181,9 @@ function findAndConvertAllLinks() {
   });
 
   console.info('github-stars-link: Added ' + badgesAdded.length + ' badges.');
+
+  badgesRendered = badgesRendered.concat(badgesAdded);
+  badgesAdded = [];
 }
 
 
@@ -188,9 +196,26 @@ function sleeper(ms) {
 
 const currentUrl = globalThis.window?.document.location.href.toLowerCase() || '';
 
-
-if (activateDirectlyOn.some(isWhitelisted)) {
+const activator = activateDirectlyOn.find(isWhitelisted);
+if (activator) {
   findAndConvertAllLinks();
+
+  if (activator.observe) {
+    var githubLinkContainer = document.querySelectorAll(activator.observe);
+    if (githubLinkContainer.length) {
+      findAndConvertAllLinks(githubLinkContainer);
+    }
+
+    const observer = new MutationObserver(() => {
+      githubLinkContainer = document.querySelectorAll(activator.observe);
+      if (githubLinkContainer.length) {
+        findAndConvertAllLinks(githubLinkContainer);
+      }
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+    window.addEventListener('beforeunload', () => observer.disconnect());
+  }
 
   // duckduckgo loads results later apparently
   // Exercise for at home: wait for the div to appear?
@@ -209,6 +234,10 @@ if (activateDirectlyOn.some(isWhitelisted)) {
 
 
 function isWhitelisted(url) {
+  if (url.url) {
+    return currentUrl.startsWith(url.url);
+  }
+
   if (typeof url === 'string') {
     return currentUrl.startsWith(url);
   }
