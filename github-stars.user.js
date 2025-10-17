@@ -7,7 +7,7 @@
 // ==/UserScript==
 
 
-// Activate with "Control + Alt + G" but execute script right away one these sites:
+// Activate with "Control + Alt + G" but execute script right away on these sites:
 const googleUrl = /^https:\/\/(www.)?google\..*\/search/;
 const activateDirectlyOn = [
   'https://stackoverflow.com', 'https://superuser.com', 'https://askubuntu.com',
