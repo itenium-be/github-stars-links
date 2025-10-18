@@ -10,10 +10,15 @@
 // Activate with "Control + Alt + G" but execute script right away on these sites:
 const googleUrl = /^https:\/\/(www.)?google\..*\/search/;
 const activateDirectlyOn = [
-  'https://stackoverflow.com', 'https://superuser.com', 'https://askubuntu.com',
-  'https://serverfault.com', /^https:\/\/.*\.stackexchange\.com/,
+  'https://stackoverflow.com',
+  'https://superuser.com',
+  'https://askubuntu.com',
+  'https://serverfault.com',
+  /^https:\/\/.*\.stackexchange\.com/,
   googleUrl, 'https://www.bing.com',
-  /https:\/\/github.com(?!\/notifications)/, 'https://www.npmjs.com/package', 'https://www.nuget.org/packages',
+  /https:\/\/github.com(?!\/notifications)/,
+  // {url: 'https://www.npmjs.com/package'/*, observe: '#repository ~ p'*/},
+  'https://www.nuget.org/packages',
   {url: 'https://marketplace.visualstudio.com', observe: '#repo-link-container'}
 ];
 
@@ -50,7 +55,6 @@ const shieldsConfig = {
 
 // Add a specific badge only once for a given page
 let badgesAdded = [];
-let badgesRendered = [];
 
 
 function convertLink(el, userName, repoName) {
@@ -66,8 +70,8 @@ function convertLink(el, userName, repoName) {
 
   // Add badge
   const badge = document.createElement('img');
-  repoName = repoName.replace(/\.git$/i, '');
   badge.src = badgeUrl.replace('{userName}', userName).replace('{repoName}', repoName);
+  // badge.setAttribute('starified', true);
   badge.onload = () => {
     if (currentUrl.match(googleUrl)) {
       const img = el.getElementsByTagName('img');
@@ -145,7 +149,7 @@ function findAndConvertAllLinks(linkContainers) {
     const match = a.href.match(/^\s*https:\/\/github.com\/([^/#]+)\/([^/#]+)(?:[\/#].*)?$/i);
     if (match) {
       const userName = match[1];
-      const repoName = match[2];
+      const repoName = match[2].replace(/\.git$/i, '');
 
       // Do not replace badges on the repo page itself
       const url = `https://github.com/${userName.toLowerCase()}/${repoName.toLowerCase()}`;
@@ -160,8 +164,7 @@ function findAndConvertAllLinks(linkContainers) {
 
       // Only add each badge once
       const alreadyAdded = badgesAdded.some(badge => badge.url === url);
-      const alreadyRendered = badgesRendered.some(badge => badge.url === url);
-      if (alreadyAdded || alreadyRendered) {
+      if (alreadyAdded) {
         // With a few exceptions
         const forceBadge = shouldForceBadge(a);
         if (!forceBadge)
@@ -183,7 +186,6 @@ function findAndConvertAllLinks(linkContainers) {
 
   console.info('github-stars-link: Added ' + badgesAdded.length + ' badges.');
 
-  badgesRendered = badgesRendered.concat(badgesAdded);
   badgesAdded = [];
 }
 
@@ -211,6 +213,7 @@ if (activator) {
       githubLinkContainer = document.querySelectorAll(activator.observe);
       if (githubLinkContainer.length) {
         findAndConvertAllLinks(githubLinkContainer);
+        observer.disconnect();
       }
     });
 
@@ -218,7 +221,7 @@ if (activator) {
     window.addEventListener('beforeunload', () => observer.disconnect());
   }
 
-  // duckduckgo loads results later apparently
+  // TODO duckduckgo loads results later apparently --> can be fixed with an observer now!
   // Exercise for at home: wait for the div to appear?
   // Or a quick hackish workaround?
   // setTimeout(() => findAndConvertAllLinks(), 1000);
