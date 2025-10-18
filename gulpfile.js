@@ -19,7 +19,7 @@ gulp.task('typescript', async function() {
 
 
 gulp.task('copy', function() {
-	return gulp.src(['./favicon.png', './manifest.json', 'github-stars.user.js'])
+	return gulp.src(['./favicon.png', './manifest.json', 'github-stars.user.js', 'background.js'])
 		.pipe(gulp.dest('./dist'));
 });
 

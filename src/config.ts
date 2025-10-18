@@ -1,8 +1,5 @@
 export const googleUrl = /^https:\/\/(www.)?google\..*\/search/;
 
-// If not on one of these pages, activate with this shortcut
-export const isTheHotkey = (e: KeyboardEvent) => e.ctrlKey && e.altKey && e.code === 'KeyG';
-
 export const getCurrentUrl = () => globalThis.window?.document.location.href.toLowerCase() || '';
 
 /** Workaround for "429 Too Many Requests" from shields.io */

@@ -5,12 +5,13 @@ Github Stars
 - [Chrome extension](https://chrome.google.com/webstore/detail/starify-github-repo-links/kpficnopciffopkhjpckhkgmnlakcmig)
 
 Add Github Stars badges to Github project links.  
-Activates directly on `activateDirectlyOn` array. For other websites, press `Control + Alt + G`
+Activates directly on `activateDirectlyOn` array (in `src/directActivation.ts`). For other websites, press `Alt + Shift + S` (configure in `chrome://extensions/shortcuts`)
 
-```javascript
-// Defaults +/- to
-const activateDirectlyOn = ['stackoverflow.com', 'google.com', 'github.com', ...];
-```
+`activateDirectlyOn` includes:
+- Search engines (Google, Bing, ...)
+- Github (awesome lists!)
+- Package managers (npmjs, nuget, ...)
+
 
 ## Example: Google search results
 

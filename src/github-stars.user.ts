@@ -1,4 +1,3 @@
-import { isTheHotkey } from './config';
 import { shouldActivate } from './directActivation';
 import { findAndConvertLinks } from './findAndCovertLinks';
 
@@ -24,13 +23,12 @@ if (activator) {
     observer.observe(document.body, { childList: true, subtree: true });
     // window.addEventListener('beforeunload', () => observer.disconnect());
   }
-} else {
-
-  let activated = false;
-  globalThis.window?.document.addEventListener('keydown', function(zEvent) {
-    if (!activated && isTheHotkey(zEvent)) {
-      activated = true;
-      findAndConvertLinks();
-    }
-  });
 }
+
+
+chrome.runtime.onMessage.addListener((message: { action: string }) => {
+  if (message.action === 'activate-github-stars') {
+    // Handle the shortcut press, as sent from background.js
+    findAndConvertLinks();
+  }
+});

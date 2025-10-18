@@ -10,6 +10,18 @@
         "matches":          ["http://*/*", "file:///*", "https://*/*"],
         "run_at": "document_end"
     }],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "commands": {
+        "activate-github-stars": {
+            "suggested_key": {
+                "default": "Alt+Shift+S",
+                "mac": "Alt+Shift+S"
+            },
+            "description": "Add GitHub star badges to links"
+        }
+    },
     "converted_from_user_script": true,
     "description":  "Add Github Stars badges to Github project links",
     "name":         "Starify Github repo links",
