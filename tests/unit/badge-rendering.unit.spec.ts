@@ -49,6 +49,13 @@ test.describe('Badge Rendering - Unit Tests', () => {
     expect(badges).toBe(1);
   });
 
+  test('should not add the same badge twice even when the links are not exactly the same', async ({ page }) => {
+    await setupTestPage(page, 'double-diff.html');
+
+    const badges = await page.locator('img[src*="shields.io"]').count();
+    expect(badges).toBe(1);
+  });
+
   test('should shorten the URL', async ({ page }) => {
     await setupTestPage(page, 'github-full.html');
 
