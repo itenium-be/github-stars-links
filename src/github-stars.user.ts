@@ -1,5 +1,5 @@
 import { shouldActivate } from './directActivation';
-import { findAndConvertLinks } from './findAndCovertLinks';
+import { findAndConvertLinks } from './findAndConvertLinks';
 
 
 const activator = shouldActivate();
