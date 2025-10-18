@@ -12,6 +12,10 @@ export async function goToWhitelistedPage(context: BrowserContext, url: string) 
   return page;
 }
 
+export function getBadgeLocator(page: Page, repo: string) {
+  return page.locator(`img[src="https://img.shields.io/github/stars/${repo}.svg?style=social&label=Star"]`);
+}
+
 
 
 /** Set up a page with Chrome API mock and inject the userscript */
