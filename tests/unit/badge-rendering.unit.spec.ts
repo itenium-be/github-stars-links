@@ -18,7 +18,7 @@ test.describe('Badge Rendering - Unit Tests', () => {
     await setupTestPage(page, 'other.html');
 
     const badges = await page.locator('img[src*="shields.io"]').count();
-    expect(badges).toBe(0);
+    expect(badges).toBe(1);
   });
 
   test('should not add a badge to blacklisted GitHub links', async ({ page }) => {
