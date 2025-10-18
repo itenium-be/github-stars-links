@@ -9,7 +9,7 @@ Activates directly on `activateDirectlyOn` array. For other websites, press `Con
 
 ```javascript
 // Defaults +/- to
-const activateDirectlyOn = ['stackoverflow.com', 'google.com', 'github.com'];
+const activateDirectlyOn = ['stackoverflow.com', 'google.com', 'github.com', ...];
 ```
 
 ## Example: Google search results
@@ -24,6 +24,33 @@ Turn [google results for "react github"](https://www.google.com/search?q=react+g
 Turn sindresorhus [awesome-awesome list](https://github.com/sindresorhus/awesome) into:
 
 ![sindresorhus/awesome](media/github-stars-awesome.png 'sindresorhus/awesome')
+
+
+# Development
+
+```bash
+npm install
+npm run build
+
+# Or with global Gulp
+gulp
+
+# Rebuild on changes
+npm run watch
+```
+
+Do need to click reload in `chrome://extensions` after each change to the code.
+
+
+# Publish
+
+Publishing to the [Chrome Web Store](https://chrome.google.com/webstore/detail/kpficnopciffopkhjpckhkgmnlakcmig)
+
+- Increase version in `manifest.json` (and `package.json`)
+- `gulp` will create `./dist/github-stars.zip`
+
+Upload it to [the store](https://chromewebstore.google.com/) and pick 3 dots > "Developer Dashboard".
+
 
 
 # Testing
@@ -66,28 +93,3 @@ xhr.onload = function(e) {
 };
 xhr.send();
 ```
-
-
-
-# Publish
-
-Publishing to the [Chrome Web Store](https://chrome.google.com/webstore/detail/kpficnopciffopkhjpckhkgmnlakcmig)
-
-- Increase version in `manifest.json`
-- `gulp` will create `./dist/github-stars.zip`
-
-Upload it to [the store](https://chromewebstore.google.com/) and pick 3 dots > "Developer Dashboard".
-
-
-```bash
-npm install
-npm run build
-
-# Or with global Gulp
-gulp
-
-# Rebuild on changes
-npm run watch
-```
-
-Do need to click reload in `chrome://extensions` after each change to the code.
