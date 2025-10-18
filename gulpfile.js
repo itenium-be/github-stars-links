@@ -31,9 +31,9 @@ gulp.task('zip', function() {
 });
 
 
-gulp.task('watch', function() {
+gulp.task('watch', gulp.series('typescript', function() {
 	return gulp.watch('src/**/*.ts', gulp.series('typescript'));
-})
+}))
 
 
 gulp.task('default', gulp.series('clean', 'typescript', 'copy', 'zip'));
