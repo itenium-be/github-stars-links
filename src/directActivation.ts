@@ -8,7 +8,6 @@ const activateDirectlyOn: DirectActivation[] = [
   'https://serverfault.com',
   /^https:\/\/.*\.stackexchange\.com/,
   googleUrl,
-  'https://www.bing.com',
   /https:\/\/github.com(?!\/notifications)/,
   // {url: 'https://www.npmjs.com/package'/*, observe: '#repository ~ p'*/},
   'https://www.nuget.org/packages',

@@ -85,7 +85,7 @@ chrome://extensions/
   - [Link with .git](https://github.com/itenium-be/Git-NumberedAdd.git)
   - [Unexisting Repo](https://github.com/itenium-be/RepoNotFound): Would need to do a XMLHttpRequest so the returned content svg content can be examined for "Repo not found"
 - [StackOverflow](https://stackoverflow.com/questions/50605219/difference-between-npx-and-npm)
-- [Bing](https://www.bing.com/search?q=github+react)
+- [Bing](https://www.bing.com/search?q=github+react): [Not implemented](https://github.com/itenium-be/github-stars-links/issues/17) (who uses Bing anyway)
 - [npmjs](https://www.npmjs.com/package/react): Bug: when selecting another package, the shield.io does not refresh
 - [nuget](https://www.nuget.org/packages/Newtonsoft.Json)
 - [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments)
