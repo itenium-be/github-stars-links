@@ -11,12 +11,11 @@ if (activator) {
       const githubLinkContainer = document.querySelectorAll(activator.observe);
       if (githubLinkContainer.length) {
         findAndConvertLinks(githubLinkContainer);
-        observer.disconnect();
       }
     });
 
     observer.observe(document.body, { childList: true, subtree: true });
-    // window.addEventListener('beforeunload', () => observer.disconnect());
+    window.addEventListener('beforeunload', () => observer.disconnect());
   }
 }
 
