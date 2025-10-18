@@ -30,12 +30,7 @@ Turn sindresorhus [awesome-awesome list](https://github.com/sindresorhus/awesome
 
 ```bash
 npm install
-npm run build
-
-# Or with global Gulp
-gulp
-
-# Rebuild on changes
+npm run typescript
 npm run watch
 ```
 
@@ -48,6 +43,10 @@ Publishing to the [Chrome Web Store](https://chrome.google.com/webstore/detail/k
 
 - Increase version in `manifest.json` (and `package.json`)
 - `gulp` will create `./dist/github-stars.zip`
+
+```bash
+npm run build
+```
 
 Upload it to [the store](https://chromewebstore.google.com/) and pick 3 dots > "Developer Dashboard".
 

@@ -1,7 +1,6 @@
 const gulp = require('gulp');
 const zip = require('gulp-zip');
 const del = require('del');
-const nodemon = require('gulp-nodemon');
 const ts = require('gulp-typescript');
 
 gulp.task('clean', function() {
@@ -34,14 +33,8 @@ gulp.task('zip', function() {
 });
 
 
-gulp.task('watch', function(done) {
-	nodemon({
-		script: 'github-stars.user.js',
-		ext: 'ts js json',
-		env: { NODE_ENV: 'development' },
-		tasks: ['default'],
-		done
-	})
+gulp.task('watch', function() {
+	return gulp.watch('src/**/*.ts', gulp.series('typescript'));
 })
 
 
