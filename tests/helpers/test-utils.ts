@@ -34,6 +34,11 @@ export async function setupTestPage(page: Page, fixtureName: string) {
 
 
   // Trigger the starifying
+  await triggerStarify(page);
+}
+
+
+export async function triggerStarify(page: Page) {
   await page.evaluate(() => {
     const callback = (window as any).__chromeMessageCallback;
     if (callback) {

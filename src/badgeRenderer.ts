@@ -6,6 +6,11 @@ const badgeUrl = 'https://img.shields.io/github/stars/{userName}/{repoName}.svg?
 const currentUrl = getCurrentUrl();
 
 export function badgeRenderer(el: HTMLAnchorElement, userName: string, repoName: string) {
+  const existingBadge = el.querySelector('img[src*="shields.io/github/stars"]');
+  if (existingBadge) {
+    return;
+  }
+
   // Shorten link text
   const linkText = (el.innerText || '').trim();
   if (linkText.startsWith('https://github.com/')) {

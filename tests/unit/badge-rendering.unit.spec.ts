@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { setupTestPage } from '../helpers/test-utils';
+import { setupTestPage, triggerStarify } from '../helpers/test-utils';
 
 // Load the dummy html files from /tests/fixtures and run tests against them
 
@@ -60,5 +60,17 @@ test.describe('Badge Rendering - Unit Tests', () => {
 
     const custom = page.getByTestId('custom');
     await expect(custom).toHaveText('Custom Description');
+  });
+
+  test('should not add a badge twice when triggering the extension multiple times', async ({ page }) => {
+    await setupTestPage(page, 'github.html');
+
+    const badgesFirst = await page.locator('img[src*="shields.io/github/stars"]').count();
+    expect(badgesFirst).toBe(1);
+
+    await triggerStarify(page);
+
+    const badgesAfter = await page.locator('img[src*="shields.io/github/stars"]').count();
+    expect(badgesAfter).toBe(1);
   });
 });
