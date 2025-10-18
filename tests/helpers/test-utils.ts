@@ -1,8 +1,18 @@
-import { Page } from '@playwright/test';
+import { BrowserContext, Page } from '@playwright/test';
 import * as path from 'path';
 import * as fs from 'fs';
 
 let scriptContent = '';
+
+
+export async function goToWhitelistedPage(context: BrowserContext, url: string) {
+  const page = await context.newPage();
+  await page.goto(url/*, {waitUntil: 'networkidle'}*/);
+  await page.waitForTimeout(3000);
+  return page;
+}
+
+
 
 /** Set up a page with Chrome API mock and inject the userscript */
 export async function setupTestPage(page: Page, fixtureName: string) {

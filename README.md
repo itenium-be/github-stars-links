@@ -37,6 +37,20 @@ npm run watch
 
 Do need to click reload in `chrome://extensions` after each change to the code.
 
+## Tests
+
+```bash
+# Run tests against our custom made html files
+npm run test:unit
+
+# Run tests against live whitelisted websites
+npm run test:e2e
+
+# Debug tests
+npm run test:ui
+npm run test:debug
+```
+
 
 # Publish
 

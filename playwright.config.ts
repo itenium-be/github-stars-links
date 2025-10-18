@@ -24,7 +24,6 @@ export default defineConfig({
       testMatch: /.*\.e2e\.spec\.ts/,
       use: {
         ...devices['Desktop Chrome'],
-        // E2E tests will launch with extension loaded (can't be headless)
       },
     },
   ],
