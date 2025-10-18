@@ -7,13 +7,8 @@ if (activator) {
   findAndConvertLinks();
 
   if (typeof activator === 'object' && 'observe' in activator) {
-    var githubLinkContainer = document.querySelectorAll(activator.observe);
-    if (githubLinkContainer.length) {
-      findAndConvertLinks(githubLinkContainer);
-    }
-
     const observer = new MutationObserver(() => {
-      githubLinkContainer = document.querySelectorAll(activator.observe);
+      const githubLinkContainer = document.querySelectorAll(activator.observe);
       if (githubLinkContainer.length) {
         findAndConvertLinks(githubLinkContainer);
         observer.disconnect();
