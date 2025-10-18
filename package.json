@@ -4,6 +4,7 @@
   "description": "Add GitHub Stars badges to GitHub project links",
   "main": "github-stars.user.js",
   "devDependencies": {
+    "@playwright/test": "^1.56.1",
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@rollup/plugin-typescript": "^12.1.4",
     "@types/chrome": "^0.1.24",
@@ -18,13 +19,18 @@
   },
   "scripts": {
     "build": "gulp",
-    "watch": "gulp watch"
+    "watch": "gulp watch",
+    "test": "npm run build && playwright test",
+    "test:unit": "npm run build && playwright test --project=unit",
+    "test:e2e": "npm run build && playwright test --project=e2e",
+    "test:ui": "npm run build && playwright test --ui",
+    "test:debug": "npm run build && playwright test --debug"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/itenium-be/github-stars-links.git"
   },
-  "author": "",
+  "author": "itenium",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/itenium-be/github-stars-links/issues"

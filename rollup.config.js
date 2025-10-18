@@ -22,6 +22,8 @@ module.exports = {
       target: 'ES2015',
       lib: ['ES2019', 'DOM'],
       module: 'ESNext',
+      include: ['src/**/*'],
+      exclude: ['tests/**/*', 'node_modules/**/*'],
     }),
   ],
 };
