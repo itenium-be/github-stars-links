@@ -31,7 +31,7 @@ export function findAndConvertLinks(linkContainers?: NodeListOf<Element>) {
         return;
       }
 
-      // Exclude Github's own pages
+      // Exclude GitHub's own pages
       if (blackList.includes(userName)) {
         return;
       }

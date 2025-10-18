@@ -1,7 +1,7 @@
 {
   "name": "github-stars-links",
   "version": "1.10.0",
-  "description": "Add Github Stars badges to Github project links",
+  "description": "Add GitHub Stars badges to GitHub project links",
   "main": "github-stars.user.js",
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^16.0.3",

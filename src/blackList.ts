@@ -1,4 +1,4 @@
-/** Ignore Github's own urls */
+/** Ignore GitHub's own urls */
 export const blackList = [
   '', 'site', 'about', 'pricing', 'contact', 'topics',
   'marketplace', 'blog', 'apps', 'features', 'trending',

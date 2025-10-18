@@ -27,13 +27,13 @@ export function badgeRenderer(el: HTMLAnchorElement, userName: string, repoName:
           // el would be: <a>single node</a>
           el.prepend(badge);
         } else {
-          console.log('Google changed its layout? Could not find Github logo "img" tag.', el.firstChild)
+          console.log('Google changed its layout? Could not find GitHub logo "img" tag.', el.firstChild)
           console.log('el', el)
         }
 
       } else {
-        // Google now displays a Github logo
-        // --> We replace the logo with the Github badge
+        // Google now displays a GitHub logo
+        // --> We replace the logo with the GitHub badge
         const githubLogo = img[0]!.parentNode!.parentNode! as Element;
         githubLogo.replaceWith(badge);
         img[0].style.cssText = 'margin-right: 8px;';

@@ -1,15 +1,15 @@
-Github Stars
+GitHub Stars
 ============
 
 - [Blog post](https://itenium.be/blog/javascript/starify-github-links/)
 - [Chrome extension](https://chrome.google.com/webstore/detail/starify-github-repo-links/kpficnopciffopkhjpckhkgmnlakcmig)
 
-Add Github Stars badges to Github project links.  
+Add GitHub Stars badges to GitHub project links.  
 Activates directly on `activateDirectlyOn` array (in `src/directActivation.ts`). For other websites, press `Alt + Shift + S` (configure in `chrome://extensions/shortcuts`)
 
 `activateDirectlyOn` includes:
 - Search engines (Google, Bing, ...)
-- Github (awesome lists!)
+- GitHub (awesome lists!)
 - Package managers (npmjs, nuget, ...)
 
 
@@ -20,7 +20,7 @@ Turn [google results for "react github"](https://www.google.com/search?q=react+g
 ![When googling "react github"](media/github-stars-google.png 'When googling "react github"')
 
 
-## Example: Github Awesome list
+## Example: GitHub Awesome list
 
 Turn sindresorhus [awesome-awesome list](https://github.com/sindresorhus/awesome) into:
 
@@ -67,7 +67,7 @@ chrome://extensions/
 ## Test Urls
 
 - [Google](https://www.google.com/search?q=react+github)
-- [Github](https://github.com/itenium-be/Mi-Ke)
+- [GitHub](https://github.com/itenium-be/Mi-Ke)
   - [Link with .git](https://github.com/itenium-be/Git-NumberedAdd.git)
   - [Unexisting Repo](https://github.com/itenium-be/RepoNotFound): Would need to do a XMLHttpRequest so the returned content svg content can be examined for "Repo not found"
 - [StackOverflow](https://stackoverflow.com/questions/50605219/difference-between-npx-and-npm)
