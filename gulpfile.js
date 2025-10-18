@@ -2,9 +2,22 @@ const gulp = require('gulp');
 const zip = require('gulp-zip');
 const del = require('del');
 const nodemon = require('gulp-nodemon');
+const ts = require('gulp-typescript');
 
 gulp.task('clean', function() {
-	return del(['./dist/**']);
+	return del(['./dist/**', './github-stars.user.js']);
+});
+
+
+gulp.task('typescript', function() {
+	return gulp.src('./src/github-stars.user.ts')
+		.pipe(ts({
+			target: 'ES2015',
+			module: 'none',
+			lib: ['ES2019', 'DOM'],
+			removeComments: false
+		}))
+		.pipe(gulp.dest('./'));
 });
 
 
@@ -24,7 +37,7 @@ gulp.task('zip', function() {
 gulp.task('watch', function(done) {
 	nodemon({
 		script: 'github-stars.user.js',
-		ext: 'js json',
+		ext: 'ts js json',
 		env: { NODE_ENV: 'development' },
 		tasks: ['default'],
 		done
@@ -32,4 +45,4 @@ gulp.task('watch', function(done) {
 })
 
 
-gulp.task('default', gulp.series('clean', 'copy', 'zip'));
+gulp.task('default', gulp.series('clean', 'typescript', 'copy', 'zip'));

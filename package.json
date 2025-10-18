@@ -8,7 +8,9 @@
     "gulp": "^4.0.0",
     "gulp-copy": "^4.0.1",
     "gulp-nodemon": "^2.5.0",
-    "gulp-zip": "^4.2.0"
+    "gulp-typescript": "^6.0.0-alpha.1",
+    "gulp-zip": "^4.2.0",
+    "typescript": "^5.9.3"
   },
   "scripts": {
     "build": "gulp",

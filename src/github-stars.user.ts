@@ -7,9 +7,11 @@
 // ==/UserScript==
 
 
+type DirectActivation = string | RegExp | { url: string; observe: string };
+
 // Activate with "Control + Alt + G" but execute script right away on these sites:
 const googleUrl = /^https:\/\/(www.)?google\..*\/search/;
-const activateDirectlyOn = [
+const activateDirectlyOn: DirectActivation[] = [
   'https://stackoverflow.com',
   'https://superuser.com',
   'https://askubuntu.com',
@@ -24,7 +26,7 @@ const activateDirectlyOn = [
 
 // If not on one of these pages, activate with this shortcut
 // e: KeyboardEvent: https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent
-const isTheHotkey = e => e.ctrlKey && e.altKey && e.code === 'KeyG';
+const isTheHotkey = (e: KeyboardEvent) => e.ctrlKey && e.altKey && e.code === 'KeyG';
 
 // Adding on these pages would require some extra work
 // https://yarnpkg.com/en/packages?q=react
@@ -54,10 +56,17 @@ const shieldsConfig = {
 };
 
 // Add a specific badge only once for a given page
-let badgesAdded = [];
+type BadgeInfo = {
+  url: string;
+  userName: string;
+  repoName: string;
+  el: HTMLAnchorElement;
+}
+
+let badgesAdded: BadgeInfo[] = [];
 
 
-function convertLink(el, userName, repoName) {
+function convertLink(el: HTMLAnchorElement, userName: string, repoName: string) {
   // el == the <a> element
 
   // Shorten link text
@@ -88,12 +97,13 @@ function convertLink(el, userName, repoName) {
       } else {
         // Google now displays a Github logo
         // --> We replace the logo with the Github badge
-        img[0].parentNode.parentNode.replaceWith(badge);
+        const githubLogo = img[0]!.parentNode!.parentNode! as Element;
+        githubLogo.replaceWith(badge);
         img[0].style.cssText = 'margin-right: 8px;';
 
         // Sometimes Google adds some additional stuff
         // Make sure it does not overlap
-        const extraStuff = el.parentNode.parentNode.childNodes[1].childNodes[1];
+        const extraStuff = el.parentNode!.parentNode!.childNodes[1].childNodes[1] as HTMLElement;
         extraStuff.style.marginLeft = '80px';
       }
     } else {
@@ -117,7 +127,7 @@ function convertLink(el, userName, repoName) {
  * but there are a few overrides possible
  * where the first url encountered is typically not the most visible one
  */
-function shouldForceBadge(a) {
+function shouldForceBadge(a: BadgeLinkInfo) {
   const isNpm = currentUrl.startsWith('https://www.npmjs.com/package/');
   if (isNpm) {
     const npmLabel = a.el.getAttribute('aria-labelledby');
@@ -135,13 +145,18 @@ function shouldForceBadge(a) {
   return false;
 }
 
+type BadgeLinkInfo = {
+  href: string;
+  el: HTMLAnchorElement;
+}
 
-function findAndConvertAllLinks(linkContainers) {
+
+function findAndConvertAllLinks(linkContainers?: NodeListOf<Element>) {
   const links = linkContainers
     ? Array.from(linkContainers).flatMap(c => Array.from(c.querySelectorAll('a')))
     : Array.from(document.getElementsByTagName('a'));
 
-  const githubLinks = links
+  const githubLinks: BadgeLinkInfo[] = links
     .map(a => ({href: (a.getAttribute('href') || '').toLowerCase().trim(), el: a}))
     .filter(a => a.href.startsWith('https://github.com/'));
 
@@ -190,9 +205,9 @@ function findAndConvertAllLinks(linkContainers) {
 }
 
 
-function sleeper(ms) {
-  return function(x) {
-    return new Promise(resolve => setTimeout(() => resolve(x), ms));
+function sleeper(ms: number) {
+  return function() {
+    return new Promise<void>(resolve => setTimeout(() => resolve(), ms));
   };
 }
 
@@ -203,7 +218,7 @@ const activator = activateDirectlyOn.find(isWhitelisted);
 if (activator) {
   findAndConvertAllLinks();
 
-  if (activator.observe) {
+  if (typeof activator === 'object' && 'observe' in activator) {
     var githubLinkContainer = document.querySelectorAll(activator.observe);
     if (githubLinkContainer.length) {
       findAndConvertAllLinks(githubLinkContainer);
@@ -237,8 +252,8 @@ if (activator) {
 }
 
 
-function isWhitelisted(url) {
-  if (url.url) {
+function isWhitelisted(url: DirectActivation) {
+  if (typeof url === 'object' && 'url' in url) {
     return currentUrl.startsWith(url.url);
   }
 
