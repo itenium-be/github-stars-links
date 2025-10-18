@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { setupTestPage, triggerStarify } from '../helpers/test-utils';
+import { setupTestPage, triggerStarify } from './test-utils';
 
 // Load the dummy html files from /tests/fixtures and run tests against them
 

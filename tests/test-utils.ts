@@ -7,7 +7,7 @@ let scriptContent = '';
 
 export async function goToWhitelistedPage(context: BrowserContext, url: string) {
   const page = await context.newPage();
-  await page.goto(url/*, {waitUntil: 'networkidle'}*/);
+  await page.goto(url);
   await page.waitForTimeout(3000);
   return page;
 }
@@ -21,7 +21,7 @@ export function getBadgeLocator(page: Page, repo: string) {
 /** Set up a page with Chrome API mock and inject the userscript */
 export async function setupTestPage(page: Page, fixtureName: string) {
   // Load our static HTML page
-  const fixturePath = path.join(__dirname, `../fixtures/${fixtureName}`);
+  const fixturePath = path.join(__dirname, `./fixtures/${fixtureName}`);
   await page.goto(`file://${fixturePath}`);
 
 
@@ -31,7 +31,7 @@ export async function setupTestPage(page: Page, fixtureName: string) {
 
   // Add our content script
   if (!scriptContent) {
-    const scriptPath = path.join(__dirname, '../../github-stars.user.js');
+    const scriptPath = path.join(__dirname, '../github-stars.user.js');
     scriptContent = fs.readFileSync(scriptPath, 'utf-8');
   }
   await page.addScriptTag({ content: scriptContent });

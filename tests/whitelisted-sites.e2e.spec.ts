@@ -1,6 +1,6 @@
 import { test, expect, chromium, BrowserContext } from '@playwright/test';
 import * as path from 'path';
-import { goToWhitelistedPage, getBadgeLocator } from '../helpers/test-utils';
+import { goToWhitelistedPage, getBadgeLocator } from './test-utils';
 
 // Test the actual sites for which directActivation.ts is configured
 
@@ -8,7 +8,7 @@ test.describe('Whitelisted Sites - Should automatically add badges', () => {
   let context: BrowserContext;
 
   test.beforeAll(async () => {
-    const extensionPath = path.join(__dirname, '../../dist');
+    const extensionPath = path.join(__dirname, '../dist');
 
     context = await chromium.launchPersistentContext('', {
       headless: false,
