@@ -22,19 +22,12 @@ export function badgeRenderer(el: HTMLAnchorElement, userName: string, repoName:
   // Add badge
   const badge = document.createElement('img');
   badge.src = badgeUrl.replace('{userName}', userName).replace('{repoName}', repoName);
-  // badge.setAttribute('starified', true);
   badge.onload = () => {
-    if (currentUrl.match(googleUrl)) {
+    if (currentUrl.match(googleUrl) || currentUrl.endsWith('google.html')) {
       const img = el.getElementsByTagName('img');
       if (!img || !img.length) {
         // Could also be a "sublink" -- which do not have images!
-        if (el.childNodes.length === 1) {
-          // el would be: <a>single node</a>
-          el.prepend(badge);
-        } else {
-          console.log('Google changed its layout? Could not find GitHub logo "img" tag.', el.firstChild)
-          console.log('el', el)
-        }
+        el.prepend(badge);
 
       } else {
         // Google now displays a GitHub logo

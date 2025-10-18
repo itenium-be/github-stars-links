@@ -3,7 +3,7 @@ import { setupTestPage, triggerStarify } from './test-utils';
 
 // Load the dummy html files from /tests/fixtures and run tests against them
 
-test.describe('Badge Rendering - Unit Tests', () => {
+test.describe('Badge Rendering against html fixtures', () => {
   test('should add badge to a GitHub link', async ({ page }) => {
     await setupTestPage(page, 'github.html');
 
