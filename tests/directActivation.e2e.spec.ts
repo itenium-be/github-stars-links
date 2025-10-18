@@ -4,7 +4,7 @@ import { goToWhitelistedPage, getBadgeLocator } from './test-utils';
 
 // Test the actual sites for which directActivation.ts is configured
 
-test.describe('Whitelisted Sites - Should automatically add badges', () => {
+test.describe('directActivation Sites - Should automatically add badges', () => {
   let context: BrowserContext;
 
   test.beforeAll(async () => {
