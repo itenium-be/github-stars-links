@@ -1,22 +1,20 @@
 const gulp = require('gulp');
 const zip = require('gulp-zip');
 const del = require('del');
-const ts = require('gulp-typescript');
+const { exec } = require('child_process');
+const { promisify } = require('util');
+
+const execAsync = promisify(exec);
 
 gulp.task('clean', function() {
 	return del(['./dist/**', './github-stars.user.js']);
 });
 
 
-gulp.task('typescript', function() {
-	return gulp.src('./src/github-stars.user.ts')
-		.pipe(ts({
-			target: 'ES2015',
-			module: 'none',
-			lib: ['ES2019', 'DOM'],
-			removeComments: false
-		}))
-		.pipe(gulp.dest('./'));
+gulp.task('typescript', async function() {
+	const { stdout, stderr } = await execAsync('npx rollup -c');
+	if (stdout) console.log(stdout);
+	if (stderr) console.error(stderr);
 });
 
 
