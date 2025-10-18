@@ -16,11 +16,10 @@ export function findAndConvertLinks(linkContainers?: NodeListOf<Element>) {
     : Array.from(document.getElementsByTagName('a'));
 
   const githubLinks: BadgeLinkInfo[] = links
-    .map(a => ({href: (a.getAttribute('href') || '').toLowerCase().trim(), el: a}))
-    .filter(a => a.href.startsWith('https://github.com/'));
+    .map(a => ({href: (a.getAttribute('href') || '').toLowerCase().trim(), el: a}));
 
   githubLinks.forEach(a => {
-    const match = a.href.match(/^\s*https:\/\/github.com\/([^/#]+)\/([^/#]+)(?:[\/#].*)?$/i);
+    const match = a.href.match(/^https?:\/\/(?:www\.)?github\.com\/([^/#]+)\/([^/#]+)/);
     if (match) {
       const userName = match[1];
       const repoName = match[2].replace(/\.git$/i, '');

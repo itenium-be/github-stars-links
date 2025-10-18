@@ -14,6 +14,25 @@ test.describe('Badge Rendering - Unit Tests', () => {
     await expect(vscodeBadge).toBeVisible();
   });
 
+  test('should add badge even when the link is weird', async ({ page }) => {
+    await setupTestPage(page, 'github-special.html');
+
+    const withSpaces = await page.locator('img[src*="microsoft/vscode"]').count();
+    expect(withSpaces).toBe(1);
+
+    const withCasing = await page.locator('img[src*="itenium-be/git-numberedadd"]').count();
+    expect(withCasing).toBe(1);
+
+    const withHttp = await page.locator('img[src*="thomhurst/tunit"]').count();
+    expect(withHttp).toBe(1);
+
+    const withWww = await page.locator('img[src*="facebook/react"]').count();
+    expect(withWww).toBe(1);
+
+    const withAll = await page.locator('img[src*="typescript-cheatsheets/react"]').count();
+    expect(withAll).toBe(1);
+  });
+
   test('should not add a badge to other links', async ({ page }) => {
     await setupTestPage(page, 'other.html');
 
