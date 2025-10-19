@@ -43,6 +43,18 @@ test.describe('directActivation Sites - Should automatically add badges', () => 
     expect(mikeImg).toBe(1);
   });
 
+  test('on GitHub navigating from issues to issues/detail with SPA', async () => {
+    const url = 'https://github.com/itenium-be/Mi-Ke/issues?q=%2352';
+    const page = await goToWhitelistedPage(context, url);
+
+    const detailsLink = page.getByTestId('issue-pr-title-link');
+    await detailsLink.click();
+    await page.waitForTimeout(3000);
+
+    const badge = await getBadgeLocator(page, 'microsoft/calculator').count();
+    expect(badge).toBe(1);
+  });
+
   test('on StackOverflow', async () => {
     const url = 'https://stackoverflow.com/questions/50605219/difference-between-npx-and-npm';
     const page = await goToWhitelistedPage(context, url);
