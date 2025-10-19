@@ -83,6 +83,7 @@ chrome://extensions/
 - Search Engines
   - [Google](https://www.google.com/search?q=react+github)
   - [Bing](https://www.bing.com/search?q=github+react): [Not implemented](https://github.com/itenium-be/github-stars-links/issues/17) (who uses Bing anyway)
+  - [DuckDuckGo](https://duckduckgo.com/?q=github+react)
 - [GitHub](https://github.com/itenium-be/Mi-Ke)
   - [Same GitHub](https://github.com/itenium-be/Mi-Ke)
   - [Link with .git](https://github.com/itenium-be/Git-NumberedAdd.git)

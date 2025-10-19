@@ -47,7 +47,19 @@ export function badgeRenderer(badge: BadgeInfo) {
         const extraStuff = badge.el.parentNode!.parentNode!.childNodes[1].childNodes[1] as HTMLElement;
         extraStuff.style.marginLeft = '80px';
       }
+
+    } else if (currentUrl.startsWith('https://duckduckgo.com')) {
+      const imgContainer = badge.el.parentNode!.parentNode as Element;
+      const img = imgContainer.getElementsByTagName('img');
+      if (img && img.length === 1) {
+        const imgEl = img[0] as HTMLImageElement;
+        if (!imgEl.src.includes('shields.io')) {
+          (img[0].parentNode?.parentNode?.parentElement as Element)?.replaceWith(badgeImg);
+        }
+      }
+
     } else {
+      // For all other websites:
       badge.el.prepend(badgeImg);
     }
   };
