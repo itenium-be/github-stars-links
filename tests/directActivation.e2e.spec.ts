@@ -95,4 +95,21 @@ test.describe('directActivation Sites - Should automatically add badges', () => 
     const badge = await getBadgeLocator(page, 'umidbekk/prettier-plugin-prisma').count();
     expect(badge).toBe(1);
   });
+
+  test('on npmjs.com', async () => {
+    const url = 'https://www.npmjs.com/package/react';
+    const page = await goToWhitelistedPage(context, url);
+
+    const badge = await getBadgeLocator(page, 'facebook/react').count();
+    expect(badge).toBe(1);
+  });
+
+  test.only('on npmjs.com, with many links to the same github repo', async () => {
+    // Including repository-link and homePage-link
+    const url = 'https://www.npmjs.com/package/date-holidays';
+    const page = await goToWhitelistedPage(context, url);
+
+    const badge = await getBadgeLocator(page, 'commenthol/date-holidays').count();
+    expect(badge).toBe(3);
+  });
 });

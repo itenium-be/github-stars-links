@@ -1,28 +1,28 @@
 import { getCurrentUrl, googleUrl } from "./config";
-import { DirectActivation } from "./types";
+import { BadgeInfo, DirectActivation } from "./types";
 
 const activateDirectlyOn: DirectActivation[] = [
-  'https://stackoverflow.com',
-  'https://superuser.com',
-  'https://askubuntu.com',
-  'https://serverfault.com',
-  /^https:\/\/.*\.stackexchange\.com/,
-  googleUrl,
-  /https:\/\/github.com(?!\/notifications)/,
-  // {url: 'https://www.npmjs.com/package'/*, observe: '#repository ~ p'*/},
-  'https://www.nuget.org/packages',
+  {url: 'https://stackoverflow.com'},
+  {url: 'https://superuser.com'},
+  {url: 'https://askubuntu.com'},
+  {url: 'https://serverfault.com'},
+  {url: /^https:\/\/.*\.stackexchange\.com/},
+  {url: googleUrl},
+  {url: /https:\/\/github.com(?!\/notifications)/},
+  {url: 'https://www.npmjs.com/package', observe: ':has(> #repository, > #homePage)', replaceText: false},
+  {url: 'https://www.nuget.org/packages'},
   {url: 'https://marketplace.visualstudio.com', observe: '#repo-link-container'}
 ];
 
-const currentUrl = getCurrentUrl();
 
-export const shouldActivate = () => activateDirectlyOn.find(isWhitelisted);
+export function findConfig(badge: BadgeInfo) {
+  return activateDirectlyOn.find(x => isWhitelisted(x, badge.url))
+}
 
-function isWhitelisted(url: DirectActivation) {
-  if (typeof url === 'object' && 'url' in url) {
-    return currentUrl.startsWith(url.url);
-  }
+export const shouldActivate = () => activateDirectlyOn.find(x => isWhitelisted(x, getCurrentUrl()));
 
+function isWhitelisted(directActivation: DirectActivation, currentUrl: string) {
+  const url = directActivation.url;
   if (typeof url === 'string') {
     return currentUrl.startsWith(url);
   }

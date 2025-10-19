@@ -6,9 +6,9 @@ const activator = shouldActivate();
 if (activator) {
   findAndConvertLinks();
 
-  if (typeof activator === 'object' && 'observe' in activator) {
+  if (activator.observe) {
     const observer = new MutationObserver(() => {
-      const githubLinkContainer = document.querySelectorAll(activator.observe);
+      const githubLinkContainer = document.querySelectorAll(activator.observe!);
       if (githubLinkContainer.length) {
         findAndConvertLinks(githubLinkContainer);
       }
