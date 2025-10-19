@@ -2,9 +2,6 @@ import { getCurrentUrl, googleUrl, shieldsConfig } from "./config";
 import { findConfig } from "./directActivation";
 import { BadgeInfo } from "./types";
 
-// Example: https://img.shields.io/github/stars/laoujin/dotfiles.svg?style=social&label=Star
-const badgeUrl = 'https://img.shields.io/github/stars/{userName}/{repoName}.svg?style=social&label=Star';
-
 const currentUrl = getCurrentUrl();
 
 export function badgeRenderer(badge: BadgeInfo) {
@@ -22,9 +19,9 @@ export function badgeRenderer(badge: BadgeInfo) {
 
   // Add badge
   const badgeImg = document.createElement('img');
-  badgeImg.src = badgeUrl.replace('{userName}', badge.userName).replace('{repoName}', badge.repoName);
+  badgeImg.src = badge.badgeUrl;
   badgeImg.onload = () => {
-    const existingBadge = badge.el.querySelector('img[src*="shields.io/github/stars"]');
+    const existingBadge = badge.el.querySelector('img[src*="shields.io"]');
     if (existingBadge) {
       return;
     }

@@ -35,8 +35,7 @@ export type DirectActivation = {
 
 export type BadgeInfo = {
   url: string;
-  userName: string;
-  repoName: string;
+  badgeUrl: string;
   el: HTMLAnchorElement;
 }
 

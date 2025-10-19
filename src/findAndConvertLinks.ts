@@ -1,6 +1,6 @@
 import { badgeRenderer } from "./badgeRenderer";
 import { blackList } from "./blackList";
-import { getCurrentUrl, shieldsConfig } from "./config";
+import { BadgeConfig, badgesConfig, getCurrentUrl, shieldsConfig } from "./config";
 import { BadgeInfo, BadgeLinkInfo } from "./types";
 
 const currentUrl = getCurrentUrl();
@@ -22,11 +22,10 @@ export function findAndConvertLinks(linkContainers?: NodeListOf<Element>, allowD
       const userName = match[1];
       const repoName = match[2].replace(/\.git$/i, '');
 
-      // console.log(`starting badge: ${userName}/${repoName}`);
-
       // Do not replace badges on the repo page itself
-      const url = `https://github.com/${userName.toLowerCase()}/${repoName.toLowerCase()}`;
-      if (currentUrl.startsWith(url)) {
+      const url = `https://github.com/${userName.toLowerCase()}/${repoName.toLowerCase()}`
+      const urlTester = new RegExp(url, 'i');
+      if (urlTester.test(currentUrl)) {
         return;
       }
 
@@ -47,8 +46,33 @@ export function findAndConvertLinks(linkContainers?: NodeListOf<Element>, allowD
         }
       }
 
-      // console.log(`pushing badge: ${userName}/${repoName}`);
-      newBadges.push({url, userName, repoName, el: a.el});
+      let badgeUrl = badgesConfig.githubRepository.badgeUrl
+        .replace('{userName}', userName)
+        .replace('{repoName}', repoName);
+
+      badgeUrl = completeBadgeUrl(badgeUrl, badgesConfig.githubRepository);
+
+      newBadges.push({url, badgeUrl, el: a.el});
+
+    } else {
+      const userMatch = a.href.match(/^https?:\/\/(?:www\.)?github\.com\/([^/#]+)\/?$/);
+      if (userMatch) {
+        const userName = userMatch[1];
+
+        // Exclude GitHub's own pages
+        if (blackList.includes(userName)) {
+          return;
+        }
+
+        const url = `https://github.com/${userName.toLowerCase()}`;
+        let badgeUrl = badgesConfig.githubUserStars.badgeUrl
+          .replace('{userName}', userName);
+
+        badgeUrl = completeBadgeUrl(badgeUrl, badgesConfig.githubUserStars);
+
+        console.log(`pushing badge: ${badgeUrl}`);
+        newBadges.push({url, badgeUrl, el: a.el});
+      }
     }
   });
 
@@ -64,11 +88,21 @@ export function findAndConvertLinks(linkContainers?: NodeListOf<Element>, allowD
   console.info(`github-stars-link: Added ${newBadges.length} badges for ${linkContainers ? 'observe' : 'global scan'}.`);
 }
 
-export function removeAllBadges() {
-  const badges = document.querySelectorAll('img[src*="shields.io/github/stars"]');
-  badges.forEach(badge => badge.remove());
-  console.info(`github-stars-link: Removed ${badges.length} badges.`);
+
+function completeBadgeUrl(badgeUrl: string, config: BadgeConfig): string {
+  badgeUrl += '?';
+
+  Object.entries(config)
+    .filter(([key]) => key !== 'badgeUrl')
+    .forEach(([key, value]) => {
+      if (value) {
+        badgeUrl += `&${key}=${value}`;
+      }
+    });
+
+  return badgeUrl;
 }
+
 
 
 /**

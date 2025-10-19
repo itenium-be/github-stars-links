@@ -1,5 +1,5 @@
 import { findConfig } from './directActivation';
-import { findAndConvertLinks, removeAllBadges } from './findAndConvertLinks';
+import { findAndConvertLinks } from './findAndConvertLinks';
 
 
 const activator = findConfig();
@@ -36,6 +36,13 @@ if (activator) {
     observer.observe(document.body, { childList: true, subtree: true });
     window.addEventListener('beforeunload', () => observer.disconnect());
   }
+}
+
+
+export function removeAllBadges() {
+  const badges = document.querySelectorAll('img[src*="shields.io/github/stars"]');
+  badges.forEach(badge => badge.remove());
+  console.info(`github-stars-link: Removed ${badges.length} badges.`);
 }
 
 
