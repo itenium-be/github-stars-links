@@ -82,6 +82,7 @@ chrome://extensions/
 
 - [Google](https://www.google.com/search?q=react+github)
 - [GitHub](https://github.com/itenium-be/Mi-Ke)
+  - [Same GitHub](https://github.com/itenium-be/Mi-Ke)
   - [Link with .git](https://github.com/itenium-be/Git-NumberedAdd.git)
   - [Unexisting Repo](https://github.com/itenium-be/RepoNotFound): Would need to do a XMLHttpRequest so the returned content svg content can be examined for "Repo not found"
 - [StackOverflow](https://stackoverflow.com/questions/50605219/difference-between-npx-and-npm)
