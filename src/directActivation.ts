@@ -8,7 +8,7 @@ const activateDirectlyOn: DirectActivation[] = [
   {url: 'https://serverfault.com'},
   {url: /^https:\/\/.*\.stackexchange\.com/},
   {url: googleUrl},
-  {url: /https:\/\/github.com(?!\/notifications)/},
+  {url: /https:\/\/github.com/},
   {url: 'https://www.npmjs.com/package', replaceText: false, observeNavigation: true, extraBadgeSelector: ':has(> #repository, > #homePage)'},
   {url: 'https://www.nuget.org/packages'},
   {url: 'https://marketplace.visualstudio.com', observe: '#repo-link-container'},
