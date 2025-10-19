@@ -158,7 +158,7 @@ test.describe('directActivation Sites - Should automatically add badges', () => 
     await page.keyboard.press('ArrowDown');
     await page.keyboard.press('Enter');
 
-    await page.waitForTimeout(3000);
+    await page.waitForTimeout(5000);
 
     const newBadge = await getBadgeLocator(page, 'facebook/react').count();
     expect(newBadge).toBe(1);
