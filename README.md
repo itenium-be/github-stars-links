@@ -80,16 +80,22 @@ chrome://extensions/
 
 ## Test Urls
 
-- [Google](https://www.google.com/search?q=react+github)
+- Search Engines
+  - [Google](https://www.google.com/search?q=react+github)
+  - [Bing](https://www.bing.com/search?q=github+react): [Not implemented](https://github.com/itenium-be/github-stars-links/issues/17) (who uses Bing anyway)
 - [GitHub](https://github.com/itenium-be/Mi-Ke)
   - [Same GitHub](https://github.com/itenium-be/Mi-Ke)
   - [Link with .git](https://github.com/itenium-be/Git-NumberedAdd.git)
   - [Unexisting Repo](https://github.com/itenium-be/RepoNotFound): Would need to do a XMLHttpRequest so the returned content svg content can be examined for "Repo not found"
 - [StackOverflow](https://stackoverflow.com/questions/50605219/difference-between-npx-and-npm)
-- [Bing](https://www.bing.com/search?q=github+react): [Not implemented](https://github.com/itenium-be/github-stars-links/issues/17) (who uses Bing anyway)
-- [npmjs](https://www.npmjs.com/package/react)
-- [nuget](https://www.nuget.org/packages/Newtonsoft.Json)
-- [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments)
+- Package Managers
+  - [npmjs](https://www.npmjs.com/package/react)
+  - [nuget](https://www.nuget.org/packages/Newtonsoft.Json)
+  - [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments)
+  - [pypi](https://pypi.org/project/requests/)
+  - [rubygems](https://rubygems.org/gems/rails)
+  - [crates](https://crates.io/crates/serde/1.0.228)
+  - [pkg.go](https://pkg.go.dev/github.com/gin-gonic/gin)
 
 
 ## CSP Directives
