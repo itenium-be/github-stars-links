@@ -85,8 +85,6 @@ test.describe('directActivation Sites - Should automatically add badges', () => 
     const url = 'https://www.nuget.org/packages/Newtonsoft.Json';
     const page = await goToWhitelistedPage(context, url);
 
-    await page.waitForTimeout(20000);
-
     const badge = await getBadgeLocator(page, 'jamesnk/newtonsoft.json').count();
     expect(badge).toBe(2);
   });
