@@ -8,7 +8,7 @@ const badgeUrl = 'https://img.shields.io/github/stars/{userName}/{repoName}.svg?
 const currentUrl = getCurrentUrl();
 
 export function badgeRenderer(badge: BadgeInfo) {
-  const urlConfig = findConfig(badge);
+  const urlConfig = findConfig();
 
   // Shorten link text
   if (!urlConfig || urlConfig.replaceText !== false) {

@@ -1,10 +1,29 @@
-import { shouldActivate } from './directActivation';
-import { findAndConvertLinks } from './findAndConvertLinks';
+import { findConfig } from './directActivation';
+import { findAndConvertLinks, removeAllBadges } from './findAndConvertLinks';
 
 
-const activator = shouldActivate();
+const activator = findConfig();
 if (activator) {
   findAndConvertLinks();
+
+  if (activator.observeNavigation) {
+    (window as any).navigation?.addEventListener('navigate', (event: any) => {
+      removeAllBadges();
+
+      setTimeout(() => {
+        findAndConvertLinks();
+        if (activator.extraBadgeSelector) {
+          const githubLinkContainer = document.querySelectorAll(activator.extraBadgeSelector);
+          findAndConvertLinks(githubLinkContainer);
+        }
+      }, 1000);
+    });
+  }
+
+  if (activator.extraBadgeSelector) {
+    const githubLinkContainer = document.querySelectorAll(activator.extraBadgeSelector);
+    findAndConvertLinks(githubLinkContainer);
+  }
 
   if (activator.observe) {
     const observer = new MutationObserver(() => {

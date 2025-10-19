@@ -111,6 +111,50 @@ test.describe('directActivation Sites - Should automatically add badges', () => 
 
     const badge = await getBadgeLocator(page, 'commenthol/date-holidays').count();
     expect(badge).toBe(3);
+
+    const repoLink = page.locator('#repository-link');
+    await expect(repoLink).toHaveText('github.com/commenthol/date-holidays');
+  });
+
+  test('on npmjs.com, switch to a different package, adds/updates badges', async () => {
+    const url = 'https://www.npmjs.com/package/react';
+    const page = await goToWhitelistedPage(context, url);
+
+    const badge = await getBadgeLocator(page, 'facebook/react').count();
+    expect(badge).toBe(1);
+
+    const searchInput = page.getByRole('combobox');
+    await searchInput.fill('@itenium/date-holidays-be');
+    await page.waitForTimeout(2000);
+    await page.keyboard.press('ArrowDown');
+    await page.keyboard.press('Enter');
+
+    await page.waitForTimeout(3000);
+
+    const repoLink = page.locator('#repository-link');
+    await expect(repoLink).toHaveText('github.com/itenium-be/date-holidays-be');
+
+    const newBadge = await getBadgeLocator(page, 'itenium-be/date-holidays-be').count();
+    expect(newBadge).toBe(2);
+  });
+
+  test('on npmjs.com, switch to a different package, removes badges if not a github link', async () => {
+    const url = 'https://www.npmjs.com/package/@itenium/date-holidays-be';
+    const page = await goToWhitelistedPage(context, url);
+
+    const searchInput = page.getByRole('combobox');
+    await searchInput.fill('react');
+    await page.waitForTimeout(5000);
+    await page.keyboard.press('ArrowDown');
+    await page.keyboard.press('Enter');
+
+    await page.waitForTimeout(3000);
+
+    const newBadge = await getBadgeLocator(page, 'facebook/react').count();
+    expect(newBadge).toBe(1);
+
+    const oldBadge = await getBadgeLocator(page, 'itenium-be/date-holidays-be').count();
+    expect(oldBadge).toBe(0);
   });
 
   test('on pypi.org', async () => {

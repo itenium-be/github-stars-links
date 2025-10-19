@@ -22,6 +22,8 @@ export function findAndConvertLinks(linkContainers?: NodeListOf<Element>) {
       const userName = match[1];
       const repoName = match[2].replace(/\.git$/i, '');
 
+      // console.log(`starting badge: ${userName}/${repoName}`);
+
       // Do not replace badges on the repo page itself
       const url = `https://github.com/${userName.toLowerCase()}/${repoName.toLowerCase()}`;
       if (currentUrl.startsWith(url)) {
@@ -45,6 +47,7 @@ export function findAndConvertLinks(linkContainers?: NodeListOf<Element>) {
         }
       }
 
+      // console.log(`pushing badge: ${userName}/${repoName}`);
       newBadges.push({url, userName, repoName, el: a.el});
     }
   });
@@ -59,6 +62,12 @@ export function findAndConvertLinks(linkContainers?: NodeListOf<Element>) {
   });
 
   console.info(`github-stars-link: Added ${newBadges.length} badges for ${linkContainers ? 'observe' : 'global scan'}.`);
+}
+
+export function removeAllBadges() {
+  const badges = document.querySelectorAll('img[src*="shields.io/github/stars"]');
+  badges.forEach(badge => badge.remove());
+  console.info(`github-stars-link: Removed ${badges.length} badges.`);
 }
 
 

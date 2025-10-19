@@ -75,6 +75,13 @@ test.describe('Badge Rendering against html fixtures', () => {
     expect(badges).toBe(1);
   });
 
+  test('should add the 2 badges when the links start with the same string', async ({ page }) => {
+    await setupTestPage(page, 'double-diff-real.html');
+
+    const badges = await page.locator('img[src*="shields.io"]').count();
+    expect(badges).toBe(2);
+  });
+
   test('should shorten the URL', async ({ page }) => {
     await setupTestPage(page, 'github-full.html');
 

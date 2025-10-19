@@ -1,5 +1,5 @@
 import { getCurrentUrl, googleUrl } from "./config";
-import { BadgeInfo, DirectActivation } from "./types";
+import { DirectActivation } from "./types";
 
 const activateDirectlyOn: DirectActivation[] = [
   {url: 'https://stackoverflow.com'},
@@ -9,27 +9,25 @@ const activateDirectlyOn: DirectActivation[] = [
   {url: /^https:\/\/.*\.stackexchange\.com/},
   {url: googleUrl},
   {url: /https:\/\/github.com(?!\/notifications)/},
-  {url: 'https://www.npmjs.com/package', observe: ':has(> #repository, > #homePage)', replaceText: false},
+  {url: 'https://www.npmjs.com/package', replaceText: false, observeNavigation: true, extraBadgeSelector: ':has(> #repository, > #homePage)'},
   {url: 'https://www.nuget.org/packages'},
   {url: 'https://marketplace.visualstudio.com', observe: '#repo-link-container'},
   {url: 'https://pypi.org/project/'},
-  {url: 'https://rubygems.org/gems/', observe: ':has(> #code)'},
+  {url: 'https://rubygems.org/gems/', extraBadgeSelector: ':has(> #code)'},
   // {url: 'https://packagist.org/packages/'}, // DISABLED: It actually shows the stars on the page already
   {url: 'https://crates.io/crates/', observe: ':has(> a)'},
-  {url: 'https://pkg.go.dev/github.com/', observe: '.UnitMeta-repo'},
-  // {url: 'https://swiftpackageindex.com/', observe: ':has(> .github)'}, // DISABLED: It actually shows the stars on the page already
+  {url: 'https://pkg.go.dev/github.com/', extraBadgeSelector: '.UnitMeta-repo'},
+  // {url: 'https://swiftpackageindex.com/', extraBadgeSelector: ':has(> .github)'}, // DISABLED: It actually shows the stars on the page already
   // {url: ''},
 ];
 
 
-export function findConfig(badge: BadgeInfo) {
-  return activateDirectlyOn.find(x => isWhitelisted(x, badge.url))
+export function findConfig() {
+  const currentUrl = getCurrentUrl();
+  return activateDirectlyOn.find(activator => isWhitelisted(activator.url, currentUrl));
 }
 
-export const shouldActivate = () => activateDirectlyOn.find(x => isWhitelisted(x, getCurrentUrl()));
-
-function isWhitelisted(directActivation: DirectActivation, currentUrl: string) {
-  const url = directActivation.url;
+function isWhitelisted(url: string | RegExp, currentUrl: string) {
   if (typeof url === 'string') {
     return currentUrl.startsWith(url);
   }
