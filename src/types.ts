@@ -6,6 +6,12 @@ export type DirectActivation = {
    **/
   observe?: string;
   /**
+   * False: When observe is used but you want to
+   * have max one badge for each github link
+   * Default: True
+   */
+  observeAllowDuplicates?: boolean;
+  /**
    * When false, do not replace the a.href text
    * This is disabled on npmjs.com for example,
    * because it breaks badge adding after searching+navigating to a different package

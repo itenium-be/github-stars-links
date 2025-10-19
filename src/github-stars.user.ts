@@ -14,7 +14,7 @@ if (activator) {
         findAndConvertLinks();
         if (activator.extraBadgeSelector) {
           const githubLinkContainer = document.querySelectorAll(activator.extraBadgeSelector);
-          findAndConvertLinks(githubLinkContainer);
+          findAndConvertLinks(githubLinkContainer, true);
         }
       }, 1000);
     });
@@ -22,14 +22,14 @@ if (activator) {
 
   if (activator.extraBadgeSelector) {
     const githubLinkContainer = document.querySelectorAll(activator.extraBadgeSelector);
-    findAndConvertLinks(githubLinkContainer);
+    findAndConvertLinks(githubLinkContainer, true);
   }
 
   if (activator.observe) {
     const observer = new MutationObserver(() => {
       const githubLinkContainer = document.querySelectorAll(activator.observe!);
       if (githubLinkContainer.length) {
-        findAndConvertLinks(githubLinkContainer);
+        findAndConvertLinks(githubLinkContainer, activator.observeAllowDuplicates);
       }
     });
 

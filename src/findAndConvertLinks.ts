@@ -6,7 +6,7 @@ import { BadgeInfo, BadgeLinkInfo } from "./types";
 const currentUrl = getCurrentUrl();
 
 
-export function findAndConvertLinks(linkContainers?: NodeListOf<Element>) {
+export function findAndConvertLinks(linkContainers?: NodeListOf<Element>, allowDuplicates?: boolean) {
   const newBadges: BadgeInfo[] = [];
 
   const links = linkContainers
@@ -36,7 +36,7 @@ export function findAndConvertLinks(linkContainers?: NodeListOf<Element>) {
       }
 
       // Only add each badge once
-      if (!linkContainers) {
+      if (allowDuplicates === undefined || allowDuplicates === false) {
         // But only when doing the global scan
         const alreadyAdded = newBadges.some(badge => badge.url === url);
         if (alreadyAdded) {

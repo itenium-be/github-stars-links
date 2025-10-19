@@ -18,6 +18,7 @@ const activateDirectlyOn: DirectActivation[] = [
   {url: 'https://crates.io/crates/', observe: ':has(> a)'},
   {url: 'https://pkg.go.dev/github.com/', extraBadgeSelector: '.UnitMeta-repo'},
   // {url: 'https://swiftpackageindex.com/', extraBadgeSelector: ':has(> .github)'}, // DISABLED: It actually shows the stars on the page already
+  {url: 'https://duckduckgo.com', observe: '.react-results--main', observeAllowDuplicates: false},
   // {url: ''},
 ];
 

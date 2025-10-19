@@ -216,4 +216,12 @@ test.describe('directActivation Sites - Should automatically add badges', () => 
     const badge = await getBadgeLocator(page, 'Alamofire/Alamofire').count();
     expect(badge).toBeGreaterThan(0);
   });
+
+  test('on DuckDuckGo', async () => {
+    const url = 'https://duckduckgo.com/?q=github+react';
+    const page = await goToWhitelistedPage(context, url);
+
+    const badge = await getBadgeLocator(page, 'facebook/react').count();
+    expect(badge).toBe(1);
+  });
 });
