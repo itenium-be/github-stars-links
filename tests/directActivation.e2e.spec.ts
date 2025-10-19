@@ -104,12 +104,62 @@ test.describe('directActivation Sites - Should automatically add badges', () => 
     expect(badge).toBe(1);
   });
 
-  test.only('on npmjs.com, with many links to the same github repo', async () => {
+  test('on npmjs.com, with many links to the same github repo', async () => {
     // Including repository-link and homePage-link
     const url = 'https://www.npmjs.com/package/date-holidays';
     const page = await goToWhitelistedPage(context, url);
 
     const badge = await getBadgeLocator(page, 'commenthol/date-holidays').count();
     expect(badge).toBe(3);
+  });
+
+  test('on pypi.org', async () => {
+    const url = 'https://pypi.org/project/requests/';
+    const page = await goToWhitelistedPage(context, url);
+
+    const badge = await getBadgeLocator(page, 'psf/requests').count();
+    expect(badge).toBe(1);
+  });
+
+  test('on rubygems.org', async () => {
+    const url = 'https://rubygems.org/gems/rails';
+    const page = await goToWhitelistedPage(context, url);
+
+    const badge = await getBadgeLocator(page, 'rails/rails').count();
+    expect(badge).toBe(4);
+  });
+
+  test.skip('on packagist.org', async () => {
+    // DISABLED: It actually shows the stars on the page already
+    const url = 'https://packagist.org/packages/guzzlehttp/guzzle';
+    const page = await goToWhitelistedPage(context, url);
+
+    const badge = await getBadgeLocator(page, 'guzzle/guzzle').count();
+    expect(badge).toBe(1);
+  });
+
+  test('on crates.io', async () => {
+    const url = 'https://crates.io/crates/serde/1.0.228';
+    const page = await goToWhitelistedPage(context, url);
+
+    const badge = await getBadgeLocator(page, 'serde-rs/serde').count();
+    expect(badge).toBeGreaterThan(0);
+  });
+
+  test('on pkg.go.dev', async () => {
+    const url = 'https://pkg.go.dev/github.com/gin-gonic/gin';
+    const page = await goToWhitelistedPage(context, url);
+
+    const badge = await getBadgeLocator(page, 'gin-gonic/gin').count();
+    expect(badge).toBeGreaterThan(0);
+  });
+
+  test.skip('on swiftpackageindex.com', async () => {
+    // DISABLED: It actually shows the stars on the page already
+    const url = 'https://swiftpackageindex.com/Alamofire/Alamofire';
+    const page = await goToWhitelistedPage(context, url);
+
+    const badge = await getBadgeLocator(page, 'Alamofire/Alamofire').count();
+    expect(badge).toBeGreaterThan(0);
   });
 });

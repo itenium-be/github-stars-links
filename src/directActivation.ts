@@ -11,7 +11,14 @@ const activateDirectlyOn: DirectActivation[] = [
   {url: /https:\/\/github.com(?!\/notifications)/},
   {url: 'https://www.npmjs.com/package', observe: ':has(> #repository, > #homePage)', replaceText: false},
   {url: 'https://www.nuget.org/packages'},
-  {url: 'https://marketplace.visualstudio.com', observe: '#repo-link-container'}
+  {url: 'https://marketplace.visualstudio.com', observe: '#repo-link-container'},
+  {url: 'https://pypi.org/project/'},
+  {url: 'https://rubygems.org/gems/', observe: ':has(> #code)'},
+  // {url: 'https://packagist.org/packages/'}, // DISABLED: It actually shows the stars on the page already
+  {url: 'https://crates.io/crates/', observe: ':has(> a)'},
+  {url: 'https://pkg.go.dev/github.com/', observe: '.UnitMeta-repo'},
+  // {url: 'https://swiftpackageindex.com/', observe: ':has(> .github)'}, // DISABLED: It actually shows the stars on the page already
+  // {url: ''},
 ];
 
 
