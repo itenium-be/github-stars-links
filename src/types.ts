@@ -33,9 +33,12 @@ export type DirectActivation = {
   extraBadgeSelector?: string;
 }
 
+export type BadgeType = 'github-repository' | 'github-user';
+
 export type BadgeInfo = {
   url: string;
   badgeUrl: string;
+  badgeType: BadgeType;
   el: HTMLAnchorElement;
 }
 

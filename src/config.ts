@@ -59,5 +59,6 @@ export const badgesConfig: BadgesConfig = {
     badgeUrl: 'https://img.shields.io/github/stars/{userName}',
     style: 'flat' as ShieldsStyle,
     label: 'Star',
+    affiliations: 'OWNER',
   }
 }

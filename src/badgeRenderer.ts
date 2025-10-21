@@ -20,8 +20,10 @@ export function badgeRenderer(badge: BadgeInfo) {
   // Add badge
   const badgeImg = document.createElement('img');
   badgeImg.src = badge.badgeUrl;
+  badgeImg.style.cssText = 'margin-right: 8px; margin-bottom: -5px;';
+  badgeImg.style.height = '20px';
   badgeImg.onload = () => {
-    const existingBadge = badge.el.querySelector('img[src*="shields.io"]');
+    const existingBadge = !!badge.el.querySelector('img[src*="shields.io"]') || badge.el.getAttribute('starified');
     if (existingBadge) {
       return;
     }
@@ -54,6 +56,21 @@ export function badgeRenderer(badge: BadgeInfo) {
           (img[0].parentNode?.parentNode?.parentElement as Element)?.replaceWith(badgeImg);
         }
       }
+    } else if (/https:\/\/github.com\/[^/#]+\/[^/#]+\/issues\/\d+/.test(currentUrl)
+        && badge.badgeType === 'github-user'
+        && typeof (badge.el.firstChild as Element)?.getAttribute === 'function'
+        && (badge.el.firstChild as Element).getAttribute('data-testid') === 'github-avatar') {;
+
+      // Github issue detail page
+      const wrapper = document.createElement('div');
+      badge.el.parentNode!.insertBefore(wrapper, badge.el);
+      wrapper.appendChild(badge.el);
+      wrapper.appendChild(badgeImg);
+      badge.el.style.height = 'unset !important';
+      badge.el.style.textAlign = 'center';
+      badge.el.style.display = 'block';
+      badgeImg.style.cssText = 'margin-top: 10px';
+      badge.el.setAttribute('starified', '1');
 
     } else {
       // For all other websites:
@@ -67,8 +84,4 @@ export function badgeRenderer(badge: BadgeInfo) {
     shieldsConfig.attempt++;
 
   }, shieldsConfig.retryMs * shieldsConfig.attempt);
-
-
-  badgeImg.style.cssText = 'margin-right: 8px; margin-bottom: -5px;';
-  badgeImg.style.height = '20px';
 }

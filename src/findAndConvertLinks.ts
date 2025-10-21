@@ -34,28 +34,15 @@ export function findAndConvertLinks(linkContainers?: NodeListOf<Element>, allowD
         return;
       }
 
-      // Only add each badge once
-      if (allowDuplicates === undefined || allowDuplicates === false) {
-        // But only when doing the global scan
-        const alreadyAdded = newBadges.some(badge => badge.url === url);
-        if (alreadyAdded) {
-          // And with a few exceptions
-          const forceBadge = shouldForceBadge(a);
-          if (!forceBadge)
-            return;
-        }
-      }
-
       let badgeUrl = badgesConfig.githubRepository.badgeUrl
         .replace('{userName}', userName)
         .replace('{repoName}', repoName);
 
       badgeUrl = completeBadgeUrl(badgeUrl, badgesConfig.githubRepository);
-
-      newBadges.push({url, badgeUrl, el: a.el});
+      newBadges.push({url, badgeUrl, el: a.el, badgeType: 'github-repository'});
 
     } else {
-      const userMatch = a.href.match(/^https?:\/\/(?:www\.)?github\.com\/([^/#]+)\/?$/);
+      const userMatch = a.href.match(/^https?:\/\/(?:www\.)?github\.com\/([^/#?]+)\/?$/);
       if (userMatch) {
         const userName = userMatch[1];
 
@@ -70,14 +57,19 @@ export function findAndConvertLinks(linkContainers?: NodeListOf<Element>, allowD
 
         badgeUrl = completeBadgeUrl(badgeUrl, badgesConfig.githubUserStars);
 
-        console.log(`pushing badge: ${badgeUrl}`);
-        newBadges.push({url, badgeUrl, el: a.el});
+        newBadges.push({url, badgeUrl, el: a.el, badgeType: 'github-user'});
       }
     }
   });
 
+  // Only add each badge once
+  const filterDuplicates = allowDuplicates === undefined || allowDuplicates === false;
+  const badgesToAdd = filterDuplicates
+    ? newBadges.filter((badge, index, self) => index === self.findIndex(b => b.url === badge.url))
+    : newBadges;
+
   let promises = Promise.resolve();
-  newBadges.forEach((badge, index) => {
+  badgesToAdd.forEach((badge, index) => {
     promises = promises.then(() => badgeRenderer(badge));
     if (index && index % shieldsConfig.groupPer === 0) {
       // Workaround for the "429 Too Many Requests" from shields.io
@@ -85,7 +77,7 @@ export function findAndConvertLinks(linkContainers?: NodeListOf<Element>, allowD
     }
   });
 
-  console.info(`github-stars-link: Added ${newBadges.length} badges for ${linkContainers ? 'observe' : 'global scan'}.`);
+  console.info(`github-stars-link: Added ${badgesToAdd.length} badges for ${linkContainers ? 'observe' : 'global scan'} (filterDuplicates: ${filterDuplicates}).`);
 }
 
 
@@ -102,26 +94,6 @@ function completeBadgeUrl(badgeUrl: string, config: BadgeConfig): string {
 
   return badgeUrl;
 }
-
-
-
-/**
- * Each badge is only displayed once,
- * but there are a few overrides possible
- * where the first url encountered is typically not the most visible one
- */
-function shouldForceBadge(a: BadgeLinkInfo) {
-  const isNuget = currentUrl.startsWith('https://www.nuget.org/packages/');
-  if (isNuget) {
-    const nugetDataTrack = a.el.getAttribute('data-track')
-    if (nugetDataTrack === 'outbound-repository-url')
-      return true;
-  }
-
-  return false;
-}
-
-
 
 
 function sleeper(ms: number) {
