@@ -10,7 +10,7 @@ const activateDirectlyOn: DirectActivation[] = [
   {url: googleUrl},
   {url: /https:\/\/github.com/, observeNavigation: true},
   {url: 'https://www.npmjs.com/package', replaceText: false, observeNavigation: true, extraBadgeSelector: ':has(> #repository, > #homePage)'},
-  {url: 'https://www.nuget.org/packages'},
+  {url: 'https://www.nuget.org/packages', extraBadgeSelector: ':has(> a[data-track="outbound-repository-url"])'},
   {url: 'https://marketplace.visualstudio.com', observe: '#repo-link-container'},
   {url: 'https://pypi.org/project/'},
   {url: 'https://rubygems.org/gems/', extraBadgeSelector: ':has(> #code)'},
