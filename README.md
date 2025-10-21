@@ -99,19 +99,7 @@ chrome://extensions/
   - [pkg.go](https://pkg.go.dev/github.com/gin-gonic/gin)
 
 
-## CSP Directives
+# Similar Extensions
 
-[Developer docs](https://developer.chrome.com/docs/apps/app_external#external)
-
-```js
-// Suggestion from docs did not help for github.com
-const xhr = new XMLHttpRequest();
-xhr.open('GET', shieldUrl, true);
-xhr.responseType = 'blob';
-xhr.onload = function(e) {
-  const badge = document.createElement('img');
-  badge.src = window.URL.createObjectURL(this.response);
-  el.prepend(badge);
-};
-xhr.send();
-```
+- [GitHub Stargazer](https://chromewebstore.google.com/detail/github-stargazer/pncmfniapibeljknpeoplfkhacmhobbk)
+- [GitHub Star Count](https://chromewebstore.google.com/detail/github-star-count/jahogeehepfohgakggfeeimokcgnmdid?hl=en)
