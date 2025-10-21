@@ -24,6 +24,13 @@
                 "mac": "Alt+Shift+S"
             },
             "description": "Add GitHub star badges to links"
+        },
+        "reload": {
+            "suggested_key": {
+                "default": "Ctrl+M",
+                "mac": "Command+M"
+            },
+            "description": "Reload my extension from disk"
         }
     },
     "converted_from_user_script": true,

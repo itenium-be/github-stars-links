@@ -12,6 +12,11 @@ chrome.commands.onCommand.addListener(command => {
   if (command === 'activate-github-stars') {
     activateGitHubStars();
   }
+
+  // TODO: this is not ideal, we're polluting the dev script (also in manifest.json)
+  else if (command === 'reload') {
+    chrome.runtime.reload();
+  }
 });
 
 // Handle extension icon click
