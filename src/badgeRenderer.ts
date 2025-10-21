@@ -60,7 +60,9 @@ export function badgeRenderer(badge: BadgeInfo) {
       badge.el.prepend(badgeImg);
     }
   };
-  badgeImg.onerror = () => setTimeout(() => {
+  badgeImg.onerror = (err) => setTimeout(() => {
+    // TODO: maybe we need to look at the exact statusCode here before deciding what to do?
+    console.error(`Error loading badge type=${badge.badgeType}, URL=${badge.badgeUrl}`, err);
     badgeRenderer(badge);
     shieldsConfig.attempt++;
 
