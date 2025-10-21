@@ -10,7 +10,7 @@ export function findAndConvertLinks(linkContainers?: NodeListOf<Element>, allowD
   const newBadges: BadgeInfo[] = [];
 
   const links = linkContainers
-    ? Array.from(linkContainers).flatMap(c => Array.from(c.querySelectorAll('a')))
+    ? Array.from(linkContainers).flatMap(c => c.tagName === 'A' ? [c as HTMLAnchorElement] : Array.from(c.querySelectorAll('a')))
     : Array.from(document.getElementsByTagName('a'));
 
   const githubLinks: BadgeLinkInfo[] = links
