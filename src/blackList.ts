@@ -7,5 +7,5 @@ export const blackList = [
   'new', 'codespaces', 'organizations', 'pulls', 'account',
   'mcp', 'stars', 'explore', 'trending', 'resources', 'readme',
   'security', 'enterprise', 'solutions', 'customer-stories',
-  'partners', 'education'
+  'partners', 'education', 'search'
 ];
