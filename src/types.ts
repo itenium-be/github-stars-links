@@ -108,4 +108,6 @@ export type BadgesUserConfig = {
   githubWatchers: BadgeConfig;
   /** See: https://shields.io/badges/subreddit-subscribers */
   subredditSubscribers: BadgeConfig;
+  /** See: https://shields.io/badges/bluesky-followers */
+  blueskyFollowers: BadgeConfig;
 }

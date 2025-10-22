@@ -50,5 +50,10 @@ export const badgesUserConfig: BadgesUserConfig = {
     enabled: true,
     style: 'social' as const,
     label: 'Subscribers',
+  },
+  blueskyFollowers: {
+    enabled: true,
+    style: 'social' as const,
+    label: 'Followers',
   }
 }

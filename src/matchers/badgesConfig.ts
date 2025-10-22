@@ -1,4 +1,5 @@
 import { BadgeMatcher } from "../types";
+import { BlueskyFollowersMatcher } from "./BlueskyFollowersMatcher";
 import { GithubFollowersMatcher } from "./GithubFollowersMatcher";
 import { GithubGistStarsMatcher } from "./GithubGistStarsMatcher";
 import { GithubRepositoryMatcher } from "./GithubRepositoryMatcher";
@@ -13,4 +14,5 @@ export const badgesConfig: BadgeMatcher[] = [
   new GithubGistStarsMatcher(),
   new GithubWatchersMatcher(),
   new SubredditSubscribersMatcher(),
+  new BlueskyFollowersMatcher(),
 ];
