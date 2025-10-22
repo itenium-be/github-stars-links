@@ -18,9 +18,11 @@ export function findAndConvertLinks(linkContainers?: NodeListOf<Element>, allowD
       const match = badgeConfig.match(a);
       if (match) {
         const config = badgesUserConfig[match.badgeType];
-        const badgeUrl = completeBadgeUrl(match.badgeUrl, config);
-        newBadges.push({baseUrl: match.baseUrl, badgeUrl, el: a.el, badgeType: match.badgeType});
-        return;
+        if (config.enabled) {
+          const badgeUrl = completeBadgeUrl(match.badgeUrl, config);
+          newBadges.push({baseUrl: match.baseUrl, badgeUrl, el: a.el, badgeType: match.badgeType});
+          return;
+        }
       }
     });
   });
