@@ -35,5 +35,10 @@ export const badgesUserConfig: BadgesUserConfig = {
     enabled: true,
     style: 'social' as const,
     label: 'Followers',
+  },
+  githubGistStars: {
+    enabled: true,
+    style: 'social' as const,
+    label: 'Stars',
   }
 }
