@@ -22,4 +22,11 @@ test.describe('Non github repository links that should get a badge', () => {
     const badges = await page.locator('img[src*="shields.io"]').count();
     expect(badges).toBe(1);
   });
+
+  test('should add watchers badge to a GitHub repository', async ({ page }) => {
+    await setupTestPage(page, 'badgeTypes/github-watchers.html');
+
+    const badges = await page.locator('img[src*="shields.io"]').count();
+    expect(badges).toBe(1);
+  });
 });

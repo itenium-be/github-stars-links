@@ -104,4 +104,6 @@ export type BadgesUserConfig = {
   githubFollowers: BadgeConfig;
   /** See: https://shields.io/badges/git-hub-gist-stars */
   githubGistStars: BadgeConfig;
+  /** See: https://shields.io/badges/git-hub-watchers */
+  githubWatchers: BadgeConfig;
 }
