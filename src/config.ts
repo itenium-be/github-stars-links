@@ -45,5 +45,10 @@ export const badgesUserConfig: BadgesUserConfig = {
     enabled: false,
     style: 'social' as const,
     label: 'Watchers',
+  },
+  subredditSubscribers: {
+    enabled: true,
+    style: 'social' as const,
+    label: 'Subscribers',
   }
 }

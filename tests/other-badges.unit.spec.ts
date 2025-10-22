@@ -29,4 +29,11 @@ test.describe('Non github repository links that should get a badge', () => {
     const badges = await page.locator('img[src*="shields.io"]').count();
     expect(badges).toBe(1);
   });
+
+  test('should add subscribers badge to a subreddit', async ({ page }) => {
+    await setupTestPage(page, 'badgeTypes/subreddit-subscribers.html');
+
+    const badges = await page.locator('img[src*="shields.io"]').count();
+    expect(badges).toBe(1);
+  });
 });

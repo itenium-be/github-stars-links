@@ -106,4 +106,6 @@ export type BadgesUserConfig = {
   githubGistStars: BadgeConfig;
   /** See: https://shields.io/badges/git-hub-watchers */
   githubWatchers: BadgeConfig;
+  /** See: https://shields.io/badges/subreddit-subscribers */
+  subredditSubscribers: BadgeConfig;
 }
