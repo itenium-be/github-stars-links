@@ -27,7 +27,7 @@ export const badgesUserConfig: BadgesUserConfig = {
   },
   githubUserStars: {
     enabled: true,
-    style: 'flat' as const,
+    style: 'social' as const,
     label: 'Star',
     affiliations: 'OWNER',
   }
