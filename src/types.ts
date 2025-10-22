@@ -33,16 +33,72 @@ export type DirectActivation = {
   extraBadgeSelector?: string;
 }
 
-export type BadgeType = 'github-repository' | 'github-user';
-
 export type BadgeInfo = {
-  url: string;
+  /**
+   * The link could be to github.com/userName/issues
+   * The baseUrl would be just github.com/userName
+   * Used so that each badge is only rendered once
+   */
+  baseUrl: string;
+  /**
+   * The shields.io url
+   */
   badgeUrl: string;
-  badgeType: BadgeType;
+  badgeType: keyof BadgesUserConfig;
   el: HTMLAnchorElement;
 }
 
 export type BadgeLinkInfo = {
   href: string;
   el: HTMLAnchorElement;
+}
+
+export interface BadgeMatcher {
+  match(badge: BadgeLinkInfo): MatcherResult | null;
+}
+
+export type MatcherResult = {
+  /** The base link url (for doubles deduplication) */
+  baseUrl: string;
+  /** The shields.io badge url */
+  badgeUrl: string;
+  /** The type of shields.io badge */
+  badgeType: keyof BadgesUserConfig;
+  /** User configuration for this badge */
+  config: BadgeConfig;
+}
+
+type ShieldsStyle = 'flat' | 'flat-square' | 'plastic' | 'for-the-badge' | 'social';
+
+
+export type BadgeConfig = {
+  style: ShieldsStyle;
+  label: string;
+  /** from: https://simpleicons.org/ */
+  logo?: string;
+  logoColor?: string;
+  logoSize?: 'auto' | string;
+  color?: string;
+  labelColor?: string;
+  cacheSeconds?: string;
+  // link?: string;
+}
+
+type AffiliationType = 'OWNER' | 'COLLABORATOR' | 'ORGANIZATION_MEMBER'
+  | 'OWNER,COLLABORATOR,ORGANIZATION_MEMBER' | 'OWNER,COLLABORATOR'
+  | 'OWNER,ORGANIZATION_MEMBER' | 'COLLABORATOR,ORGANIZATION_MEMBER';
+
+type GithubUserBadgeConfig = BadgeConfig & {
+  /**
+   * Note that picking anything but OWNER may result in a timeout for the badge,
+   * unless a sufficiently large cacheSeconds has been set.
+   **/
+  affiliations?: AffiliationType;
+}
+
+export type BadgesUserConfig = {
+  /** See: https://shields.io/badges/git-hub-repo-stars */
+  githubRepository: BadgeConfig;
+  /** See: https://shields.io/badges/git-hub-users-stars */
+  githubUserStars: GithubUserBadgeConfig;
 }

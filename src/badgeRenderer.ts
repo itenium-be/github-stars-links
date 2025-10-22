@@ -57,7 +57,7 @@ export function badgeRenderer(badge: BadgeInfo) {
         }
       }
     } else if (/https:\/\/github.com\/[^/#]+\/[^/#]+\/issues\/\d+/.test(currentUrl)
-        && badge.badgeType === 'github-user'
+        && badge.badgeType === 'githubUserStars'
         && typeof (badge.el.firstChild as Element)?.getAttribute === 'function'
         && (badge.el.firstChild as Element).getAttribute('data-testid') === 'github-avatar') {;
 

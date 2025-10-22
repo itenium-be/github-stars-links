@@ -1,10 +1,7 @@
 import { badgeRenderer } from "./badgeRenderer";
-import { blackList } from "./blackList";
-import { BadgeConfig, badgesConfig, getCurrentUrl, shieldsConfig } from "./config";
-import { BadgeInfo, BadgeLinkInfo } from "./types";
-
-const currentUrl = getCurrentUrl();
-
+import { shieldsConfig } from "./config";
+import { badgesConfig } from "./matchers/badgesConfig";
+import { BadgeConfig, BadgeInfo, BadgeLinkInfo } from "./types";
 
 export function findAndConvertLinks(linkContainers?: NodeListOf<Element>, allowDuplicates?: boolean) {
   const newBadges: BadgeInfo[] = [];
@@ -17,55 +14,20 @@ export function findAndConvertLinks(linkContainers?: NodeListOf<Element>, allowD
     .map(a => ({href: (a.getAttribute('href') || '').toLowerCase().trim(), el: a}));
 
   githubLinks.forEach(a => {
-    const match = a.href.match(/^https?:\/\/(?:www\.)?github\.com\/([^/#]+)\/([^/#]+)/);
-    if (match) {
-      const userName = match[1];
-      const repoName = match[2].replace(/\.git$/i, '');
-
-      // Do not replace badges on the repo page itself
-      const url = `https://github.com/${userName.toLowerCase()}/${repoName.toLowerCase()}`
-      const urlTester = new RegExp(url, 'i');
-      if (urlTester.test(currentUrl)) {
+    badgesConfig.forEach(badgeConfig => {
+      const match = badgeConfig.match(a);
+      if (match) {
+        const badgeUrl = completeBadgeUrl(match.badgeUrl, match.config);
+        newBadges.push({baseUrl: match.baseUrl, badgeUrl, el: a.el, badgeType: match.badgeType});
         return;
       }
-
-      // Exclude GitHub's own pages
-      if (blackList.includes(userName)) {
-        return;
-      }
-
-      let badgeUrl = badgesConfig.githubRepository.badgeUrl
-        .replace('{userName}', userName)
-        .replace('{repoName}', repoName);
-
-      badgeUrl = completeBadgeUrl(badgeUrl, badgesConfig.githubRepository);
-      newBadges.push({url, badgeUrl, el: a.el, badgeType: 'github-repository'});
-
-    } else {
-      const userMatch = a.href.match(/^https?:\/\/(?:www\.)?github\.com\/([^/#?]+)\/?$/);
-      if (userMatch) {
-        const userName = userMatch[1];
-
-        // Exclude GitHub's own pages
-        if (blackList.includes(userName)) {
-          return;
-        }
-
-        const url = `https://github.com/${userName.toLowerCase()}`;
-        let badgeUrl = badgesConfig.githubUserStars.badgeUrl
-          .replace('{userName}', userName);
-
-        badgeUrl = completeBadgeUrl(badgeUrl, badgesConfig.githubUserStars);
-
-        newBadges.push({url, badgeUrl, el: a.el, badgeType: 'github-user'});
-      }
-    }
+    });
   });
 
   // Only add each badge once
   const filterDuplicates = allowDuplicates === undefined || allowDuplicates === false;
   const badgesToAdd = filterDuplicates
-    ? newBadges.filter((badge, index, self) => index === self.findIndex(b => b.url === badge.url))
+    ? newBadges.filter((badge, index, self) => index === self.findIndex(b => b.baseUrl === badge.baseUrl))
     : newBadges;
 
   let promises = Promise.resolve();
@@ -81,11 +43,10 @@ export function findAndConvertLinks(linkContainers?: NodeListOf<Element>, allowD
 }
 
 
-function completeBadgeUrl(badgeUrl: string, config: BadgeConfig): string {
+export function completeBadgeUrl(badgeUrl: string, config: BadgeConfig): string {
   badgeUrl += '?';
 
   Object.entries(config)
-    .filter(([key]) => key !== 'badgeUrl')
     .forEach(([key, value]) => {
       if (value) {
         badgeUrl += `&${key}=${value}`;
@@ -94,6 +55,7 @@ function completeBadgeUrl(badgeUrl: string, config: BadgeConfig): string {
 
   return badgeUrl;
 }
+
 
 
 function sleeper(ms: number) {
