@@ -16,7 +16,7 @@ export function findAndConvertLinks(linkContainers?: NodeListOf<Element>, allowD
   githubLinks.forEach(a => {
     badgesConfig.forEach(badgeConfig => {
       const match = badgeConfig.match(a);
-      if (match) {
+      if (match?.config.enabled) {
         const badgeUrl = completeBadgeUrl(match.badgeUrl, match.config);
         newBadges.push({baseUrl: match.baseUrl, badgeUrl, el: a.el, badgeType: match.badgeType});
         return;
@@ -47,6 +47,7 @@ export function completeBadgeUrl(badgeUrl: string, config: BadgeConfig): string 
   badgeUrl += '?';
 
   Object.entries(config)
+    .filter(([key]) => key !== 'enabled')
     .forEach(([key, value]) => {
       if (value) {
         badgeUrl += `&${key}=${value}`;

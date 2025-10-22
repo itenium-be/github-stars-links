@@ -20,11 +20,13 @@ export const shieldsConfig = {
 
 export const badgesUserConfig: BadgesUserConfig = {
   githubRepository: {
+    enabled: true,
     style: 'social' as const,
     label: 'Star',
     // logo: 'github',
   },
   githubUserStars: {
+    enabled: true,
     style: 'flat' as const,
     label: 'Star',
     affiliations: 'OWNER',

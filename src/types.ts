@@ -72,6 +72,7 @@ type ShieldsStyle = 'flat' | 'flat-square' | 'plastic' | 'for-the-badge' | 'soci
 
 
 export type BadgeConfig = {
+  enabled: boolean;
   style: ShieldsStyle;
   label: string;
   /** from: https://simpleicons.org/ */
