@@ -100,4 +100,6 @@ export type BadgesUserConfig = {
   githubRepository: BadgeConfig;
   /** See: https://shields.io/badges/git-hub-users-stars */
   githubUserStars: GithubUserBadgeConfig;
+  /** See: https://shields.io/badges/git-hub-followers */
+  githubFollowers: BadgeConfig;
 }
