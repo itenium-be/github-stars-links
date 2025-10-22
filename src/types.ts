@@ -64,8 +64,6 @@ export type MatcherResult = {
   badgeUrl: string;
   /** The type of shields.io badge */
   badgeType: keyof BadgesUserConfig;
-  /** User configuration for this badge */
-  config: BadgeConfig;
 }
 
 type ShieldsStyle = 'flat' | 'flat-square' | 'plastic' | 'for-the-badge' | 'social';

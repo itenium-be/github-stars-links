@@ -1,5 +1,4 @@
 import { blackList } from "../blackList";
-import { badgesUserConfig } from "../config";
 import { BadgeLinkInfo, BadgeMatcher, MatcherResult } from "../types";
 
 const badgeUrlTemplate = 'https://img.shields.io/github/stars/{userName}';
@@ -18,7 +17,6 @@ export class GithubUserMatcher implements BadgeMatcher {
       return {
         baseUrl: `https://github.com/${userName.toLowerCase()}`,
         badgeUrl: badgeUrlTemplate.replace('{userName}', userName),
-        config: badgesUserConfig.githubUserStars,
         badgeType: 'githubUserStars',
       };
     }

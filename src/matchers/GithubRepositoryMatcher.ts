@@ -1,5 +1,5 @@
 import { blackList } from "../blackList";
-import { badgesUserConfig, getCurrentUrl } from "../config";
+import { getCurrentUrl } from "../config";
 import { BadgeLinkInfo, BadgeMatcher, MatcherResult } from "../types";
 
 const badgeUrlTemplate = 'https://img.shields.io/github/stars/{userName}/{repoName}.svg';
@@ -30,7 +30,6 @@ export class GithubRepositoryMatcher implements BadgeMatcher {
       return {
         baseUrl: url,
         badgeUrl,
-        config: badgesUserConfig.githubRepository,
         badgeType: 'githubRepository',
       };
     }

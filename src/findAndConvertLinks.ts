@@ -1,5 +1,5 @@
 import { badgeRenderer } from "./badgeRenderer";
-import { shieldsConfig } from "./config";
+import { badgesUserConfig, shieldsConfig } from "./config";
 import { badgesConfig } from "./matchers/badgesConfig";
 import { BadgeConfig, BadgeInfo, BadgeLinkInfo } from "./types";
 
@@ -16,8 +16,9 @@ export function findAndConvertLinks(linkContainers?: NodeListOf<Element>, allowD
   githubLinks.forEach(a => {
     badgesConfig.forEach(badgeConfig => {
       const match = badgeConfig.match(a);
-      if (match?.config.enabled) {
-        const badgeUrl = completeBadgeUrl(match.badgeUrl, match.config);
+      if (match) {
+        const config = badgesUserConfig[match.badgeType];
+        const badgeUrl = completeBadgeUrl(match.badgeUrl, config);
         newBadges.push({baseUrl: match.baseUrl, badgeUrl, el: a.el, badgeType: match.badgeType});
         return;
       }
