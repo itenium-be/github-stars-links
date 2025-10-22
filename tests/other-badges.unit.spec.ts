@@ -8,4 +8,11 @@ test.describe('Non github repository links that should get a badge', () => {
     const badges = await page.locator('img[src*="shields.io"]').count();
     expect(badges).toBe(1);
   });
+
+  test('should add followers badge to a GitHub user/company', async ({ page }) => {
+    await setupTestPage(page, 'badgeTypes/github-followers.html');
+
+    const badges = await page.locator('img[src*="shields.io"]').count();
+    expect(badges).toBe(1);
+  });
 });
