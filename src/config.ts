@@ -32,7 +32,7 @@ export const badgesUserConfig: BadgesUserConfig = {
     affiliations: 'OWNER',
   },
   githubFollowers: {
-    enabled: true,
+    enabled: false,
     style: 'social' as const,
     label: 'Followers',
   },
@@ -42,7 +42,7 @@ export const badgesUserConfig: BadgesUserConfig = {
     label: 'Stars',
   },
   githubWatchers: {
-    enabled: true,
+    enabled: false,
     style: 'social' as const,
     label: 'Watchers',
   }
