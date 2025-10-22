@@ -6,7 +6,7 @@ const badgeUrlTemplate = 'https://img.shields.io/github/stars/{userName}/{repoNa
 
 export class GithubRepositoryMatcher implements BadgeMatcher {
   match(link: BadgeLinkInfo): MatcherResult | null {
-    const match = link.href.match(/^https?:\/\/(?:www\.)?github\.com\/([^/#]+)\/([^/#]+)/);
+    const match = link.href.match(/^https?:\/\/(?:www\.)?github\.com\/([^/#]+)\/([^/#?]+)/);
     if (match) {
       const userName = match[1];
       const repoName = match[2].replace(/\.git$/i, '');
