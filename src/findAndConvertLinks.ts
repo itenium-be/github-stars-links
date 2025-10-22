@@ -11,7 +11,7 @@ export function findAndConvertLinks(linkContainers?: NodeListOf<Element>, allowD
     : Array.from(document.getElementsByTagName('a'));
 
   const githubLinks: BadgeLinkInfo[] = links
-    .map(a => ({href: (a.getAttribute('href') || '').toLowerCase().trim(), el: a}));
+    .map(a => ({href: (a.getAttribute('href') || '').trim(), el: a}));
 
   githubLinks.forEach(a => {
     badgesConfig.forEach(badgeConfig => {
