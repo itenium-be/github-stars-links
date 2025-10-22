@@ -5,7 +5,6 @@ const badgeUrlTemplate = 'https://img.shields.io/reddit/subreddit-subscribers/{s
 export class SubredditSubscribersMatcher implements BadgeMatcher {
   match(link: BadgeLinkInfo): MatcherResult | null {
     const match = link.href.match(/^https?:\/\/(?:www\.)?reddit\.com\/r\/([^/?#]+)/);
-    console.log(`link: ${link.href} matching`);
     if (match) {
       const subreddit = match[1];
 
