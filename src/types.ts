@@ -106,8 +106,32 @@ export type BadgesUserConfig = {
   githubGistStars: BadgeConfig;
   /** See: https://shields.io/badges/git-hub-watchers */
   githubWatchers: BadgeConfig;
+  /** See: https://shields.io/badges/git-hub-forks */
+  githubForks: BadgeConfig;
   /** See: https://shields.io/badges/subreddit-subscribers */
   subredditSubscribers: BadgeConfig;
+  /** See: https://shields.io/badges/reddit-user-karma */
+  redditUserKarma: BadgeConfig;
   /** See: https://shields.io/badges/bluesky-followers */
   blueskyFollowers: BadgeConfig;
+  /** See: https://shields.io/badges/bluesky-posts */
+  blueskyPosts: BadgeConfig;
+  /** See: https://shields.io/badges/hacker-news-user-karma */
+  hackerNewsKarma: BadgeConfig;
+  /** See: https://shields.io/badges/twitch-status */
+  twitchStatus: BadgeConfig;
+  /** See: https://shields.io/badges/you-tube-video-views */
+  youtubeVideoViews: BadgeConfig;
+  /** See: https://shields.io/badges/you-tube-video-likes */
+  youtubeVideoLikes: BadgeConfig;
+  /** See: https://shields.io/badges/you-tube-video-comments */
+  youtubeVideoComments: BadgeConfig;
+  /** See: https://shields.io/badges/you-tube-channel-views */
+  youtubeChannelViews: BadgeConfig;
+  /** See: https://shields.io/badges/you-tube-channel-subscribers */
+  youtubeChannelSubscribers: BadgeConfig;
+  /** See: https://shields.io/badges/x-formerly-twitter-url */
+  twitterUrl: BadgeConfig;
+  /** See: https://shields.io/badges/x-formerly-twitter-follow */
+  twitterFollow: BadgeConfig;
 }
