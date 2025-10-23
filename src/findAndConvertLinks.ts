@@ -21,7 +21,6 @@ export function findAndConvertLinks(linkContainers?: NodeListOf<Element>, allowD
         if (config.enabled) {
           const badgeUrl = completeBadgeUrl(match.badgeUrl, config);
           newBadges.push({baseUrl: match.baseUrl, badgeUrl, el: a.el, badgeType: match.badgeType});
-          return;
         }
       }
     });
@@ -30,7 +29,7 @@ export function findAndConvertLinks(linkContainers?: NodeListOf<Element>, allowD
   // Only add each badge once
   const filterDuplicates = allowDuplicates === undefined || allowDuplicates === false;
   const badgesToAdd = filterDuplicates
-    ? newBadges.filter((badge, index, self) => index === self.findIndex(b => b.baseUrl === badge.baseUrl))
+    ? newBadges.filter((badge, index, self) => index === self.findIndex(b => b.baseUrl === badge.baseUrl && b.badgeType === badge.badgeType))
     : newBadges;
 
   let promises = Promise.resolve();

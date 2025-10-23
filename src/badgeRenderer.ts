@@ -23,7 +23,7 @@ export function badgeRenderer(badge: BadgeInfo) {
   badgeImg.style.cssText = 'margin-right: 8px; margin-bottom: -5px;';
   badgeImg.style.height = '20px';
   badgeImg.onload = () => {
-    const existingBadge = !!badge.el.querySelector('img[src*="shields.io"]') || badge.el.getAttribute('starified');
+    const existingBadge = !!badge.el.querySelector(`img[src="${badge.badgeUrl}"]`) || badge.el.getAttribute('starified');
     if (existingBadge) {
       return;
     }
