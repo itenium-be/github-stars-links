@@ -6,7 +6,10 @@ import { ChromeWebStoreMatcher } from "./ChromeWebStoreMatcher";
 import { ChromeWebStoreRatingCountMatcher } from "./ChromeWebStoreRatingCountMatcher";
 import { ChromeWebStoreRatingMatcher } from "./ChromeWebStoreRatingMatcher";
 import { ChromeWebStoreStarsMatcher } from "./ChromeWebStoreStarsMatcher";
+import { FirefoxAddonDownloadsMatcher } from "./FirefoxAddonDownloadsMatcher";
 import { FirefoxAddonMatcher } from "./FirefoxAddonMatcher";
+import { FirefoxAddonRatingMatcher } from "./FirefoxAddonRatingMatcher";
+import { FirefoxAddonStarsMatcher } from "./FirefoxAddonStarsMatcher";
 import { GithubFollowersMatcher } from "./GithubFollowersMatcher";
 import { GithubForksMatcher } from "./GithubForksMatcher";
 import { GithubGistStarsMatcher } from "./GithubGistStarsMatcher";
@@ -73,4 +76,7 @@ export const badgesConfig: BadgeMatcher[] = [
   new ChromeWebStoreLastUpdatedMatcher(),
   new ChromeWebStoreRatingCountMatcher(),
   new FirefoxAddonMatcher(),
+  new FirefoxAddonRatingMatcher(),
+  new FirefoxAddonStarsMatcher(),
+  new FirefoxAddonDownloadsMatcher(),
 ];

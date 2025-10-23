@@ -241,5 +241,20 @@ export const badgesUserConfig: BadgesUserConfig = {
     enabled: true,
     style: 'social' as const,
     label: 'Users',
+  },
+  firefoxAddonRating: {
+    enabled: false,
+    style: 'social' as const,
+    label: 'Rating',
+  },
+  firefoxAddonStars: {
+    enabled: false,
+    style: 'social' as const,
+    label: 'Stars',
+  },
+  firefoxAddonDownloads: {
+    enabled: false,
+    style: 'social' as const,
+    label: 'Downloads',
   }
 }

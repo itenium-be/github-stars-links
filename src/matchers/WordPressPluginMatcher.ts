@@ -1,5 +1,8 @@
 import { BadgeLinkInfo, BadgeMatcher, MatcherResult } from "../types";
 
+// TODO: could configure interval (daily, weekly, ...)
+// https://shields.io/badges/word-press-plugin-downloads
+
 const badgeUrlTemplate = 'https://img.shields.io/wordpress/plugin/dt/{slug}';
 
 export class WordPressPluginMatcher implements BadgeMatcher {

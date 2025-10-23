@@ -168,4 +168,10 @@ export type BadgesUserConfig = {
   chromeWebStoreRatingCount: BadgeConfig;
   /** See: https://shields.io/badges/mozilla-add-on-users */
   firefoxAddon: BadgeConfig;
+  /** See: https://shields.io/badges/mozilla-add-on-rating */
+  firefoxAddonRating: BadgeConfig;
+  /** See: https://shields.io/badges/mozilla-add-on-stars */
+  firefoxAddonStars: BadgeConfig;
+  /** See: https://shields.io/badges/mozilla-add-on-downloads */
+  firefoxAddonDownloads: BadgeConfig;
 }

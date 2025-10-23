@@ -246,4 +246,25 @@ test.describe('Non github repository links that should get a badge', () => {
     const badges = await page.locator('img[src*="shields.io"]').count();
     expect(badges).toBe(1);
   });
+
+  test('should add rating badge to a Firefox addon', async ({ page }) => {
+    await setupTestPage(page, 'badgeTypes/firefox-addon-rating.html');
+
+    const badges = await page.locator('img[src*="shields.io"]').count();
+    expect(badges).toBe(1);
+  });
+
+  test('should add stars badge to a Firefox addon', async ({ page }) => {
+    await setupTestPage(page, 'badgeTypes/firefox-addon-stars.html');
+
+    const badges = await page.locator('img[src*="shields.io"]').count();
+    expect(badges).toBe(1);
+  });
+
+  test('should add downloads badge to a Firefox addon', async ({ page }) => {
+    await setupTestPage(page, 'badgeTypes/firefox-addon-downloads.html');
+
+    const badges = await page.locator('img[src*="shields.io"]').count();
+    expect(badges).toBe(1);
+  });
 });
