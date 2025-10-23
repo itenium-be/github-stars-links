@@ -1,10 +1,10 @@
-GitHub Stars
-============
+Starify Links
+=============
 
 - [Blog post](https://itenium.be/blog/javascript/starify-github-links/)
 - [Chrome extension](https://chrome.google.com/webstore/detail/starify-github-repo-links/kpficnopciffopkhjpckhkgmnlakcmig)
 
-Add GitHub Stars badges to GitHub project links.  
+Add Stars badges to GitHub links, Reddit users, Wordpress plugins, Youtube channels, Chrome/Firefox add-ins, ...  
 Activates directly on `activateDirectlyOn` array (in `src/directActivation.ts`). For other websites, press `Alt + Shift + S` (configure in `chrome://extensions/shortcuts`)
 
 `activateDirectlyOn` includes:
@@ -97,6 +97,20 @@ chrome://extensions/
   - [rubygems](https://rubygems.org/gems/rails)
   - [crates](https://crates.io/crates/serde/1.0.228)
   - [pkg.go](https://pkg.go.dev/github.com/gin-gonic/gin)
+- Other badges:
+  - [Github Gist](https://gist.github.com/Laoujin/12f5d2f76d51ee6c0a49)
+  - [Subreddit](https://www.reddit.com/r/ProgrammerHumor/?tl=en)
+  - [Reddit User](https://www.reddit.com/user/spez)
+  - [Bluesky Followers](https://bsky.app/profile/bsky.app)
+  - [Hackernews Karma](https://news.ycombinator.com/user?id=pg)
+  - [Twitch Status](https://www.twitch.tv/shroud)
+  - [Youtube Channel](https://www.youtube.com/channel/UC8butISFwT-Wl7EV0hUK0BQ/videos)
+  - [Youtube Video](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+  - [Gitlab Repository](https://gitlab.com/gitlab-org/gitlab)
+  - [Lemmy Subsribers](https://lemmy.ml/c/technology)
+  - [Wordpress Plugins/Themes](https://wordpress.org/plugins/akismet/)
+  - [Chrome Extension Users](https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm)
+  - [Firefox Addon Users](https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/)
 
 
 # Similar Extensions
