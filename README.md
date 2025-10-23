@@ -13,20 +13,6 @@ Activates directly on `activateDirectlyOn` array (in `src/directActivation.ts`).
 - Package managers (npmjs, nuget, ...)
 
 
-## Example: Google search results
-
-Turn [google results for "react github"](https://www.google.com/search?q=react+github) into:
-
-![When googling "react github"](media/github-stars-google.png 'When googling "react github"')
-
-
-## Example: GitHub Awesome list
-
-Turn sindresorhus [awesome-awesome list](https://github.com/sindresorhus/awesome) into:
-
-![sindresorhus/awesome](media/github-stars-awesome.png 'sindresorhus/awesome')
-
-
 # Development
 
 ```bash
@@ -117,3 +103,26 @@ chrome://extensions/
 
 - [GitHub Stargazer](https://chromewebstore.google.com/detail/github-stargazer/pncmfniapibeljknpeoplfkhacmhobbk)
 - [GitHub Star Count](https://chromewebstore.google.com/detail/github-star-count/jahogeehepfohgakggfeeimokcgnmdid?hl=en)
+
+
+# Examples
+
+## Example: Google search results
+
+Turn [google results for "react github"](https://www.google.com/search?q=react+github) into:
+
+![When googling "react github"](media/github-stars-google.png 'When googling "react github"')
+
+
+## Example: GitHub Awesome list
+
+Turn sindresorhus [awesome-awesome list](https://github.com/sindresorhus/awesome) into:
+
+![sindresorhus/awesome](media/github-stars-awesome.png 'sindresorhus/awesome')
+
+
+## Example: Other Socials etc
+
+And a whole bunch of other badges!
+
+![other-links](media/other-links.png 'other-links')
