@@ -193,5 +193,53 @@ export const badgesUserConfig: BadgesUserConfig = {
     enabled: false,
     style: 'social' as const,
     label: 'Forks',
+  },
+
+
+  wordPressPlugin: {
+    enabled: true,
+    style: 'social' as const,
+    label: 'Downloads',
+  },
+
+
+  vsMarketplace: {
+    enabled: true,
+    style: 'social' as const,
+    label: 'Installs',
+  },
+
+
+  chromeWebStore: {
+    enabled: true,
+    style: 'social' as const,
+    label: 'Users',
+  },
+  chromeWebStoreRating: {
+    enabled: false,
+    style: 'social' as const,
+    label: 'Rating',
+  },
+  chromeWebStoreStars: {
+    enabled: false,
+    style: 'social' as const,
+    label: 'Stars',
+  },
+  chromeWebStoreLastUpdated: {
+    enabled: false,
+    style: 'social' as const,
+    label: 'Updated',
+  },
+  chromeWebStoreRatingCount: {
+    enabled: false,
+    style: 'social' as const,
+    label: 'Ratings',
+  },
+
+
+  firefoxAddon: {
+    enabled: true,
+    style: 'social' as const,
+    label: 'Users',
   }
 }

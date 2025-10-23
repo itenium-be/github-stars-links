@@ -190,4 +190,60 @@ test.describe('Non github repository links that should get a badge', () => {
     const badges = await page.locator('img[src*="shields.io"]').count();
     expect(badges).toBe(1);
   });
+
+  test('should add downloads badge to a WordPress plugin', async ({ page }) => {
+    await setupTestPage(page, 'badgeTypes/wordpress-plugin.html');
+
+    const badges = await page.locator('img[src*="shields.io"]').count();
+    expect(badges).toBe(1);
+  });
+
+  test('should add installs badge to a VS Marketplace extension', async ({ page }) => {
+    await setupTestPage(page, 'badgeTypes/vs-marketplace.html');
+
+    const badges = await page.locator('img[src*="shields.io"]').count();
+    expect(badges).toBe(1);
+  });
+
+  test('should add users badge to a Chrome Web Store extension', async ({ page }) => {
+    await setupTestPage(page, 'badgeTypes/chrome-web-store.html');
+
+    const badges = await page.locator('img[src*="shields.io"]').count();
+    expect(badges).toBe(1);
+  });
+
+  test('should add users badge to a Firefox addon', async ({ page }) => {
+    await setupTestPage(page, 'badgeTypes/firefox-addon.html');
+
+    const badges = await page.locator('img[src*="shields.io"]').count();
+    expect(badges).toBe(1);
+  });
+
+  test('should add rating badge to a Chrome Web Store extension', async ({ page }) => {
+    await setupTestPage(page, 'badgeTypes/chrome-web-store-rating.html');
+
+    const badges = await page.locator('img[src*="shields.io"]').count();
+    expect(badges).toBe(1);
+  });
+
+  test('should add stars badge to a Chrome Web Store extension', async ({ page }) => {
+    await setupTestPage(page, 'badgeTypes/chrome-web-store-stars.html');
+
+    const badges = await page.locator('img[src*="shields.io"]').count();
+    expect(badges).toBe(1);
+  });
+
+  test('should add last updated badge to a Chrome Web Store extension', async ({ page }) => {
+    await setupTestPage(page, 'badgeTypes/chrome-web-store-last-updated.html');
+
+    const badges = await page.locator('img[src*="shields.io"]').count();
+    expect(badges).toBe(1);
+  });
+
+  test('should add rating count badge to a Chrome Web Store extension', async ({ page }) => {
+    await setupTestPage(page, 'badgeTypes/chrome-web-store-rating-count.html');
+
+    const badges = await page.locator('img[src*="shields.io"]').count();
+    expect(badges).toBe(1);
+  });
 });

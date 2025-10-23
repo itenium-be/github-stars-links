@@ -1,6 +1,12 @@
 import { BadgeMatcher } from "../types";
 import { BlueskyFollowersMatcher } from "./BlueskyFollowersMatcher";
 import { BlueskyPostsMatcher } from "./BlueskyPostsMatcher";
+import { ChromeWebStoreLastUpdatedMatcher } from "./ChromeWebStoreLastUpdatedMatcher";
+import { ChromeWebStoreMatcher } from "./ChromeWebStoreMatcher";
+import { ChromeWebStoreRatingCountMatcher } from "./ChromeWebStoreRatingCountMatcher";
+import { ChromeWebStoreRatingMatcher } from "./ChromeWebStoreRatingMatcher";
+import { ChromeWebStoreStarsMatcher } from "./ChromeWebStoreStarsMatcher";
+import { FirefoxAddonMatcher } from "./FirefoxAddonMatcher";
 import { GithubFollowersMatcher } from "./GithubFollowersMatcher";
 import { GithubForksMatcher } from "./GithubForksMatcher";
 import { GithubGistStarsMatcher } from "./GithubGistStarsMatcher";
@@ -22,6 +28,8 @@ import { ThunderstoreLikesMatcher } from "./ThunderstoreLikesMatcher";
 import { TwitchStatusMatcher } from "./TwitchStatusMatcher";
 import { TwitterFollowMatcher } from "./TwitterFollowMatcher";
 import { TwitterUrlMatcher } from "./TwitterUrlMatcher";
+import { VsMarketplaceMatcher } from "./VsMarketplaceMatcher";
+import { WordPressPluginMatcher } from "./WordPressPluginMatcher";
 import { YoutubeChannelSubscribersMatcher } from "./YoutubeChannelSubscribersMatcher";
 import { YoutubeChannelViewsMatcher } from "./YoutubeChannelViewsMatcher";
 import { YoutubeVideoCommentsMatcher } from "./YoutubeVideoCommentsMatcher";
@@ -57,4 +65,12 @@ export const badgesConfig: BadgeMatcher[] = [
   new LemmyMatcher(),
   new HangarWatchersMatcher(),
   new HangarStarsMatcher(),
+  new WordPressPluginMatcher(),
+  new VsMarketplaceMatcher(),
+  new ChromeWebStoreMatcher(),
+  new ChromeWebStoreRatingMatcher(),
+  new ChromeWebStoreStarsMatcher(),
+  new ChromeWebStoreLastUpdatedMatcher(),
+  new ChromeWebStoreRatingCountMatcher(),
+  new FirefoxAddonMatcher(),
 ];

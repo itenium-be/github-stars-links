@@ -152,4 +152,20 @@ export type BadgesUserConfig = {
   gitlabStars: BadgeConfig;
   /** See: https://shields.io/badges/git-lab-forks */
   gitlabForks: BadgeConfig;
+  /** See: https://shields.io/badges/wordpress-plugin-total-downloads */
+  wordPressPlugin: BadgeConfig;
+  /** See: https://shields.io/badges/visual-studio-marketplace-installs */
+  vsMarketplace: BadgeConfig;
+  /** See: https://shields.io/badges/chrome-web-store-users */
+  chromeWebStore: BadgeConfig;
+  /** See: https://shields.io/badges/chrome-web-store-rating */
+  chromeWebStoreRating: BadgeConfig;
+  /** See: https://shields.io/badges/chrome-web-store-stars */
+  chromeWebStoreStars: BadgeConfig;
+  /** See: https://shields.io/badges/chrome-web-store-last-updated */
+  chromeWebStoreLastUpdated: BadgeConfig;
+  /** See: https://shields.io/badges/chrome-web-store-rating-count */
+  chromeWebStoreRatingCount: BadgeConfig;
+  /** See: https://shields.io/badges/mozilla-add-on-users */
+  firefoxAddon: BadgeConfig;
 }
