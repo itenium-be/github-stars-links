@@ -200,11 +200,44 @@ export const badgesUserConfig: BadgesUserConfig = {
     enabled: true,
     style: 'social' as const,
     label: 'Downloads',
+    logo: 'wordpress',
+  },
+  wordPressPluginRating: {
+    enabled: false,
+    style: 'social' as const,
+    label: 'Rating',
+    logo: 'wordpress',
+  },
+  wordPressPluginStars: {
+    enabled: false,
+    style: 'social' as const,
+    label: 'Stars',
+    logo: 'wordpress',
+  },
+
+
+  wordPressThemeDownloads: {
+    enabled: true,
+    style: 'social' as const,
+    label: 'Downloads',
+    logo: 'wordpress',
+  },
+  wordPressThemeRating: {
+    enabled: false,
+    style: 'social' as const,
+    label: 'Rating',
+    logo: 'wordpress',
+  },
+  wordPressThemeStars: {
+    enabled: false,
+    style: 'social' as const,
+    label: 'Stars',
+    logo: 'wordpress',
   },
 
 
   vsMarketplace: {
-    enabled: true,
+    enabled: false,
     style: 'social' as const,
     label: 'Installs',
   },
@@ -214,26 +247,31 @@ export const badgesUserConfig: BadgesUserConfig = {
     enabled: true,
     style: 'social' as const,
     label: 'Users',
+    logo: 'googlechrome',
   },
   chromeWebStoreRating: {
     enabled: false,
     style: 'social' as const,
     label: 'Rating',
+    logo: 'googlechrome',
   },
   chromeWebStoreStars: {
     enabled: false,
     style: 'social' as const,
     label: 'Stars',
+    logo: 'googlechrome',
   },
   chromeWebStoreLastUpdated: {
     enabled: false,
     style: 'social' as const,
     label: 'Updated',
+    logo: 'googlechrome',
   },
   chromeWebStoreRatingCount: {
     enabled: false,
     style: 'social' as const,
     label: 'Ratings',
+    logo: 'googlechrome',
   },
 
 
@@ -241,20 +279,24 @@ export const badgesUserConfig: BadgesUserConfig = {
     enabled: true,
     style: 'social' as const,
     label: 'Users',
+    logo: 'firefox',
   },
   firefoxAddonRating: {
     enabled: false,
     style: 'social' as const,
     label: 'Rating',
+    logo: 'firefox',
   },
   firefoxAddonStars: {
     enabled: false,
     style: 'social' as const,
     label: 'Stars',
+    logo: 'firefox',
   },
   firefoxAddonDownloads: {
     enabled: false,
     style: 'social' as const,
     label: 'Downloads',
+    logo: 'firefox',
   }
 }

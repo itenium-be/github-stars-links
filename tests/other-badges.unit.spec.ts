@@ -267,4 +267,39 @@ test.describe('Non github repository links that should get a badge', () => {
     const badges = await page.locator('img[src*="shields.io"]').count();
     expect(badges).toBe(1);
   });
+
+  test('should add rating badge to a WordPress plugin', async ({ page }) => {
+    await setupTestPage(page, 'badgeTypes/wordpress-plugin-rating.html');
+
+    const badges = await page.locator('img[src*="shields.io"]').count();
+    expect(badges).toBe(1);
+  });
+
+  test('should add stars badge to a WordPress plugin', async ({ page }) => {
+    await setupTestPage(page, 'badgeTypes/wordpress-plugin-stars.html');
+
+    const badges = await page.locator('img[src*="shields.io"]').count();
+    expect(badges).toBe(1);
+  });
+
+  test('should add downloads badge to a WordPress theme', async ({ page }) => {
+    await setupTestPage(page, 'badgeTypes/wordpress-theme-downloads.html');
+
+    const badges = await page.locator('img[src*="shields.io"]').count();
+    expect(badges).toBe(1);
+  });
+
+  test('should add rating badge to a WordPress theme', async ({ page }) => {
+    await setupTestPage(page, 'badgeTypes/wordpress-theme-rating.html');
+
+    const badges = await page.locator('img[src*="shields.io"]').count();
+    expect(badges).toBe(1);
+  });
+
+  test('should add stars badge to a WordPress theme', async ({ page }) => {
+    await setupTestPage(page, 'badgeTypes/wordpress-theme-stars.html');
+
+    const badges = await page.locator('img[src*="shields.io"]').count();
+    expect(badges).toBe(1);
+  });
 });

@@ -154,6 +154,16 @@ export type BadgesUserConfig = {
   gitlabForks: BadgeConfig;
   /** See: https://shields.io/badges/wordpress-plugin-total-downloads */
   wordPressPlugin: BadgeConfig;
+  /** See: https://shields.io/badges/word-press-plugin-rating */
+  wordPressPluginRating: BadgeConfig;
+  /** See: https://shields.io/badges/word-press-plugin-stars */
+  wordPressPluginStars: BadgeConfig;
+  /** See: https://shields.io/badges/word-press-theme-downloads */
+  wordPressThemeDownloads: BadgeConfig;
+  /** See: https://shields.io/badges/word-press-theme-rating */
+  wordPressThemeRating: BadgeConfig;
+  /** See: https://shields.io/badges/word-press-theme-stars */
+  wordPressThemeStars: BadgeConfig;
   /** See: https://shields.io/badges/visual-studio-marketplace-installs */
   vsMarketplace: BadgeConfig;
   /** See: https://shields.io/badges/chrome-web-store-users */

@@ -33,6 +33,11 @@ import { TwitterFollowMatcher } from "./TwitterFollowMatcher";
 import { TwitterUrlMatcher } from "./TwitterUrlMatcher";
 import { VsMarketplaceMatcher } from "./VsMarketplaceMatcher";
 import { WordPressPluginMatcher } from "./WordPressPluginMatcher";
+import { WordPressPluginRatingMatcher } from "./WordPressPluginRatingMatcher";
+import { WordPressPluginStarsMatcher } from "./WordPressPluginStarsMatcher";
+import { WordPressThemeDownloadsMatcher } from "./WordPressThemeDownloadsMatcher";
+import { WordPressThemeRatingMatcher } from "./WordPressThemeRatingMatcher";
+import { WordPressThemeStarsMatcher } from "./WordPressThemeStarsMatcher";
 import { YoutubeChannelSubscribersMatcher } from "./YoutubeChannelSubscribersMatcher";
 import { YoutubeChannelViewsMatcher } from "./YoutubeChannelViewsMatcher";
 import { YoutubeVideoCommentsMatcher } from "./YoutubeVideoCommentsMatcher";
@@ -69,6 +74,11 @@ export const badgesConfig: BadgeMatcher[] = [
   new HangarWatchersMatcher(),
   new HangarStarsMatcher(),
   new WordPressPluginMatcher(),
+  new WordPressPluginRatingMatcher(),
+  new WordPressPluginStarsMatcher(),
+  new WordPressThemeDownloadsMatcher(),
+  new WordPressThemeRatingMatcher(),
+  new WordPressThemeStarsMatcher(),
   new VsMarketplaceMatcher(),
   new ChromeWebStoreMatcher(),
   new ChromeWebStoreRatingMatcher(),
