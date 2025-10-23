@@ -15,7 +15,7 @@
     },
     "action": {
         "default_icon": "favicon.png",
-        "default_title": "Starify GitHub Links"
+        "default_title": "Starify Links"
     },
     "commands": {
         "activate-github-stars": {
@@ -23,7 +23,7 @@
                 "default": "Alt+Shift+S",
                 "mac": "Alt+Shift+S"
             },
-            "description": "Add GitHub star badges to links"
+            "description": "Add star badges to links"
         },
         "reload": {
             "suggested_key": {
@@ -34,9 +34,9 @@
         }
     },
     "converted_from_user_script": true,
-    "description":  "Add GitHub Stars badges to GitHub project links",
-    "name":         "Starify GitHub repo links",
-    "short_name":   "GitHubStarifyLinks",
+    "description":  "Add star badges to links from GitHub, GitLab, Chrome Web Store, Reddit, and more",
+    "name":         "Starify Links",
+    "short_name":   "StarifyLinks",
     "version":      "1.11",
     "icons": {
         "128": "favicon.png"
