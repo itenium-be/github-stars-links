@@ -127,4 +127,67 @@ test.describe('Non github repository links that should get a badge', () => {
     const badges = await page.locator('img[src*="shields.io"]').count();
     expect(badges).toBe(1);
   });
+
+  test('should add likes badge to a Thunderstore package', async ({ page }) => {
+    await setupTestPage(page, 'badgeTypes/thunderstore-likes.html');
+
+    const badges = await page.locator('img[src*="shields.io"]').count();
+    expect(badges).toBe(1);
+  });
+
+  test('should add followers badge to a Nostr Band profile', async ({ page }) => {
+    await setupTestPage(page, 'badgeTypes/nostr-band-followers.html');
+
+    const badges = await page.locator('img[src*="shields.io"]').count();
+    expect(badges).toBe(1);
+  });
+
+  test('should add followers badge to a Modrinth project', async ({ page }) => {
+    await setupTestPage(page, 'badgeTypes/modrinth-followers.html');
+
+    const badges = await page.locator('img[src*="shields.io"]').count();
+    expect(badges).toBe(1);
+  });
+
+  test('should add follow badge to a Mastodon profile', async ({ page }) => {
+    await setupTestPage(page, 'badgeTypes/mastodon-follow.html');
+
+    const badges = await page.locator('img[src*="shields.io"]').count();
+    expect(badges).toBe(1);
+  });
+
+  test('should add badge to a Lemmy community', async ({ page }) => {
+    await setupTestPage(page, 'badgeTypes/lemmy.html');
+
+    const badges = await page.locator('img[src*="shields.io"]').count();
+    expect(badges).toBe(1);
+  });
+
+  test('should add watchers badge to a Hangar plugin', async ({ page }) => {
+    await setupTestPage(page, 'badgeTypes/hangar-watchers.html');
+
+    const badges = await page.locator('img[src*="shields.io"]').count();
+    expect(badges).toBe(1);
+  });
+
+  test('should add stars badge to a Hangar plugin', async ({ page }) => {
+    await setupTestPage(page, 'badgeTypes/hangar-stars.html');
+
+    const badges = await page.locator('img[src*="shields.io"]').count();
+    expect(badges).toBe(1);
+  });
+
+  test('should add stars badge to a GitLab project', async ({ page }) => {
+    await setupTestPage(page, 'badgeTypes/gitlab-stars.html');
+
+    const badges = await page.locator('img[src*="shields.io"]').count();
+    expect(badges).toBe(1);
+  });
+
+  test('should add forks badge to a GitLab project', async ({ page }) => {
+    await setupTestPage(page, 'badgeTypes/gitlab-forks.html');
+
+    const badges = await page.locator('img[src*="shields.io"]').count();
+    expect(badges).toBe(1);
+  });
 });

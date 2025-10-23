@@ -135,5 +135,63 @@ export const badgesUserConfig: BadgesUserConfig = {
     enabled: false,
     style: 'social' as const,
     label: 'Follow',
+  },
+
+
+  nostrBandFollowers: {
+    enabled: false,
+    style: 'social' as const,
+    label: 'Followers',
+  },
+
+  // Minecraft mods
+  modrinthFollowers: {
+    enabled: false,
+    style: 'social' as const,
+    label: 'Followers',
+  },
+
+  // Hangar (minecraft plugins)
+  hangarWatchers: {
+    enabled: false,
+    style: 'social' as const,
+    label: 'Watchers',
+  },
+  hangarStars: {
+    enabled: false,
+    style: 'social' as const,
+    label: 'Stars',
+  },
+
+  // Plugins for games?
+  thunderstoreLikes: {
+    enabled: false,
+    style: 'social' as const,
+    label: 'Likes',
+  },
+
+
+  lemmy: {
+    enabled: true,
+    style: 'social' as const,
+    label: 'Subscribers',
+  },
+
+  // mastodonFollow: {
+  //   enabled: true,
+  //   style: 'social' as const,
+  //   label: 'Follow',
+  // },
+
+  // Gitlab
+  gitlabStars: {
+    enabled: true,
+    style: 'social' as const,
+    label: 'Stars',
+  },
+  gitlabForks: {
+    enabled: false,
+    style: 'social' as const,
+    label: 'Forks',
   }
 }

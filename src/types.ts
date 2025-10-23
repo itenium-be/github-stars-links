@@ -134,4 +134,22 @@ export type BadgesUserConfig = {
   twitterUrl: BadgeConfig;
   /** See: https://shields.io/badges/x-formerly-twitter-follow */
   twitterFollow: BadgeConfig;
+  /** See: https://shields.io/badges/thunderstore-likes */
+  thunderstoreLikes: BadgeConfig;
+  /** See: https://shields.io/badges/nostr-band-followers */
+  nostrBandFollowers: BadgeConfig;
+  /** See: https://shields.io/badges/modrinth-followers */
+  modrinthFollowers: BadgeConfig;
+  // /** See: https://shields.io/badges/mastodon-follow */
+  // mastodonFollow: BadgeConfig;
+  /** See: https://shields.io/badges/lemmy */
+  lemmy: BadgeConfig;
+  /** See: https://shields.io/badges/hangar-watchers */
+  hangarWatchers: BadgeConfig;
+  /** See: https://shields.io/badges/hangar-stars */
+  hangarStars: BadgeConfig;
+  /** See: https://shields.io/badges/git-lab-stars */
+  gitlabStars: BadgeConfig;
+  /** See: https://shields.io/badges/git-lab-forks */
+  gitlabForks: BadgeConfig;
 }

@@ -20,6 +20,7 @@ export function findAndConvertLinks(linkContainers?: NodeListOf<Element>, allowD
         const config = badgesUserConfig[match.badgeType];
         if (config.enabled) {
           const badgeUrl = completeBadgeUrl(match.badgeUrl, config);
+          // console.log(`pushing badge ${match.badgeType}`, badgeUrl);
           newBadges.push({baseUrl: match.baseUrl, badgeUrl, el: a.el, badgeType: match.badgeType});
         }
       }
