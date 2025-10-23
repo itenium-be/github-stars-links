@@ -40,5 +40,6 @@
     "version":      "1.11",
     "icons": {
         "128": "favicon.png"
-    }
+    },
+    "options_page": "options.html"
 }
