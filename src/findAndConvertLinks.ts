@@ -52,7 +52,7 @@ export function completeBadgeUrl(badgeUrl: string, config: BadgeConfig): string 
     .filter(([key]) => key !== 'enabled')
     .forEach(([key, value]) => {
       if (value) {
-        badgeUrl += `&${key}=${value}`;
+        badgeUrl += `&${key}=${encodeURIComponent(value)}`;
       }
     });
 
