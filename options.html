@@ -5,10 +5,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Starify GitHub Links - Options</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        body {
+            min-height: 100vh;
+        }
+        .sidebar {
+            min-height: 100vh;
+            background-color: #f8f9fa;
+            border-right: 1px solid #dee2e6;
+        }
+        .nav-link {
+            color: #495057;
+        }
+        .nav-link:hover {
+            background-color: #e9ecef;
+        }
+        .nav-link.active {
+            background-color: #0d6efd;
+            color: white;
+        }
+    </style>
 </head>
 <body>
-    <div class="container my-5">
-        <h1>Options</h1>
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-3 col-lg-2 d-md-block sidebar">
+                <div class="position-sticky pt-3">
+                    <h5 class="px-3 mb-3">Settings</h5>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#directActivation" data-bs-toggle="pill">
+                                Direct Activation
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#badgesUserConfig" data-bs-toggle="pill">
+                                Badges User Config
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="py-4">
+                    <h1 class="mb-4">Options</h1>
+
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="directActivation">
+                            <h2>Direct Activation</h2>
+                            <p class="text-muted">Configure direct activation settings.</p>
+                        </div>
+
+                        <div class="tab-pane fade" id="badgesUserConfig">
+                            <h2>Badges User Config</h2>
+                            <p class="text-muted">Configure badge settings.</p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
