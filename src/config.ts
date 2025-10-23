@@ -19,27 +19,12 @@ export const shieldsConfig = {
 
 
 export const badgesUserConfig: BadgesUserConfig = {
+  // GitHub Repository Badges
   githubRepository: {
     enabled: true,
     style: 'social' as const,
     label: 'Star',
     // logo: 'github',
-  },
-  githubUserStars: {
-    enabled: true,
-    style: 'social' as const,
-    label: 'Star',
-    affiliations: 'OWNER',
-  },
-  githubFollowers: {
-    enabled: false,
-    style: 'social' as const,
-    label: 'Followers',
-  },
-  githubGistStars: {
-    enabled: true,
-    style: 'social' as const,
-    label: 'Stars',
   },
   githubWatchers: {
     enabled: false,
@@ -51,6 +36,29 @@ export const badgesUserConfig: BadgesUserConfig = {
     style: 'social' as const,
     label: 'Forks',
   },
+
+
+  // GitHub Users/Companies
+  githubUserStars: {
+    enabled: true,
+    style: 'social' as const,
+    label: 'Star',
+    affiliations: 'OWNER',
+  },
+  githubFollowers: {
+    enabled: false,
+    style: 'social' as const,
+    label: 'Followers',
+  },
+
+
+  githubGistStars: {
+    enabled: true,
+    style: 'social' as const,
+    label: 'Stars',
+  },
+
+
   subredditSubscribers: {
     enabled: true,
     style: 'social' as const,
@@ -61,16 +69,20 @@ export const badgesUserConfig: BadgesUserConfig = {
     style: 'social' as const,
     label: 'Karma',
   },
+
+  // Bluesky User
   blueskyFollowers: {
     enabled: true,
     style: 'social' as const,
     label: 'Followers',
   },
   blueskyPosts: {
-    enabled: true,
+    enabled: false,
     style: 'social' as const,
     label: 'Posts',
   },
+
+
   hackerNewsKarma: {
     enabled: true,
     style: 'social' as const,
@@ -81,6 +93,9 @@ export const badgesUserConfig: BadgesUserConfig = {
     style: 'social' as const,
     label: 'Status',
   },
+
+
+  // Youtube Video
   youtubeVideoViews: {
     enabled: true,
     style: 'social' as const,
@@ -96,6 +111,9 @@ export const badgesUserConfig: BadgesUserConfig = {
     style: 'social' as const,
     label: 'Comments',
   },
+
+
+  // Youtube Channel
   youtubeChannelViews: {
     enabled: false,
     style: 'social' as const,
@@ -106,13 +124,15 @@ export const badgesUserConfig: BadgesUserConfig = {
     style: 'social' as const,
     label: 'Subscribers',
   },
+
+
   twitterUrl: {
     enabled: false,
     style: 'social' as const,
     label: 'Tweet',
   },
   twitterFollow: {
-    enabled: true,
+    enabled: false,
     style: 'social' as const,
     label: 'Follow',
   }
