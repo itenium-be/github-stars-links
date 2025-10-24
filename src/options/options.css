@@ -1,0 +1,22 @@
+body {
+    min-height: 100vh;
+}
+
+.sidebar {
+    min-height: 100vh;
+    background-color: #f8f9fa;
+    border-right: 1px solid #dee2e6;
+}
+
+.nav-link {
+    color: #495057;
+}
+
+.nav-link:hover {
+    background-color: #e9ecef;
+}
+
+.nav-link.active {
+    background-color: #0d6efd;
+    color: white;
+}

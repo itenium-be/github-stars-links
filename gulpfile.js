@@ -22,7 +22,7 @@ gulp.task('copy', function() {
 	gulp.src(['./favicon.png', './manifest.json', 'background.js'])
 		.pipe(gulp.dest('./dist'));
 
-	gulp.src('./src/options/options.html')
+	gulp.src(['./src/options/options.html', './src/options/options.css'])
 		.pipe(gulp.dest('./dist'));
 
 	return gulp.src('./node_modules/bootstrap/dist/css/bootstrap.min.css')
@@ -38,7 +38,7 @@ gulp.task('zip', function() {
 
 
 gulp.task('watch', gulp.series('typescript', 'copy', function() {
-	return gulp.watch('src/**/*.ts', gulp.series('typescript'));
+	return gulp.watch('src/**/*.*', gulp.series('typescript', 'copy'));
 }))
 
 
