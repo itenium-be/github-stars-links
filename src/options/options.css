@@ -20,3 +20,27 @@ body {
     background-color: #0d6efd;
     color: white;
 }
+
+.badge-config-section {
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: #f8f9fa;
+}
+
+.badge-config-section .form-label {
+    font-weight: 500;
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+}
+
+.badge-config-section .form-control,
+.badge-config-section .form-select {
+    font-size: 0.875rem;
+}
+
+.badge-name {
+    font-weight: 600;
+    color: #212529;
+}

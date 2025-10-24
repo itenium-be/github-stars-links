@@ -25,7 +25,10 @@ gulp.task('copy', function() {
 	gulp.src(['./src/options/options.html', './src/options/options.css'])
 		.pipe(gulp.dest('./dist'));
 
-	return gulp.src('./node_modules/bootstrap/dist/css/bootstrap.min.css')
+	gulp.src('./node_modules/bootstrap/dist/css/bootstrap.min.css')
+		.pipe(gulp.dest('./dist'));
+
+	return gulp.src('./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js')
 		.pipe(gulp.dest('./dist'));
 });
 
