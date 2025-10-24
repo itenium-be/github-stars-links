@@ -1,4 +1,8 @@
 export type DirectActivation = {
+  /** Display name for the UI */
+  label: string;
+  /** Whether this direct activation is enabled */
+  enabled: boolean;
   url: string | RegExp;
   /**
    * A CSS Selector to observe in

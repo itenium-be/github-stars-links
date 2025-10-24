@@ -93,23 +93,6 @@ export const badgeCategories: BadgeCategory[] = [
   },
 ];
 
-export const directActivationUrls = [
-  'Stack Overflow',
-  'Super User',
-  'Ask Ubuntu',
-  'Server Fault',
-  '*.stackexchange.com',
-  'Google Search',
-  'GitHub',
-  'npm',
-  'NuGet',
-  'VS Code Marketplace',
-  'PyPI',
-  'RubyGems',
-  'crates.io',
-  'pkg.go.dev',
-  'DuckDuckGo'
-];
 
 function validateBadgeCategories() {
   const allBadgesInConfig = Object.keys(badgesUserConfig) as Array<keyof BadgesUserConfig>;

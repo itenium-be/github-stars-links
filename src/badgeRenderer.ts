@@ -4,8 +4,8 @@ import { BadgeInfo } from "./types";
 
 const currentUrl = getCurrentUrl();
 
-export function badgeRenderer(badge: BadgeInfo) {
-  const urlConfig = findConfig();
+export async function badgeRenderer(badge: BadgeInfo) {
+  const urlConfig = await findConfig();
 
   // Shorten link text
   if (!urlConfig || urlConfig.replaceText !== false) {

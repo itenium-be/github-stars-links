@@ -1,42 +1,43 @@
 import { findConfig } from './directActivation';
 import { findAndConvertLinks } from './findAndConvertLinks';
 
+(async () => {
+  const activator = await findConfig();
+  if (activator?.enabled) {
+    findAndConvertLinks();
 
-const activator = findConfig();
-if (activator) {
-  findAndConvertLinks();
+    if (activator.observeNavigation) {
+      (window as any).navigation?.addEventListener('navigate', (event: any) => {
+        removeAllBadges();
 
-  if (activator.observeNavigation) {
-    (window as any).navigation?.addEventListener('navigate', (event: any) => {
-      removeAllBadges();
+        setTimeout(() => {
+          findAndConvertLinks();
+          if (activator.extraBadgeSelector) {
+            const githubLinkContainer = document.querySelectorAll(activator.extraBadgeSelector);
+            findAndConvertLinks(githubLinkContainer, true);
+          }
+        }, 1000);
+      });
+    }
 
-      setTimeout(() => {
-        findAndConvertLinks();
-        if (activator.extraBadgeSelector) {
-          const githubLinkContainer = document.querySelectorAll(activator.extraBadgeSelector);
-          findAndConvertLinks(githubLinkContainer, true);
+    if (activator.extraBadgeSelector) {
+      const githubLinkContainer = document.querySelectorAll(activator.extraBadgeSelector);
+      findAndConvertLinks(githubLinkContainer, true);
+    }
+
+    if (activator.observe) {
+      const observer = new MutationObserver(() => {
+        const githubLinkContainer = document.querySelectorAll(activator.observe!);
+        if (githubLinkContainer.length) {
+          findAndConvertLinks(githubLinkContainer, activator.observeAllowDuplicates);
         }
-      }, 1000);
-    });
-  }
+      });
 
-  if (activator.extraBadgeSelector) {
-    const githubLinkContainer = document.querySelectorAll(activator.extraBadgeSelector);
-    findAndConvertLinks(githubLinkContainer, true);
+      observer.observe(document.body, { childList: true, subtree: true });
+      window.addEventListener('beforeunload', () => observer.disconnect());
+    }
   }
-
-  if (activator.observe) {
-    const observer = new MutationObserver(() => {
-      const githubLinkContainer = document.querySelectorAll(activator.observe!);
-      if (githubLinkContainer.length) {
-        findAndConvertLinks(githubLinkContainer, activator.observeAllowDuplicates);
-      }
-    });
-
-    observer.observe(document.body, { childList: true, subtree: true });
-    window.addEventListener('beforeunload', () => observer.disconnect());
-  }
-}
+})();
 
 
 export function removeAllBadges() {
