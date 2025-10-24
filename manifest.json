@@ -2,11 +2,14 @@
     "host_permissions": [
         "https://img.shields.io/"
     ],
+    "permissions": [
+        "storage"
+    ],
     "manifest_version": 3,
     "content_scripts": [{
         "exclude_globs":    [],
         "include_globs":    ["*"],
-        "js":               ["github-stars.user.js"],
+        "js":               ["starify-links.user.js"],
         "matches":          ["http://*/*", "file:///*", "https://*/*"],
         "run_at": "document_end"
     }],
@@ -34,7 +37,7 @@
         }
     },
     "converted_from_user_script": true,
-    "description":  "Add star badges to links from GitHub, GitLab, Chrome Web Store, Reddit, and more",
+    "description":  "Add star badges to links to GitHub, GitLab, Chrome Web Store, Reddit, and more",
     "name":         "Starify Links",
     "short_name":   "StarifyLinks",
     "version":      "1.11",

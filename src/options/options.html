@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starify Links - Options</title>
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            min-height: 100vh;
+        }
+        .sidebar {
+            min-height: 100vh;
+            background-color: #f8f9fa;
+            border-right: 1px solid #dee2e6;
+        }
+        .nav-link {
+            color: #495057;
+        }
+        .nav-link:hover {
+            background-color: #e9ecef;
+        }
+        .nav-link.active {
+            background-color: #0d6efd;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-3 col-lg-2 d-md-block sidebar">
+                <div class="position-sticky pt-3">
+                    <h5 class="px-3 mb-3">Starify Links</h5>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#badgesConfig" data-bs-toggle="pill">
+                                Badges Config
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#directActivation" data-bs-toggle="pill">
+                                Direct Activation
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="py-4">
+                    <h1 class="mb-4">Options</h1>
+
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="badgesConfig">
+                            <h2>Badges Configuration</h2>
+
+                            <div class="accordion mt-4" id="badgesAccordion">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#githubBadges">
+                                            GitHub Badges
+                                        </button>
+                                    </h2>
+                                    <div id="githubBadges" class="accordion-collapse collapse show" data-bs-parent="#badgesAccordion">
+                                        <div class="accordion-body">
+                                            <div class="form-check form-switch mb-2">
+                                                <input class="form-check-input" type="checkbox" id="githubRepository" data-badge="githubRepository">
+                                                <label class="form-check-label" for="githubRepository">Repository Stars</label>
+                                            </div>
+                                            <div class="form-check form-switch mb-2">
+                                                <input class="form-check-input" type="checkbox" id="githubUserStars" data-badge="githubUserStars">
+                                                <label class="form-check-label" for="githubUserStars">User Stars</label>
+                                            </div>
+                                            <div class="form-check form-switch mb-2">
+                                                <input class="form-check-input" type="checkbox" id="githubFollowers" data-badge="githubFollowers">
+                                                <label class="form-check-label" for="githubFollowers">User Followers</label>
+                                            </div>
+                                            <div class="form-check form-switch mb-2">
+                                                <input class="form-check-input" type="checkbox" id="githubGistStars" data-badge="githubGistStars">
+                                                <label class="form-check-label" for="githubGistStars">Gist Stars</label>
+                                            </div>
+                                            <div class="form-check form-switch mb-2">
+                                                <input class="form-check-input" type="checkbox" id="githubWatchers" data-badge="githubWatchers">
+                                                <label class="form-check-label" for="githubWatchers">Repository Watchers</label>
+                                            </div>
+                                            <div class="form-check form-switch mb-2">
+                                                <input class="form-check-input" type="checkbox" id="githubForks" data-badge="githubForks">
+                                                <label class="form-check-label" for="githubForks">Repository Forks</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#gitlabBadges">
+                                            GitLab Badges
+                                        </button>
+                                    </h2>
+                                    <div id="gitlabBadges" class="accordion-collapse collapse" data-bs-parent="#badgesAccordion">
+                                        <div class="accordion-body">
+                                            <div class="form-check form-switch mb-2">
+                                                <input class="form-check-input" type="checkbox" id="gitlabStars" data-badge="gitlabStars">
+                                                <label class="form-check-label" for="gitlabStars">Project Stars</label>
+                                            </div>
+                                            <div class="form-check form-switch mb-2">
+                                                <input class="form-check-input" type="checkbox" id="gitlabForks" data-badge="gitlabForks">
+                                                <label class="form-check-label" for="gitlabForks">Project Forks</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#socialBadges">
+                                            Social Media Badges
+                                        </button>
+                                    </h2>
+                                    <div id="socialBadges" class="accordion-collapse collapse" data-bs-parent="#badgesAccordion">
+                                        <div class="accordion-body">
+                                            <div class="form-check form-switch mb-2">
+                                                <input class="form-check-input" type="checkbox" id="subredditSubscribers" data-badge="subredditSubscribers">
+                                                <label class="form-check-label" for="subredditSubscribers">Subreddit Subscribers</label>
+                                            </div>
+                                            <div class="form-check form-switch mb-2">
+                                                <input class="form-check-input" type="checkbox" id="redditUserKarma" data-badge="redditUserKarma">
+                                                <label class="form-check-label" for="redditUserKarma">Reddit User Karma</label>
+                                            </div>
+                                            <div class="form-check form-switch mb-2">
+                                                <input class="form-check-input" type="checkbox" id="blueskyFollowers" data-badge="blueskyFollowers">
+                                                <label class="form-check-label" for="blueskyFollowers">Bluesky Followers</label>
+                                            </div>
+                                            <div class="form-check form-switch mb-2">
+                                                <input class="form-check-input" type="checkbox" id="blueskyPosts" data-badge="blueskyPosts">
+                                                <label class="form-check-label" for="blueskyPosts">Bluesky Posts</label>
+                                            </div>
+                                            <div class="form-check form-switch mb-2">
+                                                <input class="form-check-input" type="checkbox" id="hackerNewsKarma" data-badge="hackerNewsKarma">
+                                                <label class="form-check-label" for="hackerNewsKarma">Hacker News Karma</label>
+                                            </div>
+                                            <div class="form-check form-switch mb-2">
+                                                <input class="form-check-input" type="checkbox" id="twitchStatus" data-badge="twitchStatus">
+                                                <label class="form-check-label" for="twitchStatus">Twitch Status</label>
+                                            </div>
+                                            <div class="form-check form-switch mb-2">
+                                                <input class="form-check-input" type="checkbox" id="twitterUrl" data-badge="twitterUrl">
+                                                <label class="form-check-label" for="twitterUrl">Twitter/X URL</label>
+                                            </div>
+                                            <div class="form-check form-switch mb-2">
+                                                <input class="form-check-input" type="checkbox" id="twitterFollow" data-badge="twitterFollow">
+                                                <label class="form-check-label" for="twitterFollow">Twitter/X Follow</label>
+                                            </div>
+                                            <div class="form-check form-switch mb-2">
+                                                <input class="form-check-input" type="checkbox" id="lemmy" data-badge="lemmy">
+                                                <label class="form-check-label" for="lemmy">Lemmy Community Subscribers</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#youtubeBadges">
+                                            YouTube Badges
+                                        </button>
+                                    </h2>
+                                    <div id="youtubeBadges" class="accordion-collapse collapse" data-bs-parent="#badgesAccordion">
+                                        <div class="accordion-body">
+                                            <div class="form-check form-switch mb-2">
+                                                <input class="form-check-input" type="checkbox" id="youtubeVideoViews" data-badge="youtubeVideoViews">
+                                                <label class="form-check-label" for="youtubeVideoViews">Video Views</label>
+                                            </div>
+                                            <div class="form-check form-switch mb-2">
+                                                <input class="form-check-input" type="checkbox" id="youtubeVideoLikes" data-badge="youtubeVideoLikes">
+                                                <label class="form-check-label" for="youtubeVideoLikes">Video Likes</label>
+                                            </div>
+                                            <div class="form-check form-switch mb-2">
+                                                <input class="form-check-input" type="checkbox" id="youtubeVideoComments" data-badge="youtubeVideoComments">
+                                                <label class="form-check-label" for="youtubeVideoComments">Video Comments</label>
+                                            </div>
+                                            <div class="form-check form-switch mb-2">
+                                                <input class="form-check-input" type="checkbox" id="youtubeChannelViews" data-badge="youtubeChannelViews">
+                                                <label class="form-check-label" for="youtubeChannelViews">Channel Views</label>
+                                            </div>
+                                            <div class="form-check form-switch mb-2">
+                                                <input class="form-check-input" type="checkbox" id="youtubeChannelSubscribers" data-badge="youtubeChannelSubscribers">
+                                                <label class="form-check-label" for="youtubeChannelSubscribers">Channel Subscribers</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#extensionBadges">
+                                            Browser Extensions & Plugin Stores
+                                        </button>
+                                    </h2>
+                                    <div id="extensionBadges" class="accordion-collapse collapse" data-bs-parent="#badgesAccordion">
+                                        <div class="accordion-body">
+                                            <h6>Chrome Web Store</h6>
+                                            <div class="form-check form-switch mb-2">
+                                                <input class="form-check-input" type="checkbox" id="chromeWebStore" data-badge="chromeWebStore">
+                                                <label class="form-check-label" for="chromeWebStore">Users</label>
+                                            </div>
+                                            <div class="form-check form-switch mb-2">
+                                                <input class="form-check-input" type="checkbox" id="chromeWebStoreRating" data-badge="chromeWebStoreRating">
+                                                <label class="form-check-label" for="chromeWebStoreRating">Rating</label>
+                                            </div>
+                                            <div class="form-check form-switch mb-2">
+                                                <input class="form-check-input" type="checkbox" id="chromeWebStoreStars" data-badge="chromeWebStoreStars">
+                                                <label class="form-check-label" for="chromeWebStoreStars">Stars</label>
+                                            </div>
+                                            <div class="form-check form-switch mb-2">
+                                                <input class="form-check-input" type="checkbox" id="chromeWebStoreLastUpdated" data-badge="chromeWebStoreLastUpdated">
+                                                <label class="form-check-label" for="chromeWebStoreLastUpdated">Last Updated</label>
+                                            </div>
+                                            <div class="form-check form-switch mb-2">
+                                                <input class="form-check-input" type="checkbox" id="chromeWebStoreRatingCount" data-badge="chromeWebStoreRatingCount">
+                                                <label class="form-check-label" for="chromeWebStoreRatingCount">Rating Count</label>
+                                            </div>
+
+                                            <h6 class="mt-3">Firefox Add-ons</h6>
+                                            <div class="form-check form-switch mb-2">
+                                                <input class="form-check-input" type="checkbox" id="firefoxAddon" data-badge="firefoxAddon">
+                                                <label class="form-check-label" for="firefoxAddon">Users</label>
+                                            </div>
+                                            <div class="form-check form-switch mb-2">
+                                                <input class="form-check-input" type="checkbox" id="firefoxAddonRating" data-badge="firefoxAddonRating">
+                                                <label class="form-check-label" for="firefoxAddonRating">Rating</label>
+                                            </div>
+                                            <div class="form-check form-switch mb-2">
+                                                <input class="form-check-input" type="checkbox" id="firefoxAddonStars" data-badge="firefoxAddonStars">
+                                                <label class="form-check-label" for="firefoxAddonStars">Stars</label>
+                                            </div>
+                                            <div class="form-check form-switch mb-2">
+                                                <input class="form-check-input" type="checkbox" id="firefoxAddonDownloads" data-badge="firefoxAddonDownloads">
+                                                <label class="form-check-label" for="firefoxAddonDownloads">Downloads</label>
+                                            </div>
+
+                                            <h6 class="mt-3">VS Code Marketplace</h6>
+                                            <div class="form-check form-switch mb-2">
+                                                <input class="form-check-input" type="checkbox" id="vsMarketplace" data-badge="vsMarketplace">
+                                                <label class="form-check-label" for="vsMarketplace">Installs</label>
+                                            </div>
+
+                                            <h6 class="mt-3">WordPress</h6>
+                                            <div class="form-check form-switch mb-2">
+                                                <input class="form-check-input" type="checkbox" id="wordPressPlugin" data-badge="wordPressPlugin">
+                                                <label class="form-check-label" for="wordPressPlugin">Plugin Downloads</label>
+                                            </div>
+                                            <div class="form-check form-switch mb-2">
+                                                <input class="form-check-input" type="checkbox" id="wordPressPluginRating" data-badge="wordPressPluginRating">
+                                                <label class="form-check-label" for="wordPressPluginRating">Plugin Rating</label>
+                                            </div>
+                                            <div class="form-check form-switch mb-2">
+                                                <input class="form-check-input" type="checkbox" id="wordPressPluginStars" data-badge="wordPressPluginStars">
+                                                <label class="form-check-label" for="wordPressPluginStars">Plugin Stars</label>
+                                            </div>
+                                            <div class="form-check form-switch mb-2">
+                                                <input class="form-check-input" type="checkbox" id="wordPressThemeDownloads" data-badge="wordPressThemeDownloads">
+                                                <label class="form-check-label" for="wordPressThemeDownloads">Theme Downloads</label>
+                                            </div>
+                                            <div class="form-check form-switch mb-2">
+                                                <input class="form-check-input" type="checkbox" id="wordPressThemeRating" data-badge="wordPressThemeRating">
+                                                <label class="form-check-label" for="wordPressThemeRating">Theme Rating</label>
+                                            </div>
+                                            <div class="form-check form-switch mb-2">
+                                                <input class="form-check-input" type="checkbox" id="wordPressThemeStars" data-badge="wordPressThemeStars">
+                                                <label class="form-check-label" for="wordPressThemeStars">Theme Stars</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#gamingBadges">
+                                            Gaming & Mod Platforms
+                                        </button>
+                                    </h2>
+                                    <div id="gamingBadges" class="accordion-collapse collapse" data-bs-parent="#badgesAccordion">
+                                        <div class="accordion-body">
+                                            <div class="form-check form-switch mb-2">
+                                                <input class="form-check-input" type="checkbox" id="modrinthFollowers" data-badge="modrinthFollowers">
+                                                <label class="form-check-label" for="modrinthFollowers">Modrinth Followers</label>
+                                            </div>
+                                            <div class="form-check form-switch mb-2">
+                                                <input class="form-check-input" type="checkbox" id="hangarWatchers" data-badge="hangarWatchers">
+                                                <label class="form-check-label" for="hangarWatchers">Hangar Watchers</label>
+                                            </div>
+                                            <div class="form-check form-switch mb-2">
+                                                <input class="form-check-input" type="checkbox" id="hangarStars" data-badge="hangarStars">
+                                                <label class="form-check-label" for="hangarStars">Hangar Stars</label>
+                                            </div>
+                                            <div class="form-check form-switch mb-2">
+                                                <input class="form-check-input" type="checkbox" id="thunderstoreLikes" data-badge="thunderstoreLikes">
+                                                <label class="form-check-label" for="thunderstoreLikes">Thunderstore Likes</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#otherBadges">
+                                            Other Platforms
+                                        </button>
+                                    </h2>
+                                    <div id="otherBadges" class="accordion-collapse collapse" data-bs-parent="#badgesAccordion">
+                                        <div class="accordion-body">
+                                            <div class="form-check form-switch mb-2">
+                                                <input class="form-check-input" type="checkbox" id="nostrBandFollowers" data-badge="nostrBandFollowers">
+                                                <label class="form-check-label" for="nostrBandFollowers">Nostr Band Followers</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-4">
+                                <button id="saveBtn" class="btn btn-primary">Save Settings</button>
+                                <button id="resetBtn" class="btn btn-secondary">Reset to Defaults</button>
+                                <span id="saveStatus" class="ms-3 text-success" style="display:none;">Saved!</span>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="directActivation">
+                            <h2>Direct Activation</h2>
+                            <p class="text-muted">Configure which websites automatically show badges without requiring manual activation.</p>
+
+                            <div class="card mt-4">
+                                <div class="card-body">
+                                    <h5 class="card-title">Enabled Websites</h5>
+                                    <div id="directActivationList" class="list-group"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="options.js"></script>
+</body>
+</html>

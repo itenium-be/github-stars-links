@@ -42,7 +42,7 @@ if (activator) {
 export function removeAllBadges() {
   const badges = document.querySelectorAll('img[src*="shields.io/github/stars"]');
   badges.forEach(badge => badge.remove());
-  console.info(`github-stars-link: Removed ${badges.length} badges.`);
+  console.info(`starify-links: Removed ${badges.length} badges.`);
 }
 
 

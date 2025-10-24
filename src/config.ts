@@ -2,6 +2,22 @@ import { BadgesUserConfig } from "./types";
 
 export const googleUrl = /^https:\/\/(www.)?google\..*\/search/;
 
+let cachedBadgesUserConfig: BadgesUserConfig | null = null;
+
+export async function getBadgesUserConfig(): Promise<BadgesUserConfig> {
+  if (cachedBadgesUserConfig) {
+    return cachedBadgesUserConfig;
+  }
+
+  return new Promise((resolve) => {
+    chrome.storage.sync.get(['badgesUserConfig'], (result) => {
+      const config = result.badgesUserConfig || badgesUserConfig;
+      cachedBadgesUserConfig = config;
+      resolve(config);
+    });
+  });
+}
+
 export const getCurrentUrl = () => globalThis.window?.document.location.href.toLowerCase() || '';
 
 /** Workaround for "429 Too Many Requests" from shields.io */

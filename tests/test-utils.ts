@@ -31,7 +31,7 @@ export async function setupTestPage(page: Page, fixtureName: string) {
 
   // Add our content script
   if (!scriptContent) {
-    const scriptPath = path.join(__dirname, '../github-stars.user.js');
+    const scriptPath = path.join(__dirname, '../starify-links.user.js');
     scriptContent = fs.readFileSync(scriptPath, 'utf-8');
   }
   await page.addScriptTag({ content: scriptContent });

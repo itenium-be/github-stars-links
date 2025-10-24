@@ -1,8 +1,7 @@
 {
-  "name": "github-stars-links",
+  "name": "starify-links",
   "version": "1.10.0",
-  "description": "Add GitHub Stars badges to GitHub project links",
-  "main": "github-stars.user.js",
+  "description": "Add Stars badges to all kinds of links",
   "devDependencies": {
     "@playwright/test": "^1.56.1",
     "@rollup/plugin-node-resolve": "^16.0.3",
@@ -38,5 +37,8 @@
   "bugs": {
     "url": "https://github.com/itenium-be/github-stars-links/issues"
   },
-  "homepage": "https://github.com/itenium-be/github-stars-links#readme"
+  "homepage": "https://github.com/itenium-be/github-stars-links#readme",
+  "dependencies": {
+    "bootstrap": "^5.3.8"
+  }
 }

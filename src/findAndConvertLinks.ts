@@ -1,9 +1,10 @@
 import { badgeRenderer } from "./badgeRenderer";
-import { badgesUserConfig, shieldsConfig } from "./config";
+import { getBadgesUserConfig, shieldsConfig } from "./config";
 import { badgesConfig } from "./matchers/badgesConfig";
 import { BadgeConfig, BadgeInfo, BadgeLinkInfo } from "./types";
 
-export function findAndConvertLinks(linkContainers?: NodeListOf<Element>, allowDuplicates?: boolean) {
+export async function findAndConvertLinks(linkContainers?: NodeListOf<Element>, allowDuplicates?: boolean) {
+  const userConfig = await getBadgesUserConfig();
   const newBadges: BadgeInfo[] = [];
 
   const links = linkContainers
@@ -17,10 +18,9 @@ export function findAndConvertLinks(linkContainers?: NodeListOf<Element>, allowD
     badgesConfig.forEach(badgeConfig => {
       const match = badgeConfig.match(a);
       if (match) {
-        const config = badgesUserConfig[match.badgeType];
+        const config = userConfig[match.badgeType];
         if (config.enabled) {
           const badgeUrl = completeBadgeUrl(match.badgeUrl, config);
-          // console.log(`pushing badge ${match.badgeType}`, badgeUrl);
           newBadges.push({baseUrl: match.baseUrl, badgeUrl, el: a.el, badgeType: match.badgeType});
         }
       }
@@ -42,7 +42,7 @@ export function findAndConvertLinks(linkContainers?: NodeListOf<Element>, allowD
     }
   });
 
-  console.info(`github-stars-link: Added ${badgesToAdd.length} badges for ${linkContainers ? 'observe' : 'global scan'} (filterDuplicates: ${filterDuplicates}).`);
+  console.info(`starify-links: Added ${badgesToAdd.length} badges for ${linkContainers ? 'observe' : 'global scan'} (filterDuplicates: ${filterDuplicates}).`);
 }
 
 
