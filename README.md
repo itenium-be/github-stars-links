@@ -93,7 +93,7 @@ chrome://extensions/
   - [Youtube Channel](https://www.youtube.com/channel/UC8butISFwT-Wl7EV0hUK0BQ/videos)
   - [Youtube Video](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
   - [Gitlab Repository](https://gitlab.com/gitlab-org/gitlab)
-  - [Lemmy Subsribers](https://lemmy.ml/c/technology)
+  - [Lemmy Subscribers](https://lemmy.ml/c/technology)
   - [Wordpress Plugins/Themes](https://wordpress.org/plugins/akismet/)
   - [Chrome Extension Users](https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm)
   - [Firefox Addon Users](https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/)
