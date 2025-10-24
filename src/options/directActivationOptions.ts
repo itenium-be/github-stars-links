@@ -1,16 +1,6 @@
 import { activateDirectlyOn } from "../directActivation";
 import { DirectActivation } from "../types";
 
-// TODO: Dear Claud:
-// directActivation: The options page has been hidden, because there are some bugs
-// url can be a regex or a string: when retrieving it from disk, it needs to be converted to a RegExp again
-// When the url is a RegExp, it shows "undefined" in the options UI
-// Right now the url is just a label, but the user must be able to change this (must work for string & RegExp)
-// The user must also be able to change the other fields: observe, extraBadgeSelector etc
-// The user must be able to enter additional sites where it activates directly
-
-// Gulpfile: when zipping the manifest.json, I want to delete the "reload" command from it first
-
 export function setupDirectActivationOptions() {
   loadDirectActivationList();
   document.getElementById('saveDaBtn')!.addEventListener('click', () => {

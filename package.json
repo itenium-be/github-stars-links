@@ -1,6 +1,6 @@
 {
   "name": "starify-links",
-  "version": "1.10.0",
+  "version": "2.0",
   "description": "Add Stars badges to all kinds of links",
   "devDependencies": {
     "@playwright/test": "^1.56.1",
