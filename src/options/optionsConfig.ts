@@ -1,4 +1,5 @@
 import { BadgesUserConfig } from '../types';
+import { badgesUserConfig } from '../config';
 
 type BadgeInfo = {
   key: keyof BadgesUserConfig;
@@ -109,3 +110,25 @@ export const directActivationUrls = [
   'pkg.go.dev',
   'DuckDuckGo'
 ];
+
+function validateBadgeCategories() {
+  const allBadgesInConfig = Object.keys(badgesUserConfig) as Array<keyof BadgesUserConfig>;
+  const allBadgesInCategories = badgeCategories.flatMap(cat => cat.badges.map(b => b.key));
+
+  const missingInCategories = allBadgesInConfig.filter(key => !allBadgesInCategories.includes(key));
+  const extraInCategories = allBadgesInCategories.filter(key => !allBadgesInConfig.includes(key));
+
+  if (missingInCategories.length > 0) {
+    console.error('❌ Badges missing from badgeCategories:', missingInCategories);
+    throw new Error(`Configuration error: ${missingInCategories.length} badge(s) are in badgesUserConfig but not in badgeCategories: ${missingInCategories.join(', ')}`);
+  }
+
+  if (extraInCategories.length > 0) {
+    console.error('❌ Extra badges in badgeCategories:', extraInCategories);
+    throw new Error(`Configuration error: ${extraInCategories.length} badge(s) are in badgeCategories but not in badgesUserConfig: ${extraInCategories.join(', ')}`);
+  }
+
+  console.log(`✓ Badge configuration validated: ${allBadgesInConfig.length} badges configured correctly`);
+}
+
+validateBadgeCategories();

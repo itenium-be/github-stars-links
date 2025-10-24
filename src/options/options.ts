@@ -10,7 +10,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('saveBtn')!.addEventListener('click', saveBadgesConfig);
   document.getElementById('resetBtn')!.addEventListener('click', resetToDefaults);
+  document.getElementById('applyBulkStyle')!.addEventListener('click', applyBulkStyleChange);
 });
+
+function applyBulkStyleChange() {
+  const dropdown = document.getElementById('bulkStyleChange') as HTMLSelectElement;
+  const selectedStyle = dropdown.value;
+
+  if (!selectedStyle) {
+    alert('Please select a style first');
+    return;
+  }
+
+  const allStyleSelects = document.querySelectorAll('[data-field="style"]') as NodeListOf<HTMLSelectElement>;
+  allStyleSelects.forEach(select => {
+    select.value = selectedStyle;
+  });
+
+  dropdown.value = '';
+
+  alert(`Applied "${selectedStyle}" style to all ${allStyleSelects.length} badges. Don't forget to click "Save Settings"!`);
+}
 
 function loadDirectActivationList() {
   const listEl = document.getElementById('directActivationList')!;

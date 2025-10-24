@@ -37,7 +37,30 @@
                             <h2>Badges Configuration</h2>
                             <p class="text-muted">Configure badge types and their display settings.</p>
 
-                            <div class="mt-4 mb-3">
+                            <div class="card mt-3 mb-4">
+                                <div class="card-body">
+                                    <div class="row align-items-center">
+                                        <div class="col-auto">
+                                            <label for="bulkStyleChange" class="form-label mb-0">Change style for all badges:</label>
+                                        </div>
+                                        <div class="col-auto">
+                                            <select class="form-select" id="bulkStyleChange">
+                                                <option value="">-- Select a style --</option>
+                                                <option value="flat">Flat</option>
+                                                <option value="flat-square">Flat Square</option>
+                                                <option value="plastic">Plastic</option>
+                                                <option value="for-the-badge">For The Badge</option>
+                                                <option value="social">Social</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-auto">
+                                            <button id="applyBulkStyle" class="btn btn-info">Apply to All</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
                                 <button id="saveBtn" class="btn btn-primary">Save Settings</button>
                                 <button id="resetBtn" class="btn btn-secondary">Reset to Defaults</button>
                                 <span id="saveStatus" class="ms-3 text-success" style="display:none;">✓ Saved!</span>
