@@ -1,119 +1,7 @@
 import { badgesUserConfig } from '../config';
 import { BadgesUserConfig, BadgeConfig } from '../types';
+import { badgeCategories, directActivationUrls } from './optionsConfig';
 
-type BadgeCategory = {
-  name: string;
-  badges: Array<{ key: keyof BadgesUserConfig; label: string; docsUrl: string }>;
-};
-
-const badgeDocsUrls: Record<keyof BadgesUserConfig, string> = {
-  githubRepository: 'https://shields.io/badges/git-hub-repo-stars',
-  githubUserStars: 'https://shields.io/badges/git-hub-users-stars',
-  githubFollowers: 'https://shields.io/badges/git-hub-followers',
-  githubGistStars: 'https://shields.io/badges/git-hub-gist-stars',
-  githubWatchers: 'https://shields.io/badges/git-hub-watchers',
-  githubForks: 'https://shields.io/badges/git-hub-forks',
-  subredditSubscribers: 'https://shields.io/badges/subreddit-subscribers',
-  redditUserKarma: 'https://shields.io/badges/reddit-user-karma',
-  blueskyFollowers: 'https://shields.io/badges/bluesky-followers',
-  blueskyPosts: 'https://shields.io/badges/bluesky-posts',
-  hackerNewsKarma: 'https://shields.io/badges/hacker-news-user-karma',
-  twitchStatus: 'https://shields.io/badges/twitch-status',
-  youtubeVideoViews: 'https://shields.io/badges/you-tube-video-views',
-  youtubeVideoLikes: 'https://shields.io/badges/you-tube-video-likes',
-  youtubeVideoComments: 'https://shields.io/badges/you-tube-video-comments',
-  youtubeChannelViews: 'https://shields.io/badges/you-tube-channel-views',
-  youtubeChannelSubscribers: 'https://shields.io/badges/you-tube-channel-subscribers',
-  twitterUrl: 'https://shields.io/badges/x-formerly-twitter-url',
-  twitterFollow: 'https://shields.io/badges/x-formerly-twitter-follow',
-  thunderstoreLikes: 'https://shields.io/badges/thunderstore-likes',
-  nostrBandFollowers: 'https://shields.io/badges/nostr-band-followers',
-  modrinthFollowers: 'https://shields.io/badges/modrinth-followers',
-  lemmy: 'https://shields.io/badges/lemmy',
-  hangarWatchers: 'https://shields.io/badges/hangar-watchers',
-  hangarStars: 'https://shields.io/badges/hangar-stars',
-  gitlabStars: 'https://shields.io/badges/git-lab-stars',
-  gitlabForks: 'https://shields.io/badges/git-lab-forks',
-  wordPressPlugin: 'https://shields.io/badges/wordpress-plugin-total-downloads',
-  wordPressPluginRating: 'https://shields.io/badges/word-press-plugin-rating',
-  wordPressPluginStars: 'https://shields.io/badges/word-press-plugin-stars',
-  wordPressThemeDownloads: 'https://shields.io/badges/word-press-theme-downloads',
-  wordPressThemeRating: 'https://shields.io/badges/word-press-theme-rating',
-  wordPressThemeStars: 'https://shields.io/badges/word-press-theme-stars',
-  vsMarketplace: 'https://shields.io/badges/visual-studio-marketplace-installs',
-  chromeWebStore: 'https://shields.io/badges/chrome-web-store-users',
-  chromeWebStoreRating: 'https://shields.io/badges/chrome-web-store-rating',
-  chromeWebStoreStars: 'https://shields.io/badges/chrome-web-store-stars',
-  chromeWebStoreLastUpdated: 'https://shields.io/badges/chrome-web-store-last-updated',
-  chromeWebStoreRatingCount: 'https://shields.io/badges/chrome-web-store-rating-count',
-  firefoxAddon: 'https://shields.io/badges/mozilla-add-on-users',
-  firefoxAddonRating: 'https://shields.io/badges/mozilla-add-on-rating',
-  firefoxAddonStars: 'https://shields.io/badges/mozilla-add-on-stars',
-  firefoxAddonDownloads: 'https://shields.io/badges/mozilla-add-on-downloads',
-};
-
-const directActivationUrls = [
-  'Stack Overflow',
-  'Super User',
-  'Ask Ubuntu',
-  'Server Fault',
-  '*.stackexchange.com',
-  'Google Search',
-  'GitHub',
-  'npm',
-  'NuGet',
-  'VS Code Marketplace',
-  'PyPI',
-  'RubyGems',
-  'crates.io',
-  'pkg.go.dev',
-  'DuckDuckGo'
-];
-
-function categorizeBadges(): BadgeCategory[] {
-  const badges = Object.keys(badgesUserConfig) as Array<keyof BadgesUserConfig>;
-
-  const categories: BadgeCategory[] = [
-    { name: 'GitHub Badges', badges: [] },
-    { name: 'GitLab Badges', badges: [] },
-    { name: 'Social Media Badges', badges: [] },
-    { name: 'YouTube Badges', badges: [] },
-    { name: 'Browser Extensions & Plugin Stores', badges: [] },
-    { name: 'Gaming & Mod Platforms', badges: [] },
-    { name: 'Other Platforms', badges: [] },
-  ];
-
-  badges.forEach(key => {
-    const label = formatBadgeName(key);
-    const docsUrl = badgeDocsUrls[key];
-
-    if (key.startsWith('github')) {
-      categories[0].badges.push({ key, label, docsUrl });
-    } else if (key.startsWith('gitlab')) {
-      categories[1].badges.push({ key, label, docsUrl });
-    } else if (key.startsWith('youtube')) {
-      categories[3].badges.push({ key, label, docsUrl });
-    } else if (['subreddit', 'reddit', 'bluesky', 'hackerNews', 'twitch', 'twitter', 'lemmy'].some(p => key.toLowerCase().includes(p.toLowerCase()))) {
-      categories[2].badges.push({ key, label, docsUrl });
-    } else if (['chrome', 'firefox', 'vsMarketplace', 'wordPress'].some(p => key.toLowerCase().includes(p.toLowerCase()))) {
-      categories[4].badges.push({ key, label, docsUrl });
-    } else if (['modrinth', 'hangar', 'thunderstore'].some(p => key.toLowerCase().includes(p.toLowerCase()))) {
-      categories[5].badges.push({ key, label, docsUrl });
-    } else {
-      categories[6].badges.push({ key, label, docsUrl });
-    }
-  });
-
-  return categories.filter(cat => cat.badges.length > 0);
-}
-
-function formatBadgeName(key: string): string {
-  const formatted = key
-    .replace(/([A-Z])/g, ' $1')
-    .replace(/^./, str => str.toUpperCase())
-    .trim();
-  return formatted;
-}
 
 document.addEventListener('DOMContentLoaded', () => {
   loadDirectActivationList();
@@ -133,9 +21,8 @@ function loadDirectActivationList() {
 
 function generateBadgesUI() {
   const accordion = document.getElementById('badgesAccordion')!;
-  const categories = categorizeBadges();
 
-  categories.forEach((category, catIndex) => {
+  badgeCategories.forEach((category, catIndex) => {
     const categoryId = `category-${catIndex}`;
     const isFirst = catIndex === 0;
 
