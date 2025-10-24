@@ -126,3 +126,8 @@ Turn sindresorhus [awesome-awesome list](https://github.com/sindresorhus/awesome
 And a whole bunch of other badges!
 
 ![other-links](media/other-links.png 'other-links')
+
+
+## Everything Configurable
+
+![options](media/options.png 'options')
