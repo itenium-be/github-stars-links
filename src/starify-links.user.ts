@@ -3,7 +3,7 @@ import { findAndConvertLinks } from './findAndConvertLinks';
 
 (async () => {
   const activator = await findConfig();
-  if (activator?.enabled) {
+  if (activator) {
     findAndConvertLinks();
 
     if (activator.observeNavigation) {
