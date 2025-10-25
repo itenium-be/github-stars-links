@@ -43,8 +43,18 @@ export async function badgeRenderer(badge: BadgeInfo) {
 
         // Sometimes Google adds some additional stuff
         // Make sure it does not overlap
-        const extraStuff = badge.el.parentNode!.parentNode!.childNodes[1].childNodes[1] as HTMLElement;
-        extraStuff.style.marginLeft = '80px';
+        const extraStuff = badge.el.parentNode!.parentNode?.childNodes[1]?.childNodes[1] as HTMLElement;
+        if (extraStuff) {
+          extraStuff.style.marginLeft = '80px';
+        } else {
+          // TODO: see https://github.com/itenium-be/github-stars-links/issues/26
+          // We get here when showing google youtube results in "People also ask" section
+          // console.log('UNEXPECTED')
+          // console.log(badge.el);
+          // console.log(badge.el.parentNode!.parentNode?.childNodes[1]);
+          console.error(`Unexpected layout for ${badge.badgeUrl}`);
+          // console.log('UNEXPECTED')
+        }
       }
 
     } else if (currentUrl.startsWith('https://duckduckgo.com')) {
