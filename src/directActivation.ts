@@ -1,7 +1,7 @@
 import { getCurrentUrl, googleUrl } from "./config";
 import { DirectActivation } from "./types";
 
-const activateDirectlyOnDefaults: DirectActivation[] = [
+export const activateDirectlyOn: DirectActivation[] = [
   {label: 'Stack Overflow', enabled: true, url: 'https://stackoverflow.com'},
   {label: 'Super User', enabled: true, url: 'https://superuser.com'},
   {label: 'Ask Ubuntu', enabled: true, url: 'https://askubuntu.com'},
@@ -20,7 +20,6 @@ const activateDirectlyOnDefaults: DirectActivation[] = [
   {label: 'DuckDuckGo', enabled: true, url: 'https://duckduckgo.com', observe: '.react-results--main', observeAllowDuplicates: false},
 ];
 
-export const activateDirectlyOn = activateDirectlyOnDefaults;
 
 let cachedDirectActivationConfig: DirectActivation[] | null = null;
 
@@ -31,7 +30,7 @@ export async function getDirectActivationConfig(): Promise<DirectActivation[]> {
 
   return new Promise((resolve) => {
     chrome.storage.sync.get(['directActivationConfig'], (result) => {
-      const config = result.directActivationConfig || activateDirectlyOnDefaults;
+      const config = result.directActivationConfig || activateDirectlyOn;
       cachedDirectActivationConfig = config;
       resolve(config);
     });
